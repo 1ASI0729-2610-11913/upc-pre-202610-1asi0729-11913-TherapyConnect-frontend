@@ -5,6 +5,7 @@ import { TeacherNote } from '../domain/model/teacher-note.entity';
 import { TeacherNoteAssembler } from './teacher-note-assembler';
 import { TeacherNoteResource, TeacherNotesResponse } from './teacher-notes-response';
 
+
 export class TeacherNotesApiEndpoint extends BaseApiEndpoint<
   TeacherNote,
   TeacherNoteResource,

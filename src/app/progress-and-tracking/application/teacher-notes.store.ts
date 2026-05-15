@@ -3,6 +3,8 @@ import { catchError, finalize, of } from 'rxjs';
 import { TeacherNote } from '../domain/model/teacher-note.entity';
 import { TeacherNoteApi } from '../infrastructure/teacher-note-api';
 
+
+
 export interface TeacherNotesDraft {
   studentName: string;
   content: string;
@@ -10,10 +12,8 @@ export interface TeacherNotesDraft {
   sessionInfo: string;
 }
 
-/**
- * Store de aplicación para apuntes del profesor (progress-and-tracking).
- * Orquesta estado y llamadas HTTP vía {@link TeacherNoteApi}.
- */
+
+
 @Injectable({ providedIn: 'root' })
 export class TeacherNotesStore {
   private readonly api = inject(TeacherNoteApi);
@@ -28,10 +28,14 @@ export class TeacherNotesStore {
     sessionInfo: '',
   });
 
+
+
   readonly notes = this._notes.asReadonly();
   readonly loading = this._loading.asReadonly();
   readonly selectedId = this._selectedId.asReadonly();
   readonly draft = this._draft.asReadonly();
+
+
 
   loadNotes(): void {
     this._loading.set(true);
@@ -49,9 +53,13 @@ export class TeacherNotesStore {
       });
   }
 
+
+
   patchDraft(partial: Partial<TeacherNotesDraft>): void {
     this._draft.update((d) => ({ ...d, ...partial }));
   }
+
+
 
   newNote(): void {
     this._selectedId.set(null);
@@ -72,6 +80,8 @@ export class TeacherNotesStore {
       sessionInfo: note.sessionInfo,
     });
   }
+
+
 
   saveNote(): void {
     const d = this._draft();
@@ -104,6 +114,8 @@ export class TeacherNotesStore {
       this.selectNote(saved);
     });
   }
+
+
 
   deleteNote(id: number): void {
     this._loading.set(true);

@@ -7,9 +7,7 @@ import { PlanType } from '../../../shared/domain/model/plan-type.enum';
 import { UserProfile } from '../../domain/model/user-profile.entity';
 import { UserProfilesApiEndpoint } from './user-profiles-api-endpoint';
 
-/**
- * Fachada HTTP del bounded context IAM para perfiles de usuario.
- */
+
 @Injectable({ providedIn: 'root' })
 export class UserProfileApi extends BaseApi {
   private readonly profilesEndpoint: UserProfilesApiEndpoint;

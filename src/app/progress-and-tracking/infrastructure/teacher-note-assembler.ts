@@ -3,9 +3,11 @@ import { TeacherNote } from '../domain/model/teacher-note.entity';
 import { TeacherNoteResource, TeacherNotesResponse } from './teacher-notes-response';
 
 export class TeacherNoteAssembler implements BaseAssembler<TeacherNote, TeacherNoteResource, TeacherNotesResponse> {
+
   toEntitiesFromResponse(response: TeacherNotesResponse): TeacherNote[] {
     return response.teacherNotes.map((resource) => this.toEntityFromResource(resource));
   }
+
 
   toEntityFromResource(resource: TeacherNoteResource): TeacherNote {
     return new TeacherNote({
@@ -17,6 +19,7 @@ export class TeacherNoteAssembler implements BaseAssembler<TeacherNote, TeacherN
       sessionInfo: resource.sessionInfo ?? '',
     });
   }
+
 
   toResourceFromEntity(entity: TeacherNote): TeacherNoteResource {
     return {

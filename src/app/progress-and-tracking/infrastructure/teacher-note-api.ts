@@ -5,9 +5,8 @@ import { BaseApi } from '../../shared/infrastructure/base-api';
 import { TeacherNote } from '../domain/model/teacher-note.entity';
 import { TeacherNotesApiEndpoint } from './teacher-notes-api-endpoint';
 
-/**
- * Fachada HTTP del bounded context progress-and-tracking para apuntes del profesor.
- */
+
+
 @Injectable({ providedIn: 'root' })
 export class TeacherNoteApi extends BaseApi {
   private readonly notesEndpoint: TeacherNotesApiEndpoint;

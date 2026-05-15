@@ -1,8 +1,5 @@
 import { BaseEntity } from '../../../shared/infrastructure/base-entity';
 
-/**
- * Apunte de seguimiento escrito por un profesor (dominio).
- */
 export class TeacherNote implements BaseEntity {
   private _id: number;
   private _studentName: string;
@@ -10,6 +7,7 @@ export class TeacherNote implements BaseEntity {
   private _categories: string[];
   private _content: string;
   private _sessionInfo: string;
+
 
   constructor(note: {
     id: number;
@@ -26,6 +24,9 @@ export class TeacherNote implements BaseEntity {
     this._content = note.content;
     this._sessionInfo = note.sessionInfo;
   }
+
+
+
 
   get id(): number {
     return this._id;
