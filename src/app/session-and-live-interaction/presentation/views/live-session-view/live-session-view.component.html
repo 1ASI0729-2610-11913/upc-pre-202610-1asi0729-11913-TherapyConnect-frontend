@@ -1,0 +1,58 @@
+<section class="live-page">
+  <header class="live-topbar">
+    <div>
+      <h1>{{ store.selectedSession()?.patientName || 'Mateo García' }}</h1>
+      <span>Sesión Individual</span>
+    </div>
+    <div class="timer">
+      <b>00:45:12</b>
+      <small>Tiempo transcurrido</small>
+    </div>
+    <div class="live-status"><span></span> En curso</div>
+    <button type="button" class="menu-btn">⋮</button>
+  </header>
+
+  <main class="live-content">
+    <section class="video-card" aria-label="Video principal de la sesión">
+      <div class="video-person">
+        <div class="person-head"></div>
+        <div class="person-body"></div>
+      </div>
+      <div class="teacher-preview">
+        <div class="preview-avatar"></div>
+        <span>Tú</span>
+      </div>
+      <div class="call-controls">
+        <button type="button">♩</button>
+        <button type="button">▣</button>
+        <button type="button" class="active">▤</button>
+        <button type="button">...</button>
+      </div>
+    </section>
+
+    <aside class="register-card">
+      <nav class="tabs">
+        <button type="button" class="active">Registro</button>
+        <button type="button">Apuntes</button>
+      </nav>
+
+      <div class="checklist">
+        @for (group of groups(); track group) {
+          <section class="check-group">
+            <h2><span></span>{{ group }}</h2>
+            @for (item of store.checklist(); track item.id) {
+              @if (item.groupTitle === group) {
+                <label>
+                  <input type="checkbox" [checked]="item.checked" (change)="toggleItem(item.id)" />
+                  <span>{{ item.label }}</span>
+                </label>
+              }
+            }
+          </section>
+        }
+      </div>
+
+      <button type="button" class="finish-btn" (click)="finishSession()">Finalizar sesión</button>
+    </aside>
+  </main>
+</section>
