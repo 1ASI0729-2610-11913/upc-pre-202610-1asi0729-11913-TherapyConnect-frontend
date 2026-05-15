@@ -1,0 +1,119 @@
+<app-dashboard-layout>
+  <section class="history-page">
+    <div class="page-heading">
+      <h1>Historial de sesiones</h1>
+      <p>Inicio <span>›</span> Calendario <span>›</span> <b>Historial</b></p>
+    </div>
+
+    <div class="filter-card">
+      <label>
+        <span>Paciente</span>
+        <button type="button" class="select-like">Mateo García <span>⌄</span></button>
+      </label>
+      <label>
+        <span>Rango de fechas</span>
+        <button type="button" class="select-like">01/04/2025 — 15/04/2025 <span>⌄</span></button>
+      </label>
+      <label>
+        <span>Tipo de sesión</span>
+        <button type="button" class="pill-dark">Todas</button>
+      </label>
+      <div class="filter-actions">
+        <input type="text" aria-label="Buscar sesión" />
+        <button type="button" class="clear-btn">Limpiar filtros</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-head">
+        <span>Fecha</span>
+        <span>Paciente</span>
+        <span>Tipo</span>
+        <span>Duración</span>
+        <span>Estado</span>
+        <span>Acciones</span>
+      </div>
+
+      @if (store.loading()) {
+        <p class="empty-message">Cargando sesiones...</p>
+      } @else if (store.error()) {
+        <p class="empty-message">{{ store.error() }}</p>
+      } @else {
+        @for (session of store.sessions(); track session.id) {
+          <button type="button" class="table-row" (click)="openDetail(session)">
+            <span class="date-cell">
+              <span class="date-icon">▣</span>
+              <span><b>{{ session.dateLabel }}</b><small>{{ session.weekdayLabel }}</small></span>
+            </span>
+            <span><b>{{ session.patientName }}</b><small>{{ session.patientAge }} años</small></span>
+            <span><em class="type-badge">{{ sessionTypeLabel(session.type) }}</em></span>
+            <span>{{ session.durationMinutes }} min</span>
+            <span><em class="status-badge" [class.cancelled]="session.status === 'cancelled'">{{ statusLabel(session.status) }}</em></span>
+            <span><span class="notes-btn">Ver apuntes</span></span>
+          </button>
+        }
+      }
+
+      <div class="table-footer">
+        <span>Mostrando 3 de {{ store.sessions().length }} sesiones</span>
+        <div class="pagination">
+          <button type="button" disabled>← Anterior</button>
+          <button type="button" class="active">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <span>...</span>
+          <button type="button">5</button>
+          <span>Página 1 de 5</span>
+          <button type="button" class="next">Siguiente →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <article class="stat-card purple"><span>▣</span><b>{{ store.sessions().length }}</b><small>Total sesiones</small></article>
+      <article class="stat-card green"><span>○</span><b>{{ store.completedCount() }}</b><small>Completadas</small></article>
+      <article class="stat-card red"><span>×</span><b>{{ store.cancelledCount() }}</b><small>Canceladas</small></article>
+      <article class="stat-card blue"><span>◷</span><b>{{ store.totalMinutes() }}</b><small>min Tiempo total</small></article>
+    </div>
+  </section>
+</app-dashboard-layout>
+
+@if (selectedSession(); as session) {
+  <div class="detail-backdrop" (click)="closeDetail()">
+    <aside class="detail-panel" (click)="$event.stopPropagation()">
+      <header class="detail-title">
+        <div class="detail-icon">▣</div>
+        <h2>Detalle de sesión</h2>
+        <button type="button" class="close-circle" (click)="closeDetail()">×</button>
+      </header>
+
+      <section class="patient-card">
+        <div class="avatar-circle"></div>
+        <div>
+          <h3>{{ session.patientName }}</h3>
+          <p>♙ {{ session.patientAge }} años</p>
+          <span>{{ session.conditionLabel }}</span>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <h4>Detalles de la sesión</h4>
+        <div class="chips">
+          <span>♙ Sesión {{ sessionTypeLabel(session.type) }}</span>
+          <span>▣ {{ modalityLabel(session.modality) }}</span>
+          <span>◷ {{ session.startTime }} – {{ session.endTime }}</span>
+          <small>{{ session.durationMinutes }} min</small>
+        </div>
+      </section>
+
+      <section class="detail-list">
+        <div><span class="square-icon">▣</span><p><small>Aula asignada</small><b>{{ session.classroomName }}</b></p></div>
+        <div><span class="square-icon">◇</span><p><small>Profesor asignado</small><b>{{ session.professionalName }}</b></p></div>
+      </section>
+
+      <button type="button" class="start-btn" (click)="startLiveSession()">▷ Iniciar sesión ahora</button>
+      <button type="button" class="outline-btn">↺ Ver historial de sesiones con este niño</button>
+      <button type="button" class="outline-btn" (click)="closeDetail()">Cerrar</button>
+    </aside>
+  </div>
+}

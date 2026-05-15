@@ -1,0 +1,38 @@
+<app-dashboard-layout>
+  <section class="parent-home">
+    <div class="parent-heading">
+      <h1>Sesiones asignadas</h1>
+      <p>Consulta la sesión de tu hijo, revisa observaciones y participa cuando la institución lo permita.</p>
+    </div>
+
+    <div class="next-card">
+      <div class="avatar"></div>
+      <div class="next-content">
+        <span class="label">Próxima sesión</span>
+        <h2>{{ store.sessions()[0]?.patientName || 'Mateo García' }}</h2>
+        <p>Aula de Psicomotricidad · 09:00 – 10:00 · Sesión privada</p>
+        <div class="chips">
+          <span>TEA Nivel 1</span>
+          <span>Presencial</span>
+          <span>60 min</span>
+        </div>
+      </div>
+      <button type="button" (click)="enterLiveSession()">Entrar a sesión</button>
+    </div>
+
+    <div class="cards-grid">
+      <article>
+        <b>Observación en vivo</b>
+        <p>Visualiza el comportamiento del niño durante la sesión asignada.</p>
+      </article>
+      <article>
+        <b>Anotaciones en tiempo real</b>
+        <p>Revisa comentarios breves del profesor mientras avanza la clase.</p>
+      </article>
+      <article>
+        <b>Participación simple</b>
+        <p>Interactúa o reacciona sin crear ni pagar nuevas sesiones.</p>
+      </article>
+    </div>
+  </section>
+</app-dashboard-layout>

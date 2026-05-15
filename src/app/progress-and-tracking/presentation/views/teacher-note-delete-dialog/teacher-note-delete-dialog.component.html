@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{ 'teacherNotes.delete.title' | translate }}</h2>
+<mat-dialog-content class="tc-delete-body">
+  <p>{{ 'teacherNotes.delete.warning' | translate }}</p>
+  <div class="tc-delete-card">
+    <div class="tc-delete-card-title">{{ data.studentName }}</div>
+    <div class="tc-delete-card-meta">{{ data.summaryLine }}</div>
+  </div>
+  <p class="tc-delete-footnote">{{ 'teacherNotes.delete.footnote' | translate }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button type="button" (click)="cancel()">
+    {{ 'teacherNotes.delete.cancel' | translate }}
+  </button>
+  <button mat-flat-button color="warn" type="button" (click)="confirm()">
+    {{ 'teacherNotes.delete.confirm' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,16 @@
+.tc-responsive-root {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .tc-responsive-root {
+    padding-inline: 0.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tc-responsive-root {
+    max-width: 1280px;
+    margin-inline: auto;
+  }
+}

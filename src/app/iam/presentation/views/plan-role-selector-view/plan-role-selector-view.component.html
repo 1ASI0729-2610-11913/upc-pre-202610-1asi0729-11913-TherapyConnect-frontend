@@ -1,0 +1,33 @@
+<app-auth-layout>
+  <div class="tc-entry">
+    @if (step() === 1) {
+      <h1 class="tc-entry-title">{{ 'plans.simpleTitle' | translate }}</h1>
+      <div class="tc-entry-stack">
+        <button type="button" class="tc-entry-btn" (click)="selectPlan(PlanType.Personal)">
+          {{ 'plans.personalButton' | translate }}
+        </button>
+        <button type="button" class="tc-entry-btn" (click)="selectPlan(PlanType.Institutional)">
+          {{ 'plans.institutionalButton' | translate }}
+        </button>
+      </div>
+    } @else {
+      <button type="button" class="tc-entry-back" (click)="goBack()">{{ 'common.back' | translate }}</button>
+      <span class="tc-entry-label">{{ 'roles.userLabel' | translate }}</span>
+      <div class="tc-entry-stack">
+        <button type="button" class="tc-entry-btn" (click)="chooseRole(InterfaceRole.Parent)">
+          {{ 'roles.parentFamilyButton' | translate }}
+        </button>
+        <button type="button" class="tc-entry-btn" (click)="chooseRole(InterfaceRole.Teacher)">
+          {{ 'roles.teacherButton' | translate }}
+        </button>
+        <button
+          type="button"
+          class="tc-entry-btn"
+          [disabled]="selectedPlan() === PlanType.Personal"
+          (click)="chooseRole(InterfaceRole.InstitutionAdmin)">
+          {{ 'roles.adminButton' | translate }}
+        </button>
+      </div>
+    }
+  </div>
+</app-auth-layout>

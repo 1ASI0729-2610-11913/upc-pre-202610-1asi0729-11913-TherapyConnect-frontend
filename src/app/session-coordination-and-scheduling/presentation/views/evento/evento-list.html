@@ -1,0 +1,68 @@
+@if (store.loading()) {
+  <mat-spinner diameter="40"></mat-spinner>
+}
+@if (store.error()) {
+  <mat-error>{{ store.error() }}</mat-error>
+}
+<p class="subnav">
+  <a [routerLink]="[schedulingBase, 'eventos']">Eventos</a>
+  ·
+  <a [routerLink]="[schedulingBase, 'recordatorios']">Recordatorios</a>
+</p>
+<table mat-table [dataSource]="store.eventos()" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.id }} </td>
+  </ng-container>
+
+  <!-- Titulo Column -->
+  <ng-container matColumnDef="titulo">
+    <th mat-header-cell *matHeaderCellDef> Título </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.titulo }} </td>
+  </ng-container>
+
+  <!-- FechaSesion Column -->
+  <ng-container matColumnDef="fechaSesion">
+    <th mat-header-cell *matHeaderCellDef> Fecha Sesión </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.fechaSesion }} </td>
+  </ng-container>
+
+  <!-- HoraInicio Column -->
+  <ng-container matColumnDef="horaInicio">
+    <th mat-header-cell *matHeaderCellDef> Hora Inicio </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.horaInicio }} </td>
+  </ng-container>
+
+  <!-- HoraFin Column -->
+  <ng-container matColumnDef="horaFin">
+    <th mat-header-cell *matHeaderCellDef> Hora Fin </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.horaFin }} </td>
+  </ng-container>
+
+  <!-- TipoSesion Column -->
+  <ng-container matColumnDef="tipoSesion">
+    <th mat-header-cell *matHeaderCellDef> Tipo Sesión </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.tipoSesion }} </td>
+  </ng-container>
+
+  <!-- EstadoEvento Column -->
+  <ng-container matColumnDef="estadoEvento">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let evento"> {{ evento.estadoEvento }} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let evento">
+      <button mat-button (click)="editEvento(evento.id)">Edit</button>
+      <button mat-button (click)="deleteEvento(evento.id)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<button mat-raised-button color="primary" [routerLink]="[schedulingBase, 'eventos', 'new']">Add Evento</button>
