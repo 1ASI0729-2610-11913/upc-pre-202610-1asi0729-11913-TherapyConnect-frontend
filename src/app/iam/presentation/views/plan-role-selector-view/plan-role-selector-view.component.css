@@ -1,0 +1,66 @@
+.tc-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: min(320px, 100%);
+  padding: 0.5rem 0;
+}
+
+.tc-entry-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.tc-entry-label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.tc-entry-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tc-entry-btn {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  text-align: center;
+  color: #111827;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tc-entry-btn:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.tc-entry-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tc-entry-back {
+  align-self: flex-start;
+  padding: 0;
+  font: inherit;
+  font-size: 0.875rem;
+  color: #374151;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tc-entry-back:hover {
+  color: #111827;
+}
