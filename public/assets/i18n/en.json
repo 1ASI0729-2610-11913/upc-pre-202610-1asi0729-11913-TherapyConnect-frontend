@@ -1,0 +1,127 @@
+{
+  "common": {
+    "appName": "TherapyConnect",
+    "continue": "Continue",
+    "back": "Back",
+    "search": "Search",
+    "language": "Language"
+  },
+  "plans": {
+    "simpleTitle": "Plan",
+    "personalButton": "Personal",
+    "institutionalButton": "Institutional",
+    "title": "Choose your plan",
+    "subtitle": "Select the plan that matches your subscription.",
+    "personal": "Personal plan",
+    "personalHint": "Families and independent professionals.",
+    "institutional": "Institutional plan",
+    "institutionalHint": "Schools and therapy centers."
+  },
+  "roles": {
+    "userLabel": "User",
+    "parentFamilyButton": "Parent or guardian",
+    "teacherButton": "Teacher",
+    "adminButton": "Administrator",
+    "title": "Who are you?",
+    "subtitle": "We will adapt navigation and the home dashboard.",
+    "parent": "Parent / guardian",
+    "teacher": "Teacher / therapist",
+    "institutionAdmin": "Institution administrator"
+  },
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "Choose plan and role to enter the demo workspace."
+  },
+  "shell": {
+    "toggleNav": "Open or close navigation",
+    "mainContent": "Main content"
+  },
+  "tooltips": {
+    "sidebarBrand": "TherapyConnect — application identity",
+    "languageSwitcher": "Change interface language",
+    "userMenu": "Open account and session menu",
+    "profileOpen": "Go to your profile (coming soon)",
+    "signOut": "Sign out (coming soon)",
+    "planPersonal": "Plan for families and independent professionals",
+    "planInstitutional": "Plan for schools and therapy centers",
+    "roleParent": "Enter as parent or guardian",
+    "roleTeacher": "Enter as teacher or therapist",
+    "roleAdmin": "Enter as institution administrator",
+    "backStep": "Go back to previous step"
+  },
+  "nav": {
+    "groups": {
+      "main": "Main menu",
+      "management": "Management",
+      "secondary": "More",
+      "account": "Account"
+    },
+    "dashboard": "Dashboard",
+    "students": "Students",
+    "therapists": "Therapists",
+    "calendar": "Calendar",
+    "sessions": "Sessions",
+    "reports": "Reports",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "calendarSessions": "Calendar and sessions",
+    "requests": "Requests",
+    "notes": "Notes",
+    "groupSessions": "Group sessions",
+    "emergencies": "Emergencies",
+    "profile": "Profile",
+    "home": "Home",
+    "privateSessions": "Private sessions",
+    "myCalendar": "My calendar",
+    "homeVisits": "Home visits",
+    "marketplace": "Marketplace",
+    "tracking": "Tracking",
+    "help": "Help"
+  },
+  "navbar": {
+    "searchPlaceholder": "Search students, therapists or sessions…",
+    "searchPlaceholderParent": "Search courses, sessions, resources…",
+    "notificationsAria": "Notifications"
+  },
+  "profile": {
+    "planLabel": "Plan",
+    "roleLabel": "Role"
+  },
+  "dashboard": {
+    "homeGreeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "homeRole": {
+      "teacher": "Teacher (Dr.)",
+      "admin": "Administrator",
+      "parent": "Parent",
+      "unknown": "User"
+    },
+    "homeSubtitle": "This is your dashboard."
+  },
+  "teacherNotes": {
+    "title": "Notes (demo)",
+    "listTitle": "Notes list",
+    "editorTitle": "Note editor",
+    "new": "New note",
+    "loading": "Loading…",
+    "empty": "No notes yet. Type something and press «Save note».",
+    "studentName": "Student name",
+    "categories": "Categories (comma-separated)",
+    "sessionInfo": "Linked session (free text)",
+    "content": "Content",
+    "save": "Save note",
+    "deleteButton": "Delete",
+    "delete": {
+      "title": "Delete this note?",
+      "warning": "This action cannot be undone. The note will be permanently removed.",
+      "footnote": "This does not affect other linked sessions.",
+      "cancel": "Cancel",
+      "confirm": "Yes, delete"
+    }
+  }
+}

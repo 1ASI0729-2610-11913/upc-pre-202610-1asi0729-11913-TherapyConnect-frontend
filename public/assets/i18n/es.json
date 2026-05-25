@@ -1,0 +1,127 @@
+{
+  "common": {
+    "appName": "TherapyConnect",
+    "continue": "Continuar",
+    "back": "Volver",
+    "search": "Buscar",
+    "language": "Idioma"
+  },
+  "plans": {
+    "simpleTitle": "Plan",
+    "personalButton": "Personal",
+    "institutionalButton": "Institucional",
+    "title": "Elige tu plan",
+    "subtitle": "Selecciona el plan que coincide con tu suscripción.",
+    "personal": "Plan personal",
+    "personalHint": "Familias y profesionales independientes.",
+    "institutional": "Plan institucional",
+    "institutionalHint": "Centros educativos y terapéuticos."
+  },
+  "roles": {
+    "userLabel": "Usuario",
+    "parentFamilyButton": "Padre de familia",
+    "teacherButton": "Profesor(a)",
+    "adminButton": "Administrador",
+    "title": "¿Quién eres?",
+    "subtitle": "Adaptaremos la navegación y el panel inicial.",
+    "parent": "Padre / madre / tutor",
+    "teacher": "Profesor / terapeuta",
+    "institutionAdmin": "Administrador de la institución"
+  },
+  "welcome": {
+    "title": "Bienvenido",
+    "subtitle": "Elige plan y rol para entrar al espacio de demostración."
+  },
+  "shell": {
+    "toggleNav": "Abrir o cerrar navegación",
+    "mainContent": "Contenido principal"
+  },
+  "tooltips": {
+    "sidebarBrand": "TherapyConnect — identidad de la aplicación",
+    "languageSwitcher": "Cambiar idioma de la interfaz",
+    "userMenu": "Abrir menú de cuenta y sesión",
+    "profileOpen": "Ir a tu perfil (próximamente)",
+    "signOut": "Cerrar sesión (próximamente)",
+    "planPersonal": "Plan para familias y profesionales independientes",
+    "planInstitutional": "Plan para centros educativos y terapéuticos",
+    "roleParent": "Entrar como padre, madre o tutor",
+    "roleTeacher": "Entrar como profesor o terapeuta",
+    "roleAdmin": "Entrar como administrador de la institución",
+    "backStep": "Volver al paso anterior"
+  },
+  "nav": {
+    "groups": {
+      "main": "Menú principal",
+      "management": "Gestión",
+      "secondary": "Más",
+      "account": "Cuenta"
+    },
+    "dashboard": "Panel",
+    "students": "Estudiantes",
+    "therapists": "Terapeutas",
+    "calendar": "Calendario",
+    "sessions": "Sesiones",
+    "reports": "Reportes",
+    "messages": "Mensajes",
+    "notifications": "Notificaciones",
+    "settings": "Configuración",
+    "signOut": "Cerrar sesión",
+    "calendarSessions": "Calendario y sesiones",
+    "requests": "Solicitudes",
+    "notes": "Apuntes",
+    "groupSessions": "Sesiones grupales",
+    "emergencies": "Emergencias",
+    "profile": "Perfil",
+    "home": "Inicio",
+    "privateSessions": "Sesiones privadas",
+    "myCalendar": "Mi calendario",
+    "homeVisits": "A domicilio",
+    "marketplace": "Marketplace",
+    "tracking": "Seguimiento",
+    "help": "Ayuda"
+  },
+  "navbar": {
+    "searchPlaceholder": "Buscar estudiantes, terapeutas o sesiones…",
+    "searchPlaceholderParent": "Buscar cursos, sesiones, recursos…",
+    "notificationsAria": "Notificaciones"
+  },
+  "profile": {
+    "planLabel": "Plan",
+    "roleLabel": "Rol"
+  },
+  "dashboard": {
+    "homeGreeting": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    },
+    "homeRole": {
+      "teacher": "Profesor (Dr.)",
+      "admin": "Administrador",
+      "parent": "Padre o madre de familia",
+      "unknown": "Usuario"
+    },
+    "homeSubtitle": "Este es el dashboard."
+  },
+  "teacherNotes": {
+    "title": "Apuntes (demo)",
+    "listTitle": "Lista de apuntes",
+    "editorTitle": "Editor de apunte",
+    "new": "Nuevo apunte",
+    "loading": "Cargando…",
+    "empty": "No hay apuntes todavía. Escribe y pulsa «Guardar nota».",
+    "studentName": "Nombre del niño/a",
+    "categories": "Categorías (separadas por coma)",
+    "sessionInfo": "Sesión vinculada (texto libre)",
+    "content": "Contenido",
+    "save": "Guardar nota",
+    "deleteButton": "Eliminar",
+    "delete": {
+      "title": "¿Eliminar este apunte?",
+      "warning": "Esta acción no se puede deshacer. El apunte se eliminará de forma permanente.",
+      "footnote": "Esta operación no afecta otras sesiones vinculadas.",
+      "cancel": "Cancelar",
+      "confirm": "Sí, eliminar"
+    }
+  }
+}
