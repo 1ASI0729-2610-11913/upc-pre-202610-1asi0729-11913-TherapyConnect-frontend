@@ -1,0 +1,10 @@
+<button
+  mat-icon-button
+  type="button"
+  [matBadge]="displayBadge()"
+  [matBadgeHidden]="displayBadge() === 0"
+  matBadgeSize="small"
+  [attr.aria-label]="'navbar.notificationsAria' | translate"
+  [matTooltip]="'navbar.notificationsAria' | translate">
+  <mat-icon>notifications</mat-icon>
+</button>

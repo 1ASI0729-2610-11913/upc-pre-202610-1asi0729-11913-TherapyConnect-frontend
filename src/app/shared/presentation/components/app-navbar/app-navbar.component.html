@@ -1,0 +1,23 @@
+@if (isHandset()) {
+  <mat-toolbar class="tc-toolbar tc-toolbar-mobile">
+    <button
+      mat-icon-button
+      type="button"
+      (click)="menuToggle.emit()"
+      [attr.aria-label]="'shell.toggleNav' | translate"
+      [matTooltip]="'shell.toggleNav' | translate">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="tc-spacer"></span>
+    <app-language-switcher />
+    <app-notification-button />
+    <app-user-profile-chip />
+  </mat-toolbar>
+} @else {
+  <mat-toolbar class="tc-toolbar tc-toolbar-desktop">
+    <span class="tc-spacer"></span>
+    <app-language-switcher />
+    <app-notification-button />
+    <app-user-profile-chip />
+  </mat-toolbar>
+}

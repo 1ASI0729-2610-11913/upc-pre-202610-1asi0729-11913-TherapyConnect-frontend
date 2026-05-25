@@ -1,0 +1,11 @@
+<div class="tc-nav-group">
+  <div class="tc-nav-group-label">{{ group().translationKey | translate }}</div>
+  <mat-nav-list>
+    @for (item of group().items; track item.translationKey) {
+      <button mat-list-item type="button" class="tc-nav-readonly">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.translationKey | translate }}</span>
+      </button>
+    }
+  </mat-nav-list>
+</div>

@@ -1,0 +1,11 @@
+<app-responsive-drawer #rd>
+  <div class="tc-drawer-slot">
+    <app-sidebar (navigate)="rd.closeIfHandset()" />
+  </div>
+  <div class="tc-shell-column">
+    <app-navbar (menuToggle)="rd.toggle()" />
+    <main class="tc-shell-outlet" id="main-content">
+      <router-outlet />
+    </main>
+  </div>
+</app-responsive-drawer>

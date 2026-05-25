@@ -1,0 +1,12 @@
+.tc-nav-group-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+  padding: 0.5rem 0.75rem 0.25rem;
+}
+
+.tc-nav-readonly {
+  opacity: 0.85;
+}

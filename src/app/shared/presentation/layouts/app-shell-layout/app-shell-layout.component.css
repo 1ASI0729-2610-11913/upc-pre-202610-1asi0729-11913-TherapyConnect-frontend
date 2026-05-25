@@ -1,0 +1,21 @@
+.tc-shell-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.tc-shell-outlet {
+  flex: 1;
+  padding: 0.75rem 0.75rem 1.5rem;
+  background-color: #f1f3f4;
+  min-height: 0;
+}
+
+@media (min-width: 960px) {
+  .tc-shell-outlet {
+    padding: 1.25rem 1.5rem 2rem;
+  }
+}
