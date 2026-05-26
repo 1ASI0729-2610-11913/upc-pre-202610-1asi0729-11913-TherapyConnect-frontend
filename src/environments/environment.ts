@@ -10,7 +10,7 @@ export const environment = {
   platformProviderEventosEndpointPath: '/api/eventos',
   platformProviderRecordatoriosEndpointPath: '/api/recordatorios',
 
-  platformProviderProductsEndpointPath: 'api/products',
-  platformProviderDependentsEndpointPath: 'api/dependents',
-  platformProviderCatalogsEndpointPath: 'api/product-catalogs',
+  platformProviderProductsEndpointPath: '/api/products',
+  platformProviderDependentsEndpointPath: '/api/dependents',
+  platformProviderCatalogsEndpointPath: '/api/product-catalogs',
 };

@@ -1,0 +1,31 @@
+<div class="product-card">
+
+  <img
+    [src]="image"
+    [alt]="title">
+
+  <div class="product-content">
+
+    <span class="category">
+      {{ category }}
+    </span>
+
+    <h3>{{ title }}</h3>
+
+    <p>{{ description }}</p>
+
+    <div class="product-footer">
+
+      <span class="price">
+        ${{ price }}
+      </span>
+
+      <span class="rating">
+        ⭐ {{ rating }}
+      </span>
+
+    </div>
+
+  </div>
+
+</div>

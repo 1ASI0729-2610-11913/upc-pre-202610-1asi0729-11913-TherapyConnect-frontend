@@ -1,0 +1,36 @@
+<div class="marketplace-container">
+
+  <section class="marketplace-header">
+
+    <div>
+      <h1>Marketplace</h1>
+      <p>Explore therapy resources and recommended products.</p>
+    </div>
+
+  </section>
+
+  <app-product-statistics
+    [totalProducts]="products().length"
+    [recommendedProducts]="4"
+    [activeCategories]="3">
+  </app-product-statistics>
+
+  <app-marketplace-filter
+    (categoryChange)="updateCategory($event)">
+  </app-marketplace-filter>
+
+  <div class="product-grid">
+
+    <app-product-card
+      *ngFor="let product of filteredProducts()"
+      [title]="product.title"
+      [description]="product.description"
+      [category]="product.category"
+      [price]="product.price"
+      [image]="product.image"
+      [rating]="product.rating">
+    </app-product-card>
+
+  </div>
+
+</div>

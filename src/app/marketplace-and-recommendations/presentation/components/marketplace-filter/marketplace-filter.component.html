@@ -1,0 +1,17 @@
+<div class="filter-container">
+
+  <select
+    [(ngModel)]="category"
+    (change)="applyFilter()">
+
+    <option
+      *ngFor="let item of categories"
+      [value]="item">
+
+      {{ item }}
+
+    </option>
+
+  </select>
+
+</div>
