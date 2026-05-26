@@ -14,12 +14,12 @@
   "/api/teacher-notes/:id": "/teacherNotes/:id",
   "/api/teacher-notes": "/teacherNotes",
 
-  "api/courses/:id": "/courses/:id",
-  "api/courses": "/courses",
-  "api/registrations/:id": "/registrations/:id",
-  "api/registrations": "/registrations",
-  "api/evaluations/:id": "/evaluations/:id",
-  "api/evaluations": "/evaluations",
-  "api/observations/:id": "/observations/:id",
-  "api/observations": "/observations"
+  "/api/courses/:id": "/courses/:id",
+  "/api/courses": "/courses",
+  "/api/registrations/:id": "/registrations/:id",
+  "/api/registrations": "/registrations",
+  "/api/evaluations/:id": "/evaluations/:id",
+  "/api/evaluations": "/evaluations",
+  "/api/observations/:id": "/observations/:id",
+  "/api/observations": "/observations"
 }
