@@ -1,6 +1,5 @@
 import { BaseEntity } from '../../../shared/infrastructure/base-entity';
 import { Product } from './product.entity';
-//import { CatalogAvailability } from '../../infrastructure/product-catalog-response';
 
 export class ProductCatalog implements BaseEntity {
   private _id: number;

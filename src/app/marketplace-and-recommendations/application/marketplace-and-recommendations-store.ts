@@ -63,4 +63,53 @@ export class MarketplaceAndRecommendationsStore {
   selectProduct(product: Product): void {
     this.selectedProductSignal.set(product);
   }
+
+  toggleProduct(id: number): void {
+    this.productsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id != id) return item;
+        return new Product({
+          id: item.id,
+          productName: item.productName,
+          productCategory: item.productCategory,
+          productType: item.productType,
+          availabilityState: item.availabilityState === 'Available' ? 'Out of Stock' : item.availabilityState,
+          availableQuantity: item.availableQuantity,
+          recommendationState: item.recommendationState === 'In progress' ? 'Implemented' : 'Not Implemented',
+          priority: item.priority === 'High' ? 'Low' : item.priority,
+          expirationDate: item.expirationDate,
+          groupType: item.groupType,
+        });
+      }),
+    );
+  }
+
+  toggleDependent(id: number): void {
+    this.dependentsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id != id) return item;
+        return new Dependent({
+          id: item.id,
+          dependentCondition: item.dependentCondition,
+          needLevel: item.needLevel,
+          progressSate: item.progressSate === 'To start' ? 'In progress' : 'on pause',
+        });
+      }),
+    );
+  }
+
+  toggleCatalog(id: number): void {
+    this.catalogsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id != id) return item;
+        return new ProductCatalog({
+          id: item.id,
+          productId: item.productId,
+          products: item.products,
+          catalogState: item.catalogState === 'Active' ? 'Private' : 'Filed',
+          dateUpdate: item.dateUpdate,
+        });
+      }),
+    );
+  }
 }

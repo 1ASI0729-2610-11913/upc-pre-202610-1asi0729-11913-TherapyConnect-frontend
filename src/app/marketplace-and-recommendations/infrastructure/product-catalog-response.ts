@@ -11,6 +11,6 @@ export interface ProductCatalogResource extends BaseResource {
   id: number;
   productId: number[];
   products: Product[];
-  catalogState: String;
+  catalogState: string;
   dateUpdate: string;
 }

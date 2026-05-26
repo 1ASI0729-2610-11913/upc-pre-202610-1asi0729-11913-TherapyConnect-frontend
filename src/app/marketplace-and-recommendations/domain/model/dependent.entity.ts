@@ -1,5 +1,4 @@
 import {BaseEntity} from '../../../shared/infrastructure/base-entity';
-//import {State} from '../../infrastructure/dependent-response';
 
 export class Dependent implements BaseEntity {
   private _id: number;

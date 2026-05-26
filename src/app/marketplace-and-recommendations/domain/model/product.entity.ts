@@ -1,5 +1,4 @@
 import {BaseEntity} from '../../../shared/infrastructure/base-entity';
-//import {Availability, Priority, Recommendation} from '../../infrastructure/product-response'
 
 export class Product implements BaseEntity {
   private _id: number;
