@@ -78,15 +78,43 @@ export class CourseAndLearningManagmentStore {
     });
   }
 
-  selectCourse(course: Course): void {
-    this.selectedCourseSignal.set(course);
+  toggleCourse(id: number): void {
+    this.coursesSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Course({
+          id: item.id,
+          titleCourse: item.titleCourse,
+          stateCourse: item.stateCourse === 'Filled' ? 'incomplete' : 'Without starting',
+          categoryNeed: item.categoryNeed,
+          moduleName: item.moduleName,
+          moduleState: item.moduleState,
+          contentType: item.contentType,
+          contentState: item.contentState,
+          progressPercentage: item.progressPercentage,
+          progressState: item.progressState,
+          improvementIndicator: item.improvementIndicator,
+        });
+      }),
+    );
   }
 
-  selectEvaluation(evaluation: Evaluation): void {
-    this.selectedEvaluationSignal.set(evaluation);
+  toggleRegistration(id: number): void {
+    this.registrationSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Registration({
+          id: item.id,
+          registrationState: item.registrationState,
+          registrationDate: item.registrationDate,
+          accessState: item.accessState === 'Active' ? 'Pending' : 'Suspended',
+          accessDate: item.accessDate,
+        });
+      }),
+    );
   }
 
-  toggleEvaluationState(id: number): void {
+  toggleEvaluation(id: number): void {
     this.evaluationSignal.update((items) =>
       items.map((item) => {
         if (item.id !== id) return item;
@@ -100,6 +128,27 @@ export class CourseAndLearningManagmentStore {
         });
       }),
     );
+  }
+
+  toggleObservation(id: number): void {
+    this.observationsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Observation({
+          id: item.id,
+          observationType: item.observationType === 'Participant' ? 'Non-participating' : item.observationType,
+          observationDescription: item.observationDescription,
+        });
+      }),
+    );
+  }
+
+  selectCourse(course: Course): void {
+    this.selectedCourseSignal.set(course);
+  }
+
+  selectEvaluation(evaluation: Evaluation): void {
+    this.selectedEvaluationSignal.set(evaluation);
   }
 
   selectObservation(observation: Observation): void {
