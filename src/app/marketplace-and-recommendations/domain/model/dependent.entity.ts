@@ -1,17 +1,17 @@
 import {BaseEntity} from '../../../shared/infrastructure/base-entity';
-import {State} from '../../infrastructure/dependent-response';
+//import {State} from '../../infrastructure/dependent-response';
 
 export class Dependent implements BaseEntity {
   private _id: number;
   private _dependentCondition: string;
   private _needLevel: string;
-  private _progressSate: State;
+  private _progressSate: string;
 
   constructor(dependent: {
     id: number;
     dependentCondition: string;
     needLevel: string;
-    progressSate: State;
+    progressSate: string;
   }) {
     this._id = dependent.id;
     this._dependentCondition = dependent.dependentCondition;
@@ -41,10 +41,10 @@ export class Dependent implements BaseEntity {
     this._needLevel = value;
   }
 
-  get progressSate(): State {
+  get progressSate(): string {
     return this._progressSate;
   }
-  set progressSate(value: State) {
+  set progressSate(value: string) {
     this._progressSate = value;
   }
 }

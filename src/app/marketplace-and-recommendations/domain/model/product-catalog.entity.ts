@@ -1,19 +1,19 @@
 import { BaseEntity } from '../../../shared/infrastructure/base-entity';
 import { Product } from './product.entity';
-import { CatalogAvailability } from '../../infrastructure/product-catalog-response';
+//import { CatalogAvailability } from '../../infrastructure/product-catalog-response';
 
 export class ProductCatalog implements BaseEntity {
   private _id: number;
   private _productId: number[];
   private _products: Product[];
-  private _catalogState: CatalogAvailability;
+  private _catalogState: string;
   private _dateUpdate: string;
 
   constructor(catalog: {
     id: number;
     productId: number[];
     products: Product[];
-    catalogState: CatalogAvailability;
+    catalogState: string;
     dateUpdate: string;
   }) {
     this._id = catalog.id;
@@ -44,10 +44,10 @@ export class ProductCatalog implements BaseEntity {
     this._products = value;
   }
 
-  get catalogState(): CatalogAvailability {
+  get catalogState(): string {
     return this._catalogState;
   }
-  set catalogState(value: CatalogAvailability) {
+  set catalogState(value: string) {
     this._catalogState = value;
   }
 

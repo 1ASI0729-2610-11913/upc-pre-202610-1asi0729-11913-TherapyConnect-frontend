@@ -1,15 +1,15 @@
 import {BaseEntity} from '../../../shared/infrastructure/base-entity';
-import {Availability, Priority, Recommendation} from '../../infrastructure/product-response'
+//import {Availability, Priority, Recommendation} from '../../infrastructure/product-response'
 
 export class Product implements BaseEntity {
   private _id: number;
   private _productName: string;
   private _productCategory: string;
   private _productType: string;
-  private _availabilityState: Availability;
+  private _availabilityState: string;
   private _availableQuantity: number;
-  private _recommendationState: Recommendation;
-  private _priority: Priority;
+  private _recommendationState: string;
+  private _priority: string;
   private _expirationDate: string;
   private _groupType: string;
 
@@ -18,10 +18,10 @@ export class Product implements BaseEntity {
     productName: string;
     productCategory: string;
     productType: string;
-    availabilityState: Availability;
+    availabilityState: string;
     availableQuantity: number;
-    recommendationState: Recommendation;
-    priority: Priority;
+    recommendationState: string;
+    priority: string;
     expirationDate: string;
     groupType: string;
   }) {
@@ -66,10 +66,10 @@ export class Product implements BaseEntity {
     this._productType = value;
   }
 
-  get availabilityState(): Availability {
+  get availabilityState(): string {
     return this._availabilityState;
   }
-  set availabilityState(value: Availability) {
+  set availabilityState(value: string) {
     this._availabilityState = value;
   }
 
@@ -80,17 +80,17 @@ export class Product implements BaseEntity {
     this._availableQuantity = value;
   }
 
-  get recommendationState(): Recommendation {
+  get recommendationState(): string {
     return this._recommendationState;
   }
-  set recommendationState(value: Recommendation) {
+  set recommendationState(value: string) {
     this._recommendationState = value;
   }
 
-  get priority(): Priority {
+  get priority(): string {
     return this._priority;
   }
-  set priority(value: Priority) {
+  set priority(value: string) {
     this._priority = value;
   }
 
