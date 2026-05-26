@@ -14,6 +14,7 @@ export class CourseAndLearningManagmentStore {
   private readonly evaluationSignal = signal<Evaluation[]>([]);
   private readonly observationsSignal = signal<Observation[]>([]);
   private readonly selectedCourseSignal = signal<Course | null>(null);
+  private readonly selectedRegistrationSignal = signal<Registration | null>(null);
   private readonly selectedEvaluationSignal = signal<Evaluation | null>(null);
   private readonly selectedObservationnSignal = signal<Observation | null>(null);
   private readonly loadingSignal = signal(false);
@@ -24,6 +25,7 @@ export class CourseAndLearningManagmentStore {
   readonly evaluations = this.evaluationSignal.asReadonly();
   readonly observations = this.observationsSignal.asReadonly();
   readonly selectedCourse = this.selectedCourseSignal.asReadonly();
+  readonly selectedRegistration = this.selectedRegistrationSignal.asReadonly();
   readonly selectedEvaluation = this.selectedEvaluationSignal.asReadonly();
   readonly selectedObservation = this.selectedObservationnSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
@@ -145,6 +147,10 @@ export class CourseAndLearningManagmentStore {
 
   selectCourse(course: Course): void {
     this.selectedCourseSignal.set(course);
+  }
+
+  selectRegistration(registration: Registration): void {
+    this.selectedRegistrationSignal.set(registration);
   }
 
   selectEvaluation(evaluation: Evaluation): void {
