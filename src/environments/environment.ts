@@ -10,8 +10,8 @@ export const environment = {
   platformProviderEventosEndpointPath: '/api/eventos',
   platformProviderRecordatoriosEndpointPath: '/api/recordatorios',
 
-  platformProviderCoursesEndpointPath: 'api/courses',
-  platformProviderRegistrationsEndpointPath: 'api/registrations',
-  platformProviderEvaluationsEndpointPath: 'api/evaluations',
-  platformProviderObservationsEndpointPath: 'api/observations',
+  platformProviderCoursesEndpointPath: '/api/courses',
+  platformProviderRegistrationsEndpointPath: '/api/registrations',
+  platformProviderEvaluationsEndpointPath: '/api/evaluations',
+  platformProviderObservationsEndpointPath: '/api/observations',
 };
