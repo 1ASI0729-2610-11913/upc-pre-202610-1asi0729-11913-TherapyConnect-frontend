@@ -8,6 +8,6 @@ export const environment = {
   platformProviderTherapySessionsEndpointPath: '/api/therapy-sessions',
   platformProviderSessionChecklistEndpointPath: '/api/session-checklist',
   platformProviderEmergenciesEndpointPath: '/api/emergencies',
-  platformProviderEventosEndpointPath: '/api/eventos',
-  platformProviderRecordatoriosEndpointPath: '/api/recordatorios',
+  platformProviderEventosEndpointPath: '/eventos',
+  platformProviderRecordatoriosEndpointPath: '/recordatorios',
 };

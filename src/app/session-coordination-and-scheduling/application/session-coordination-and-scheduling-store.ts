@@ -30,93 +30,138 @@ export class SessionCoordinationAndSchedulingStore {
   addEvento(evento: Evento): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.createEvento(evento).pipe(retry(2)).subscribe({
-      next: (createdEvento) => {
-        this.eventosSignal.update((eventos) => [...eventos, createdEvento]);
-        this.loadingSignal.set(false);
-      },
-      error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'Failed to create evento'));
-        this.loadingSignal.set(false);
-      },
-    });
+    this.api
+      .createEvento(evento)
+      .pipe(retry(2))
+      .subscribe({
+        next: (createdEvento) => {
+          this.eventosSignal.update((eventos) => [...eventos, createdEvento]);
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to create evento'));
+          this.loadingSignal.set(false);
+        },
+      });
   }
 
   updateEvento(updatedEvento: Evento): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.updateEvento(updatedEvento).pipe(retry(2)).subscribe({
-      next: (evento) => {
-        this.eventosSignal.update((eventos) => eventos.map((e) => (e.id === evento.id ? evento : e)));
-        this.loadingSignal.set(false);
-      },
-      error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'Failed to update evento'));
-        this.loadingSignal.set(false);
-      },
+    this.api
+      .updateEvento(updatedEvento)
+      .pipe(retry(2))
+      .subscribe({
+        next: (evento) => {
+          this.eventosSignal.update((eventos) =>
+            eventos.map((e) => (e.id === evento.id ? evento : e)),
+          );
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to update evento'));
+          this.loadingSignal.set(false);
+        },
+      });
+  }
+
+  updateEventoEstado(id: number, estado: string): void {
+    const evento = this.eventosSignal().find((e) => e.id === id);
+    if (!evento) return;
+
+    const updatedEvento = new Evento({
+      id: evento.id,
+      titulo: evento.titulo,
+      fechaSesion: evento.fechaSesion,
+      horaInicio: evento.horaInicio,
+      horaFin: evento.horaFin,
+      tipoSesion: evento.tipoSesion,
+      estadoEvento: estado,
+      profesorId: evento.profesorId,
+      estudianteId: evento.estudianteId,
+      aulaId: evento.aulaId,
     });
+
+    this.updateEvento(updatedEvento);
   }
 
   deleteEvento(id: number): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.deleteEvento(id).pipe(retry(2)).subscribe({
-      next: () => {
-        this.eventosSignal.update((eventos) => eventos.filter((e) => e.id !== id));
-        this.loadingSignal.set(false);
-      },
-      error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'Failed to delete evento'));
-        this.loadingSignal.set(false);
-      },
-    });
+    this.api
+      .deleteEvento(id)
+      .pipe(retry(2))
+      .subscribe({
+        next: () => {
+          this.eventosSignal.update((eventos) => eventos.filter((e) => e.id !== id));
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to delete evento'));
+          this.loadingSignal.set(false);
+        },
+      });
   }
 
   addRecordatorio(recordatorio: Recordatorio): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.createRecordatorio(recordatorio).pipe(retry(2)).subscribe({
-      next: (createdRecordatorio) => {
-        this.recordatoriosSignal.update((recordatorios) => [...recordatorios, createdRecordatorio]);
-        this.loadingSignal.set(false);
-      },
-      error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'Failed to create recordatorio'));
-        this.loadingSignal.set(false);
-      },
-    });
+    this.api
+      .createRecordatorio(recordatorio)
+      .pipe(retry(2))
+      .subscribe({
+        next: (createdRecordatorio) => {
+          this.recordatoriosSignal.update((recordatorios) => [
+            ...recordatorios,
+            createdRecordatorio,
+          ]);
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to create recordatorio'));
+          this.loadingSignal.set(false);
+        },
+      });
   }
 
   updateRecordatorio(updatedRecordatorio: Recordatorio): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.updateRecordatorio(updatedRecordatorio).pipe(retry(2)).subscribe({
-      next: (recordatorio) => {
-        this.recordatoriosSignal.update((recordatorios) =>
-          recordatorios.map((r) => (r.id === recordatorio.id ? recordatorio : r)),
-        );
-        this.loadingSignal.set(false);
-      },
-      error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'Failed to update recordatorio'));
-        this.loadingSignal.set(false);
-      },
-    });
+    this.api
+      .updateRecordatorio(updatedRecordatorio)
+      .pipe(retry(2))
+      .subscribe({
+        next: (recordatorio) => {
+          this.recordatoriosSignal.update((recordatorios) =>
+            recordatorios.map((r) => (r.id === recordatorio.id ? recordatorio : r)),
+          );
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to update recordatorio'));
+          this.loadingSignal.set(false);
+        },
+      });
   }
 
   deleteRecordatorio(id: number): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.deleteRecordatorio(id).pipe(retry(2)).subscribe({
-      next: () => {
-        this.recordatoriosSignal.update((recordatorios) => recordatorios.filter((r) => r.id !== id));
-        this.loadingSignal.set(false);
-      },
-      error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'Failed to delete recordatorio'));
-        this.loadingSignal.set(false);
-      },
-    });
+    this.api
+      .deleteRecordatorio(id)
+      .pipe(retry(2))
+      .subscribe({
+        next: () => {
+          this.recordatoriosSignal.update((recordatorios) =>
+            recordatorios.filter((r) => r.id !== id),
+          );
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to delete recordatorio'));
+          this.loadingSignal.set(false);
+        },
+      });
   }
 
   private loadInitial(): void {
@@ -132,7 +177,9 @@ export class SessionCoordinationAndSchedulingStore {
         this.loadingSignal.set(false);
       },
       error: (err) => {
-        this.errorSignal.set(this.formatError(err, 'No se pudieron cargar eventos ni recordatorios'));
+        this.errorSignal.set(
+          this.formatError(err, 'No se pudieron cargar eventos ni recordatorios'),
+        );
         this.loadingSignal.set(false);
       },
     });
@@ -140,7 +187,9 @@ export class SessionCoordinationAndSchedulingStore {
 
   private formatError(error: unknown, fallback: string): string {
     if (error instanceof Error) {
-      return error.message.includes('Resource not found') ? `${fallback}: Not found` : error.message;
+      return error.message.includes('Resource not found')
+        ? `${fallback}: Not found`
+        : error.message;
     }
     return fallback;
   }

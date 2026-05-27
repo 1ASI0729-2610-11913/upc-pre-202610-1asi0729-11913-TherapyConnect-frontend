@@ -5,6 +5,8 @@
   <mat-error>{{ store.error() }}</mat-error>
 }
 <p class="subnav">
+  <a [routerLink]="[schedulingBase, 'calendar']">Calendario</a>
+  ·
   <a [routerLink]="[schedulingBase, 'eventos']">Eventos</a>
   ·
   <a [routerLink]="[schedulingBase, 'recordatorios']">Recordatorios</a>
