@@ -1,0 +1,76 @@
+.calendar-page {
+  padding: 24px;
+  width: 100%;
+  position: relative;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.page-title {
+  margin: 0 0 16px 0;
+}
+
+.solicitudes-section {
+  margin-top: 32px;
+}
+
+.solicitud-card {
+  margin-bottom: 12px;
+}
+
+.solicitud-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.solicitud-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.badge-privada    { background: #ede9fe; color: #7c3aed; }
+.badge-grupal     { background: #dbeafe; color: #2563eb; }
+.badge-emergencia { background: #fee2e2; color: #dc2626; }
+
+.badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7c3aed;
+  color: white;
+  font-size: 11px;
+  margin-left: 8px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  width: 480px;
+  max-width: 90%;
+}
