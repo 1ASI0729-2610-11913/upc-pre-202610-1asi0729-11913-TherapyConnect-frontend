@@ -103,6 +103,54 @@
     },
     "homeSubtitle": "Este es el dashboard."
   },
+  "notes": {
+    "institutional": {
+      "teacher": {
+        "title": "Apuntes institucionales"
+      }
+    },
+    "personal": {
+      "teacher": {
+        "title": "Apuntes de mis pacientes"
+      },
+      "parent": {
+        "title": "Mis apuntes sobre mi hijo/a"
+      }
+    },
+    "new": "Nuevo apunte",
+    "loading": "Cargando…",
+    "empty": "No hay apuntes todavía. Escribe y pulsa «Guardar».",
+    "save": "Guardar",
+    "teacher": {
+      "studentName": "Nombre del estudiante",
+      "sessionInfo": "Sesión vinculada",
+      "content": "Contenido"
+    },
+    "parent": {
+      "childName": "Nombre del hijo/a",
+      "content": "Contenido",
+      "nextSteps": "Próximos pasos"
+    },
+    "category": {
+      "label": "Categoría",
+      "none": "Sin categoría",
+      "custom": "Especificar categoría",
+      "presets": {
+        "TDAH": "TDAH",
+        "Asperger": "Asperger",
+        "Other": "Otro"
+      }
+    },
+    "delete": {
+      "title": "¿Eliminar este apunte?",
+      "warning": "Esta acción no se puede deshacer. El apunte se eliminará de forma permanente.",
+      "footnote": "Esta operación no afecta otras sesiones vinculadas.",
+      "cancel": "Cancelar",
+      "confirm": "Sí, eliminar",
+      "confirmPrompt": "¿Eliminar este apunte? Esta acción no se puede deshacer.",
+      "button": "Eliminar"
+    }
+  },
   "teacherNotes": {
     "title": "Apuntes (demo)",
     "listTitle": "Lista de apuntes",

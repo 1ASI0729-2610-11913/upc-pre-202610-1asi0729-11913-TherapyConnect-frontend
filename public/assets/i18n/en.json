@@ -103,6 +103,54 @@
     },
     "homeSubtitle": "This is your dashboard."
   },
+  "notes": {
+    "institutional": {
+      "teacher": {
+        "title": "Institutional notes"
+      }
+    },
+    "personal": {
+      "teacher": {
+        "title": "My patient notes"
+      },
+      "parent": {
+        "title": "Notes about my child"
+      }
+    },
+    "new": "New note",
+    "loading": "Loading…",
+    "empty": "No notes yet. Write something and press «Save».",
+    "save": "Save",
+    "teacher": {
+      "studentName": "Student name",
+      "sessionInfo": "Linked session",
+      "content": "Content"
+    },
+    "parent": {
+      "childName": "Child name",
+      "content": "Content",
+      "nextSteps": "Next steps"
+    },
+    "category": {
+      "label": "Category",
+      "none": "No category",
+      "custom": "Specify category",
+      "presets": {
+        "TDAH": "ADHD",
+        "Asperger": "Asperger",
+        "Other": "Other"
+      }
+    },
+    "delete": {
+      "title": "Delete this note?",
+      "warning": "This action cannot be undone. The note will be permanently removed.",
+      "footnote": "This does not affect other linked sessions.",
+      "cancel": "Cancel",
+      "confirm": "Yes, delete",
+      "confirmPrompt": "Delete this note? This action cannot be undone.",
+      "button": "Delete"
+    }
+  },
   "teacherNotes": {
     "title": "Notes (demo)",
     "listTitle": "Notes list",
