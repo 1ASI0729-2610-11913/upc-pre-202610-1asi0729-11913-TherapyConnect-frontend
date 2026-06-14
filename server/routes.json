@@ -11,6 +11,10 @@
   "/api/eventos": "/eventos",
   "/api/recordatorios/:id": "/recordatorios/:id",
   "/api/recordatorios": "/recordatorios",
-  "/api/teacher-notes/:id": "/teacherNotes/:id",
-  "/api/teacher-notes": "/teacherNotes"
+  "/api/institutional-teacher-notes/:id": "/institutionalTeacherNotes/:id",
+  "/api/institutional-teacher-notes": "/institutionalTeacherNotes",
+  "/api/personal-teacher-notes/:id": "/personalTeacherNotes/:id",
+  "/api/personal-teacher-notes": "/personalTeacherNotes",
+  "/api/parent-notes/:id": "/parentNotes/:id",
+  "/api/parent-notes": "/parentNotes"
 }
