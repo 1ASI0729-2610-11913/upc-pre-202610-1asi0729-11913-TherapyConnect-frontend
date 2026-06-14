@@ -18,6 +18,7 @@ export const routes: Routes = [
       ),
     canActivate: [navigationContextReadyGuard],
     children: [
+      // ── Dashboards (base, no tocar) ───────────────────────────────────────
       {
         path: 'personal-parent-dashboard',
         loadComponent: () =>
@@ -51,6 +52,32 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./institutional-management/presentation/views/institution-admin-dashboard-view/institution-admin-dashboard-view.component').then(
             (m) => m.InstitutionAdminDashboardViewComponent,
+          ),
+      },
+
+      // ── progress-and-tracking BC: Notas (BC de Kevin) ────────────────────
+      {
+        // Plan Institucional + Profesor
+        path: 'institutional-teacher-notes',
+        loadComponent: () =>
+          import('./progress-and-tracking/presentation/views/institutional-teacher-notes/institutional-teacher-notes.component').then(
+            (m) => m.InstitutionalTeacherNotesComponent,
+          ),
+      },
+      {
+        // Plan Personal + Profesor
+        path: 'personal-teacher-notes',
+        loadComponent: () =>
+          import('./progress-and-tracking/presentation/views/personal-teacher-notes/personal-teacher-notes.component').then(
+            (m) => m.PersonalTeacherNotesComponent,
+          ),
+      },
+      {
+        // Plan Personal + Padre de Familia
+        path: 'personal-parent-notes',
+        loadComponent: () =>
+          import('./progress-and-tracking/presentation/views/personal-parent-notes/personal-parent-notes.component').then(
+            (m) => m.PersonalParentNotesComponent,
           ),
       },
     ],
