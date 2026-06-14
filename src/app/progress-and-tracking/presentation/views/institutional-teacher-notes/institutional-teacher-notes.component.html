@@ -1,0 +1,109 @@
+<app-dashboard-layout>
+  <div class="tc-notes-page">
+    <header class="tc-notes-header">
+      <h1 class="tc-notes-title">{{ 'notes.institutional.teacher.title' | translate }}</h1>
+      <button mat-stroked-button type="button" (click)="store.newNote()">
+        {{ 'notes.new' | translate }}
+      </button>
+    </header>
+
+    <div class="tc-notes-columns">
+      <section class="tc-notes-list">
+        @if (store.loading()) {
+          <p class="tc-muted">{{ 'notes.loading' | translate }}</p>
+        } @else if (store.notes().length === 0) {
+          <p class="tc-muted">{{ 'notes.empty' | translate }}</p>
+        } @else {
+          <ul class="tc-note-rows">
+            @for (n of store.notes(); track n.id) {
+              <li>
+                <button
+                  type="button"
+                  class="tc-note-row"
+                  [class.tc-note-row-active]="store.selectedId() === n.id"
+                  (click)="store.selectNote(n)">
+                  <span class="tc-note-row-date">{{ n.date | date: 'short' }}</span>
+                  <span class="tc-note-row-name">{{ store.noteDisplayName(n) }}</span>
+                  @if (store.categoryLabel(n)) {
+                    <span class="tc-note-row-category">{{ store.categoryLabel(n) }}</span>
+                  }
+                  <span class="tc-note-row-preview">{{ n.content }}</span>
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </section>
+
+      <section class="tc-notes-editor">
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'notes.teacher.studentName' | translate }}</mat-label>
+          <input
+            matInput
+            [ngModel]="store.draft().studentName"
+            (ngModelChange)="store.patchDraft({ studentName: $event })" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'notes.category.label' | translate }}</mat-label>
+          <mat-select
+            [ngModel]="store.draft().categoryPreset"
+            (ngModelChange)="store.patchDraft({ categoryPreset: $event })">
+            <mat-option value="">{{ 'notes.category.none' | translate }}</mat-option>
+            @for (preset of store.categoryPresets; track preset) {
+              <mat-option [value]="preset">
+                {{ 'notes.category.presets.' + preset | translate }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        @if (store.draft().categoryPreset === 'Other') {
+          <mat-form-field appearance="outline" class="tc-full">
+            <mat-label>{{ 'notes.category.custom' | translate }}</mat-label>
+            <input
+              matInput
+              [ngModel]="store.draft().categoryCustom"
+              (ngModelChange)="store.patchDraft({ categoryCustom: $event })" />
+          </mat-form-field>
+        }
+
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'notes.teacher.sessionInfo' | translate }}</mat-label>
+          <input
+            matInput
+            [ngModel]="store.draft().sessionInfo"
+            (ngModelChange)="store.patchDraft({ sessionInfo: $event })" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="tc-full tc-grow">
+          <mat-label>{{ 'notes.teacher.content' | translate }}</mat-label>
+          <textarea
+            matInput
+            rows="8"
+            [ngModel]="store.draft().content"
+            (ngModelChange)="store.patchDraft({ content: $event })"></textarea>
+        </mat-form-field>
+
+        <div class="tc-actions">
+          <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            (click)="store.saveNote()"
+            [disabled]="store.loading() || !store.canSaveDraft()">
+            {{ 'notes.save' | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            color="warn"
+            type="button"
+            (click)="deleteSelectedNote()"
+            [disabled]="store.loading() || store.selectedId() == null">
+            {{ 'notes.delete.button' | translate }}
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</app-dashboard-layout>
