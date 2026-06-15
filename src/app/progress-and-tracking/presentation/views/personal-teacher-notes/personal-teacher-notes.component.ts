@@ -10,7 +10,7 @@ import { NotesStore } from '../../../application/notes.store';
 import { DashboardLayoutComponent } from '../../../../shared/presentation/layouts/dashboard-layout/dashboard-layout.component';
 
 @Component({
-  selector: 'app-institutional-teacher-notes',
+  selector: 'app-personal-teacher-notes',
   standalone: true,
   imports: [
     DashboardLayoutComponent,
@@ -22,15 +22,15 @@ import { DashboardLayoutComponent } from '../../../../shared/presentation/layout
     TranslateModule,
     DatePipe,
   ],
-  templateUrl: './institutional-teacher-notes.component.html',
-  styleUrl: './institutional-teacher-notes.component.css',
+  templateUrl: './personal-teacher-notes.component.html',
+  styleUrl: './personal-teacher-notes.component.css',
 })
-export class InstitutionalTeacherNotesComponent implements OnInit {
+export class PersonalTeacherNotesComponent implements OnInit {
   readonly store = inject(NotesStore);
   private readonly translate = inject(TranslateService);
 
   ngOnInit(): void {
-    this.store.initContext('institutional-teacher');
+    this.store.initContext('personal-teacher');
   }
 
   deleteSelectedNote(): void {

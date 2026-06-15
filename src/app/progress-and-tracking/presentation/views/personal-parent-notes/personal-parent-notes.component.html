@@ -1,7 +1,7 @@
 <app-dashboard-layout>
   <div class="tc-notes-page">
     <header class="tc-notes-header">
-      <h1 class="tc-notes-title">{{ 'notes.institutional.teacher.title' | translate }}</h1>
+      <h1 class="tc-notes-title">{{ 'notes.personal.parent.title' | translate }}</h1>
       <button mat-stroked-button type="button" (click)="store.newNote()">
         {{ 'notes.new' | translate }}
       </button>
@@ -37,11 +37,11 @@
 
       <section class="tc-notes-editor">
         <mat-form-field appearance="outline" class="tc-full">
-          <mat-label>{{ 'notes.teacher.studentName' | translate }}</mat-label>
+          <mat-label>{{ 'notes.parent.childName' | translate }}</mat-label>
           <input
             matInput
-            [ngModel]="store.draft().studentName"
-            (ngModelChange)="store.patchDraft({ studentName: $event })" />
+            [ngModel]="store.draft().childName"
+            (ngModelChange)="store.patchDraft({ childName: $event })" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="tc-full">
@@ -68,21 +68,22 @@
           </mat-form-field>
         }
 
-        <mat-form-field appearance="outline" class="tc-full">
-          <mat-label>{{ 'notes.teacher.sessionInfo' | translate }}</mat-label>
-          <input
-            matInput
-            [ngModel]="store.draft().sessionInfo"
-            (ngModelChange)="store.patchDraft({ sessionInfo: $event })" />
-        </mat-form-field>
-
         <mat-form-field appearance="outline" class="tc-full tc-grow">
-          <mat-label>{{ 'notes.teacher.content' | translate }}</mat-label>
+          <mat-label>{{ 'notes.parent.content' | translate }}</mat-label>
           <textarea
             matInput
-            rows="8"
+            rows="6"
             [ngModel]="store.draft().content"
             (ngModelChange)="store.patchDraft({ content: $event })"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'notes.parent.nextSteps' | translate }}</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            [ngModel]="store.draft().nextSteps"
+            (ngModelChange)="store.patchDraft({ nextSteps: $event })"></textarea>
         </mat-form-field>
 
         <div class="tc-actions">

@@ -51,27 +51,40 @@
       "avatarUrl": null
     }
   ],
-  "teacherNotes": [
+  "institutionalTeacherNotes": [
     {
-      "studentName": "kevin",
+      "id": 1,
+      "studentName": "Kevin López",
       "date": "2026-05-15T02:50:10.421Z",
-      "categories": [
-        "TDAH",
-        "asperger"
-      ],
-      "content": "muy bien",
-      "sessionInfo": "ayer",
-      "id": 1
+      "categories": ["TDAH"],
+      "content": "Muy buen avance en la sesión grupal. Participó activamente",
+      "sessionInfo": "Sesión grupal — Aula de Psicomotricidad, 14 May 2026"
     },
     {
-      "studentName": "juan",
+      "id": 2,
+      "studentName": "Lucía Rojas",
       "date": "2026-05-15T02:50:29.621Z",
-      "categories": [
-        "asperger"
-      ],
-      "content": "muy bienn",
-      "sessionInfo": "hoy",
-      "id": 2
+      "categories": ["Asperger"],
+      "content": "Requiere más apoyo en transiciones entre actividades.",
+      "sessionInfo": "Sesión individual — Aula Sensorial, 15 May 2026"
+    }
+  ],
+  "personalTeacherNotes": [
+    {
+      "id": 1,
+      "studentName": "Mateo García",
+      "date": "2026-05-18T10:00:00.000Z",
+      "categories": ["TDAH"],
+      "content": "Sesión privada muy productiva. Completó todas las tareas asignadas.",
+      "sessionInfo": "Consulta privada — 18 May 2026, 10:00"
+    },
+    {
+      "id": 2,
+      "studentName": "Sofía Mendoza",
+      "date": "2026-05-22T11:30:00.000Z",
+      "categories": ["TEA Nivel 1"],
+      "content": "Presenta dificultades con el lenguaje expresivo. Se trabajó vocabulario básico.",
+      "sessionInfo": "Consulta privada — 22 May 2026, 11:30"
     }
   ],
   "dashboardHighlights": [
@@ -251,6 +264,16 @@
       "horaRecordatorio": "18:00",
       "estadoRecordatorio": "pendiente",
       "eventoId": 1
+    }
+  ],
+  "parentNotes": [
+    {
+      "id": 1,
+      "childName": "Mateo García",
+      "date": "2026-05-20T10:00:00.000Z",
+      "categories": ["TDAH"],
+      "content": "Hoy Mateo estuvo muy atento durante la sesión. Siguió las instrucciones sin dificultad y mostró interés en las actividades.",
+      "nextSteps": "Practicar el ejercicio de respiración antes de dormir."
     }
   ]
 }

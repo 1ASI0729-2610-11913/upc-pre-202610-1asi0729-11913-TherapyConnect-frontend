@@ -1,13 +1,14 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3001',
-  platformProviderApiBaseUrl: 'http://localhost:3001',
-
+  apiBaseUrl: 'http://localhost:3000',
+  platformProviderApiBaseUrl: 'http://localhost:3000',
   platformProviderUserProfilesEndpointPath: '/api/user-profiles',
-  platformProviderTeacherNotesEndpointPath: '/api/teacher-notes',
+  platformProviderInstitutionalTeacherNotesEndpointPath: '/api/institutional-teacher-notes',
+  platformProviderPersonalTeacherNotesEndpointPath: '/api/personal-teacher-notes',
+  platformProviderParentNotesEndpointPath: '/api/parent-notes',
   platformProviderTherapySessionsEndpointPath: '/api/therapy-sessions',
   platformProviderSessionChecklistEndpointPath: '/api/session-checklist',
   platformProviderEmergenciesEndpointPath: '/api/emergencies',
-  platformProviderEventosEndpointPath: '/eventos',
-  platformProviderRecordatoriosEndpointPath: '/recordatorios',
+  platformProviderEventosEndpointPath: '/api/eventos',
+  platformProviderRecordatoriosEndpointPath: '/api/recordatorios',
 };

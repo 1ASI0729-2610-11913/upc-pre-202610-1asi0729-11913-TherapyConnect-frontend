@@ -18,27 +18,7 @@ export const routes: Routes = [
       ),
     canActivate: [navigationContextReadyGuard],
     children: [
-      {
-        path: 'profesor-personal-calendar',
-        loadComponent: () =>
-          import('./session-coordination-and-scheduling/presentation/views/profesor-plan-personal/profesor-plan-personal.component').then(
-            (m) => m.ProfesorPlanPersonalComponent,
-          ),
-      },
-      {
-        path: 'padre-personal-calendar',
-        loadComponent: () =>
-          import('./session-coordination-and-scheduling/presentation/views/padre-plan-personal/padre-plan-personal.component').then(
-            (m) => m.PadrePlanPersonalComponent,
-          ),
-      },
-      {
-        path: 'padre-institucional-calendar',
-        loadComponent: () =>
-          import('./session-coordination-and-scheduling/presentation/views/padre-plan-institucional/padre-plan-institucional.component').then(
-            (m) => m.PadrePlanInstitucionalComponent,
-          ),
-      },
+      // ── Dashboards (base, no tocar) ───────────────────────────────────────
       {
         path: 'personal-parent-dashboard',
         loadComponent: () =>
@@ -68,6 +48,16 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'institutional-admin-dashboard',
+        loadComponent: () =>
+          import('./institutional-management/presentation/views/institution-admin-dashboard-view/institution-admin-dashboard-view.component').then(
+            (m) => m.InstitutionAdminDashboardViewComponent,
+          ),
+      },
+
+      // ── progress-and-tracking BC: Notas (BC de Kevin) ────────────────────
+      {
+        // Plan Institucional + Profesor
         path: 'institutional-teacher-notes',
         loadComponent: () =>
           import('./progress-and-tracking/presentation/views/institutional-teacher-notes/institutional-teacher-notes.component').then(
@@ -75,42 +65,22 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'institutional-admin-dashboard',
+        // Plan Personal + Profesor
+        path: 'personal-teacher-notes',
         loadComponent: () =>
-          import('./institutional-management/presentation/views/institution-admin-dashboard-view/institution-admin-dashboard-view.component').then(
-            (m) => m.InstitutionAdminDashboardViewComponent,
+          import('./progress-and-tracking/presentation/views/personal-teacher-notes/personal-teacher-notes.component').then(
+            (m) => m.PersonalTeacherNotesComponent,
           ),
       },
       {
-        path: 'sessions',
+        // Plan Personal + Padre de Familia
+        path: 'personal-parent-notes',
         loadComponent: () =>
-          import('./session-and-live-interaction/presentation/views/session-menu-view/session-menu-view.component').then(
-            (m) => m.SessionMenuViewComponent,
-          ),
-      },
-      {
-        path: 'sessions/live',
-        loadComponent: () =>
-          import('./session-and-live-interaction/presentation/views/live-session-view/live-session-view.component').then(
-            (m) => m.LiveSessionViewComponent,
-          ),
-      },
-      {
-        path: 'scheduling',
-        loadChildren: () =>
-          import('./session-coordination-and-scheduling/presentation/session-coordination-and-scheduling.routes').then(
-            (m) => m.sessionCoordinationAndSchedulingRoutes,
-          ),
-      },
-      {
-        path: 'emergency',
-        loadChildren: () =>
-          import('./emergency-management/presentation/views/emergency.routes').then(
-            (m) => m.emergencyRoutes,
+          import('./progress-and-tracking/presentation/views/personal-parent-notes/personal-parent-notes.component').then(
+            (m) => m.PersonalParentNotesComponent,
           ),
       },
     ],
   },
-  { path: 'live-session', redirectTo: 'app/sessions/live' },
   { path: '**', redirectTo: 'welcome' },
 ];

@@ -22,7 +22,9 @@ export class AppShellLayoutComponent implements OnInit {
     this.activeUserProfile.reloadFromContext();
     const path = this.router.url.split('?')[0];
     if (path === '/app' || path.endsWith('/app/')) {
-      void this.router.navigate(['/app', this.navigationContext.dashboardSegment()], { replaceUrl: true });
+      void this.router.navigate(['/app', this.navigationContext.dashboardSegment()], {
+        replaceUrl: true,
+      });
     }
   }
 }
