@@ -14,10 +14,12 @@
   "/api/teacher-notes/:id": "/teacherNotes/:id",
   "/api/teacher-notes": "/teacherNotes",
 
-  "/api/products/:id": "/products/:id",
-  "/api/products": "/products",
-  "/api/dependents/:id": "/dependents/:id",
-  "/api/dependents": "/dependents",
-  "/api/product-catalogs/:id": "/product-catalogs/:id",
-  "/api/product-catalogs": "/product-catalogs"
+  "/api/courses/:id": "/courses/:id",
+  "/api/courses": "/courses",
+  "/api/registrations/:id": "/registrations/:id",
+  "/api/registrations": "/registrations",
+  "/api/evaluations/:id": "/evaluations/:id",
+  "/api/evaluations": "/evaluations",
+  "/api/observations/:id": "/observations/:id",
+  "/api/observations": "/observations"
 }
