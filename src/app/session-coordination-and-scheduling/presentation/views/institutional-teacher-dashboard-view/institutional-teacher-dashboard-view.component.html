@@ -1,3 +1,16 @@
 <app-dashboard-layout>
-  <app-dashboard-welcome />
+  <div style="padding: 24px;">
+    <nav style="font-size: 12px; color: #888; margin-bottom: 8px;">
+      Inicio › Calendario
+    </nav>
+    <h2 style="margin: 0 0 16px 0;">Calendario</h2>
+    <nav style="margin-bottom: 16px;">
+      <a [routerLink]="['/app/scheduling/calendar']">Calendario</a>
+      &nbsp;·&nbsp;
+      <a [routerLink]="['/app/scheduling/eventos']">Eventos</a>
+      &nbsp;·&nbsp;
+      <a [routerLink]="['/app/scheduling/recordatorios']">Recordatorios</a>
+    </nav>
+    <app-calendar-view [eventos]="store.eventos()" mode="weekly"/>
+  </div>
 </app-dashboard-layout>

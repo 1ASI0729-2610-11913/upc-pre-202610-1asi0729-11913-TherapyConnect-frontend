@@ -1,0 +1,64 @@
+@if (store.loading()) {
+  <mat-spinner diameter="40"></mat-spinner>
+}
+@if (store.error()) {
+  <mat-error>{{ store.error() }}</mat-error>
+}
+<p class="subnav">
+  <a [routerLink]="[schedulingBase, 'calendar']">Calendario</a>
+  ·
+  <a [routerLink]="[schedulingBase, 'eventos']">Eventos</a>
+  ·
+  <a [routerLink]="[schedulingBase, 'recordatorios']">Recordatorios</a>
+</p>
+<table mat-table [dataSource]="store.recordatorios()" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let recordatorio"> {{ recordatorio.id }} </td>
+  </ng-container>
+
+  <!-- Titulo Column -->
+  <ng-container matColumnDef="titulo">
+    <th mat-header-cell *matHeaderCellDef> Título </th>
+    <td mat-cell *matCellDef="let recordatorio"> {{ recordatorio.titulo }} </td>
+  </ng-container>
+
+  <!-- FechaRecordatorio Column -->
+  <ng-container matColumnDef="fechaRecordatorio">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let recordatorio"> {{ recordatorio.fechaRecordatorio }} </td>
+  </ng-container>
+
+  <!-- HoraRecordatorio Column -->
+  <ng-container matColumnDef="horaRecordatorio">
+    <th mat-header-cell *matHeaderCellDef> Hora </th>
+    <td mat-cell *matCellDef="let recordatorio"> {{ recordatorio.horaRecordatorio }} </td>
+  </ng-container>
+
+  <!-- EstadoRecordatorio Column -->
+  <ng-container matColumnDef="estadoRecordatorio">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let recordatorio"> {{ recordatorio.estadoRecordatorio }} </td>
+  </ng-container>
+
+  <!-- EventoId Column -->
+  <ng-container matColumnDef="eventoId">
+    <th mat-header-cell *matHeaderCellDef> Evento ID </th>
+    <td mat-cell *matCellDef="let recordatorio"> {{ recordatorio.eventoId }} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let recordatorio">
+      <button mat-button (click)="editRecordatorio(recordatorio.id)">Edit</button>
+      <button mat-button (click)="deleteRecordatorio(recordatorio.id)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<button mat-raised-button color="primary" [routerLink]="[schedulingBase, 'recordatorios', 'new']">Add Recordatorio</button>

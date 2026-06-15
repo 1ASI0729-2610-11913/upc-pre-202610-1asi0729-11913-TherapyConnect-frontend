@@ -97,10 +97,19 @@ export class NavigationMenuService {
           translationKey: 'nav.groups.main',
           items: [
             { translationKey: 'nav.home', icon: 'home', route: dash },
-            { translationKey: 'nav.notifications', icon: 'notifications', route: undefined, badgeCount: 3 },
+            {
+              translationKey: 'nav.notifications',
+              icon: 'notifications',
+              route: undefined,
+              badgeCount: 3,
+            },
             { translationKey: 'nav.groupSessions', icon: 'groups', ...sessionsNav },
             { translationKey: 'nav.privateSessions', icon: 'lock', ...sessionsNav },
-            { translationKey: 'nav.myCalendar', icon: 'calendar_month', route: undefined },
+            {
+              translationKey: 'nav.myCalendar',
+              icon: 'calendar_month',
+              route: '/app/padre-personal-calendar',
+            },
             { translationKey: 'nav.homeVisits', icon: 'home_work', route: undefined },
             { translationKey: 'nav.notes', icon: 'note_alt', route: undefined },
             { translationKey: 'nav.marketplace', icon: 'storefront', route: undefined },
@@ -124,9 +133,18 @@ export class NavigationMenuService {
           translationKey: 'nav.groups.main',
           items: [
             { translationKey: 'nav.home', icon: 'home', route: dash },
-            { translationKey: 'nav.notifications', icon: 'notifications', route: undefined, badgeCount: 3 },
+            {
+              translationKey: 'nav.notifications',
+              icon: 'notifications',
+              route: undefined,
+              badgeCount: 3,
+            },
             { translationKey: 'nav.privateSessions', icon: 'lock', ...sessionsNav },
-            { translationKey: 'nav.myCalendar', icon: 'calendar_month', route: undefined },
+            {
+              translationKey: 'nav.myCalendar',
+              icon: 'calendar_month',
+              route: '/app/padre-institucional-calendar',
+            },
           ],
         },
         {

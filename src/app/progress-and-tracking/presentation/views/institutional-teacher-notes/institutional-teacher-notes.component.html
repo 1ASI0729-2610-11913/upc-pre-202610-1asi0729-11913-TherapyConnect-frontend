@@ -1,0 +1,97 @@
+<app-dashboard-layout>
+  <div class="tc-notes-page">
+    <header class="tc-notes-header">
+      <h1 class="tc-notes-title">{{ 'teacherNotes.title' | translate }}</h1>
+      <button mat-stroked-button type="button" (click)="store.newNote()">
+        {{ 'teacherNotes.new' | translate }}
+      </button>
+    </header>
+
+    <div class="tc-notes-columns">
+      <section class="tc-notes-list" aria-label="{{ 'teacherNotes.listTitle' | translate }}">
+        @if (store.loading()) {
+          <p class="tc-muted">{{ 'teacherNotes.loading' | translate }}</p>
+        } @else if (store.notes().length === 0) {
+          <p class="tc-muted">{{ 'teacherNotes.empty' | translate }}</p>
+        } @else {
+          <ul class="tc-note-rows">
+            @for (n of store.notes(); track n.id) {
+              <li>
+                <button
+                  type="button"
+                  class="tc-note-row"
+                  [class.tc-note-row-active]="store.selectedId() === n.id"
+                  (click)="store.selectNote(n)">
+                  <span class="tc-note-row-date">{{ n.date | date: 'short' }}</span>
+                  <span class="tc-note-row-name">{{ n.studentName }}</span>
+                  <span class="tc-note-row-preview">{{ n.content }}</span>
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </section>
+
+      <section class="tc-notes-editor" aria-label="{{ 'teacherNotes.editorTitle' | translate }}">
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'teacherNotes.studentName' | translate }}</mat-label>
+          <input
+            matInput
+            name="studentName"
+            [ngModel]="store.draft().studentName"
+            (ngModelChange)="store.patchDraft({ studentName: $event })" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'teacherNotes.categories' | translate }}</mat-label>
+          <input
+            matInput
+            name="categoriesText"
+            [ngModel]="store.draft().categoriesText"
+            (ngModelChange)="store.patchDraft({ categoriesText: $event })" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="tc-full">
+          <mat-label>{{ 'teacherNotes.sessionInfo' | translate }}</mat-label>
+          <input
+            matInput
+            name="sessionInfo"
+            [ngModel]="store.draft().sessionInfo"
+            (ngModelChange)="store.patchDraft({ sessionInfo: $event })" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="tc-full tc-grow">
+          <mat-label>{{ 'teacherNotes.content' | translate }}</mat-label>
+          <textarea
+            matInput
+            name="content"
+            rows="8"
+            [ngModel]="store.draft().content"
+            (ngModelChange)="store.patchDraft({ content: $event })"></textarea>
+        </mat-form-field>
+
+        <div class="tc-actions">
+          <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            (click)="store.saveNote()"
+            [disabled]="
+              store.loading() ||
+              (!store.draft().studentName.trim() && !store.draft().content.trim())
+            ">
+            {{ 'teacherNotes.save' | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            color="warn"
+            type="button"
+            (click)="openDeleteDialog()"
+            [disabled]="store.loading() || store.selectedId() == null">
+            {{ 'teacherNotes.deleteButton' | translate }}
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</app-dashboard-layout>

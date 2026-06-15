@@ -16,7 +16,7 @@ export class LiveSessionViewComponent {
     void this.router.navigate(['/app/sessions']);
   }
 
-  protected toggleItem(id: string): void {
+  protected toggleItem(id: number): void {
     this.store.toggleChecklist(id);
   }
 

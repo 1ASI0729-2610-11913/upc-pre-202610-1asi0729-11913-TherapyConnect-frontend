@@ -7,12 +7,9 @@ export interface NavigationItem {
   route?: string;
   badgeCount?: number;
   tone?: 'default' | 'danger';
-  /** Cierra sesión: limpia contexto y vuelve a elegir plan y rol. */
+
   signOut?: boolean;
-  /**
-   * Cómo marca RouterLinkActive la ruta como activa.
-   * `subset`: activa también en rutas hijas (p. ej. `/app/sessions` con `/app/sessions/live`).
-   */
+
   pathMatch?: 'exact' | 'subset';
 }
 

@@ -1,0 +1,53 @@
+.calendar-page {
+  padding: 24px;
+  width: 100%;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.page-title {
+  margin: 0 0 16px 0;
+}
+
+.calendar-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.calendar-main {
+  flex: 1;
+}
+
+.calendar-sidebar {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-card {
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #ede9fe;
+  color: #7c3aed;
+  font-size: 12px;
+}
+
+.recordatorio-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.recordatorio-item:last-child {
+  border-bottom: none;
+}

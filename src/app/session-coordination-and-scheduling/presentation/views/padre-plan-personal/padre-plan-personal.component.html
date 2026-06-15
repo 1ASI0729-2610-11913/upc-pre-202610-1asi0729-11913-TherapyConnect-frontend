@@ -1,0 +1,66 @@
+<app-dashboard-layout>
+  <div class="calendar-page">
+
+    <nav class="breadcrumb">Inicio › Calendario</nav>
+    <h2 class="page-title">Calendario</h2>
+
+    <div class="calendar-layout">
+
+      <div class="calendar-main">
+        <app-calendar-view [eventos]="store.eventos()" mode="monthly"/>
+      </div>
+
+      <div class="calendar-sidebar">
+
+        @if (proximoEvento()) {
+        <mat-card class="sidebar-card">
+          <mat-card-header>
+            <mat-card-title>Próximo Evento</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>{{ proximoEvento()!.titulo }}</strong></p>
+            <p>{{ proximoEvento()!.fechaSesion }} · {{ proximoEvento()!.horaInicio }}</p>
+            <span class="badge badge-{{ proximoEvento()!.tipoSesion }}">
+                {{ proximoEvento()!.tipoSesion }}
+              </span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-stroked-button>Ver detalles</button>
+            <button mat-raised-button color="primary">Unirse ahora</button>
+          </mat-card-actions>
+        </mat-card>
+        }
+
+        <mat-card class="sidebar-card">
+          <mat-card-header>
+            <mat-card-title>
+              Mis recordatorios activos
+              @if (totalRecordatorios() > 0) {
+              <span class="badge-count">{{ totalRecordatorios() }}</span>
+              }
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            @if (recordatoriosActivos().length === 0) {
+            <p>Sin recordatorios activos</p>
+            } @else {
+            @for (r of recordatoriosActivos(); track r.id) {
+            <div class="recordatorio-item">
+              <p><strong>{{ r.titulo }}</strong></p>
+              <p>{{ r.fechaRecordatorio }} · {{ r.horaRecordatorio }}</p>
+              <span class="badge badge-pendiente">{{ r.estadoRecordatorio }}</span>
+            </div>
+            }
+            }
+          </mat-card-content>
+          <mat-card-actions>
+            <a mat-button [routerLink]="['/app/scheduling/recordatorios']">
+              Ver todos los recordatorios
+            </a>
+          </mat-card-actions>
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+</app-dashboard-layout>

@@ -57,9 +57,19 @@ export class SessionLiveStore {
     this.selectedSessionSignal.set(session);
   }
 
-  toggleChecklist(id: string): void {
+  toggleChecklist(id: number): void {
     this.checklistSignal.update((items) =>
-      items.map((item) => (item.id === id ? { ...item, checked: !item.checked } : item)),
+      items.map((item) => {
+        if (item.id !== id) {
+          return item;
+        }
+        return new SessionChecklistItem({
+          id: item.id,
+          groupTitle: item.groupTitle,
+          label: item.label,
+          checked: !item.checked,
+        });
+      }),
     );
   }
 }

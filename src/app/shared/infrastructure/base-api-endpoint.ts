@@ -68,9 +68,7 @@ export abstract class BaseApiEndpoint<
   }
 
   delete(id: number): Observable<void> {
-    return this.http
-      .delete<void>(`${this.endpointUrl}/${id}`)
-      .pipe(catchError(this.handleError('Failed to delete entity')));
+    return this.http.delete<void>(`${this.endpointUrl}/${id}`).pipe(catchError(this.handleError('Failed to delete entity')));
   }
 
   protected handleError(operation: string) {

@@ -1,0 +1,105 @@
+<app-dashboard-layout>
+  <div class="calendar-page">
+
+    <nav class="breadcrumb">Inicio › Calendario</nav>
+    <h2 class="page-title">Calendario</h2>
+
+    <app-calendar-view [eventos]="store.eventos()" mode="weekly"/>
+
+    <div class="solicitudes-section">
+      <h3>
+        Solicitudes
+        @if (solicitudes().length > 0) {
+        <span class="badge-count">{{ solicitudes().length }}</span>
+        }
+      </h3>
+
+      @if (solicitudes().length === 0) {
+      <p>No hay solicitudes pendientes</p>
+      } @else {
+      @for (s of solicitudes(); track s.id) {
+      <mat-card class="solicitud-card">
+        <mat-card-content>
+          <div class="solicitud-row">
+            <div>
+              <p><strong>{{ s.titulo }}</strong></p>
+              <p>{{ s.fechaSesion }} · {{ s.horaInicio }} - {{ s.horaFin }}</p>
+              <span class="badge badge-{{ s.tipoSesion }}">{{ s.tipoSesion }}</span>
+            </div>
+            <div class="solicitud-actions">
+              <button mat-raised-button color="primary" (click)="openDetalle(s)">Aceptar</button>
+              <button mat-stroked-button color="warn" (click)="openDetalle(s)">Rechazar</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      }
+      }
+    </div>
+
+    @if (showDetalle() && selectedEvento()) {
+    <div class="modal-overlay" (click)="closeAll()">
+      <mat-card class="modal-card" (click)="$event.stopPropagation()">
+        <mat-card-header>
+          <mat-card-title>Detalle de solicitud</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>{{ selectedEvento()!.titulo }}</strong></p>
+          <p>{{ selectedEvento()!.fechaSesion }}</p>
+          <p>{{ selectedEvento()!.horaInicio }} - {{ selectedEvento()!.horaFin }}</p>
+          <span class="badge badge-{{ selectedEvento()!.tipoSesion }}">{{ selectedEvento()!.tipoSesion }}</span>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="openProgramar()">Aceptar solicitud</button>
+          <button mat-raised-button color="warn" (click)="openRechazar()">Rechazar solicitud</button>
+          <button mat-button (click)="closeAll()">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    }
+
+    @if (showProgramar() && selectedEvento()) {
+    <div class="modal-overlay" (click)="closeAll()">
+      <mat-card class="modal-card" (click)="$event.stopPropagation()">
+        <mat-card-header>
+          <mat-card-title>Programar sesión con {{ selectedEvento()!.titulo }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Fecha: {{ selectedEvento()!.fechaSesion }}</p>
+          <p>Hora: {{ selectedEvento()!.horaInicio }} - {{ selectedEvento()!.horaFin }}</p>
+          <p>Tipo: {{ selectedEvento()!.tipoSesion }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="confirmarProgramar()">Confirmar programación</button>
+          <button mat-button (click)="closeAll()">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    }
+
+    @if (showRechazar() && selectedEvento()) {
+    <div class="modal-overlay" (click)="closeAll()">
+      <mat-card class="modal-card" (click)="$event.stopPropagation()">
+        <mat-card-header>
+          <mat-card-title>Rechazar solicitud</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ selectedEvento()!.titulo }}</p>
+          <textarea
+            placeholder="Motivo del rechazo..."
+            [value]="motivoRechazo()"
+            (input)="motivoRechazo.set($any($event.target).value)"
+            rows="4"
+            style="width:100%; margin-top: 8px;">
+            </textarea>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)="confirmarRechazo()">Confirmar rechazo</button>
+          <button mat-button (click)="closeAll()">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    }
+
+  </div>
+</app-dashboard-layout>

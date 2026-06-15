@@ -55,7 +55,10 @@
     {
       "studentName": "kevin",
       "date": "2026-05-15T02:50:10.421Z",
-      "categories": ["TDAH", "asperger"],
+      "categories": [
+        "TDAH",
+        "asperger"
+      ],
       "content": "muy bien",
       "sessionInfo": "ayer",
       "id": 1
@@ -63,7 +66,9 @@
     {
       "studentName": "juan",
       "date": "2026-05-15T02:50:29.621Z",
-      "categories": ["asperger"],
+      "categories": [
+        "asperger"
+      ],
       "content": "muy bienn",
       "sessionInfo": "hoy",
       "id": 2
