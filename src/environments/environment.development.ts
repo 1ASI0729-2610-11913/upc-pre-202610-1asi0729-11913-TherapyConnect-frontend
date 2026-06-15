@@ -11,4 +11,8 @@ export const environment = {
   platformProviderEmergenciesEndpointPath: '/api/emergencies',
   platformProviderEventosEndpointPath: '/api/eventos',
   platformProviderRecordatoriosEndpointPath: '/api/recordatorios',
+
+  platformProviderProductsEndpointPath: '/api/products',
+  platformProviderDependentsEndpointPath: '/api/dependents',
+  platformProviderCatalogsEndpointPath: '/api/product-catalogs',
 };
