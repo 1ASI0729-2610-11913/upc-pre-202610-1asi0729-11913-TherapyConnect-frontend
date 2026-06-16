@@ -14,4 +14,12 @@ export const environment = {
   platformProviderRegistrationsEndpointPath: '/api/registrations',
   platformProviderEvaluationsEndpointPath: '/api/evaluations',
   platformProviderObservationsEndpointPath: '/api/observations',
+
+  platformProviderDependentsEndpointPath: '/api/dependents',
+  platformProviderCatalogsEndpointPath: '/api/catalogs',
+  platformProviderProductsEndpointPath: '/api/products',
+
+  platformProviderParentNotesEndpointPath: '/api/parent-notes',
+  platformProviderInstitutionalTeacherNotesEndpointPath: '/api/institutional-teacher-notes',
+  platformProviderPersonalTeacherNotesEndpointPath: '/api/personal-teacher-notes',
 };
