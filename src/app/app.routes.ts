@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { navigationContextReadyGuard } from './shared/presentation/services/navigation/navigation-context-ready.guard';
+import { emergencyRoutes } from './emergency-management/presentation/views/emergency.routes';
+import { sessionCoordinationAndSchedulingRoutes } from './session-coordination-and-scheduling/presentation/session-coordination-and-scheduling.routes';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'welcome' },
@@ -108,6 +110,14 @@ export const routes: Routes = [
           import('./emergency-management/presentation/views/emergency.routes').then(
             (m) => m.emergencyRoutes,
           ),
+      },
+      {
+        path: 'emergency-management',
+        children: emergencyRoutes,
+      },
+      {
+        path: 'session-coordination-and-scheduling',
+        children: sessionCoordinationAndSchedulingRoutes,
       },
     ],
   },

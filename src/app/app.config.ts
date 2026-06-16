@@ -8,6 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import { routes } from './app.routes';
 import { LanguagePreferenceService } from './shared/presentation/services/language-preference.service';
 
+
 export function initializeLanguage(
   translate: TranslateService,
   languagePreference: LanguagePreferenceService,
