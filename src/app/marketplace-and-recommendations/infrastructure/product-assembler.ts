@@ -7,6 +7,10 @@ export class ProductAssembler {
     return response.products.map((r) => this.toEntityFromResource(r));
   }
 
+  static toEntitiesFromResources(resources: ProductResource[]): Product[] {
+    return resources.map((r) => this.toEntityFromResource(r));
+  }
+
   static toEntityFromResource(resource: ProductResource): Product {
     return new Product({
       id: resource.id,
