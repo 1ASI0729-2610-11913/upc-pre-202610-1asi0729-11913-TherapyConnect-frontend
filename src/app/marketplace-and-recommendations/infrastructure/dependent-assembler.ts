@@ -2,12 +2,12 @@ import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Dependent } from '../domain/model/dependent.entity';
 import {DependentResource, DependentResponse} from './dependent-response';
 
-export class DependentAssembler implements BaseAssembler<Dependent, DependentResource, DependentResponse> {
-  toEntitiesFromResponse(response: DependentResponse): Dependent[] {
-    return response.dependents.map((resource) => this.toEntityFromResource(resource));
+export class DependentAssembler {
+  static toEntitiesFromResponse(response: DependentResponse): Dependent[] {
+    return response.dependents.map((r) => this.toEntityFromResource(r));
   }
 
-  toEntityFromResource(resource: DependentResource): Dependent {
+  static toEntityFromResource(resource: DependentResource): Dependent {
     return new Dependent({
       id: resource.id,
       dependentCondition: resource.dependentCondition,
@@ -16,7 +16,7 @@ export class DependentAssembler implements BaseAssembler<Dependent, DependentRes
     });
   }
 
-  toResourceFromEntity(entity: Dependent): DependentResource {
+  static toResourceFromEntity(entity: Dependent): DependentResource {
     return {
       id: entity.id,
       dependentCondition: entity.dependentCondition,

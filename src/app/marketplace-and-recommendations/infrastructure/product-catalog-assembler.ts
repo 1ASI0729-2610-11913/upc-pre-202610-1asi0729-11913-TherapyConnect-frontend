@@ -2,12 +2,12 @@ import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { ProductCatalog } from '../domain/model/product-catalog.entity'
 import {ProductCatalogResource, ProductCatalogResponse} from './product-catalog-response';
 
-export class ProductCatalogAssembler implements BaseAssembler<ProductCatalog, ProductCatalogResource, ProductCatalogResponse> {
-  toEntitiesFromResponse(response: ProductCatalogResponse): ProductCatalog[] {
-    return response.catalog.map((resource) => this.toEntityFromResource(resource));
+export class ProductCatalogAssembler {
+  static toEntitiesFromResponse(response: ProductCatalogResponse): ProductCatalog[] {
+    return response.catalog.map((r) => this.toEntityFromResource(r));
   }
 
-  toEntityFromResource(resource: ProductCatalogResource): ProductCatalog {
+  static toEntityFromResource(resource: ProductCatalogResource): ProductCatalog {
     return new ProductCatalog({
       id: resource.id,
       productId: resource.productId,
@@ -17,7 +17,7 @@ export class ProductCatalogAssembler implements BaseAssembler<ProductCatalog, Pr
     });
   }
 
-  toResourceFromEntity(entity: ProductCatalog): ProductCatalogResource {
+  static toResourceFromEntity(entity: ProductCatalog): ProductCatalogResource {
     return {
       id: entity.id,
       productId: entity.productId,
