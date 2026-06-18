@@ -15,8 +15,25 @@ export const DEFAULT_PRIORITY: Priority[] = ['High', 'Low'];
 export const DEFAULT_PROGRESS_STATE: ProgressState[] = ['To Start', 'In Progress', 'On Pause'];
 export const DEFAULT_CATALOG_STATE: CatalogState[] = ['Active', 'Private', 'Filled'];
 
+export interface MarketPlace {
+  availabilityState: AvailabilityState;
+  recommendationState: RecommendationState;
+  priority: Priority;
+  progressState: ProgressState;
+  catalogState: CatalogState;
+}
 
+function emptyMarket(): MarketPlace {
+  return {
+    availabilityState: '',
+    recommendationState: '',
+    priority: '',
+    progressState: '',
+    catalogState: '',
+  };
+}
 
+@Injectable({ providedIn: 'root' })
 export class MarketplaceAndRecommendationsStore {
 
 }
