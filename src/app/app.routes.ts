@@ -20,7 +20,6 @@ export const routes: Routes = [
       ),
     canActivate: [navigationContextReadyGuard],
     children: [
-      // ── Dashboards (base, no tocar) ───────────────────────────────────────
       {
         path: 'personal-parent-dashboard',
         loadComponent: () =>
@@ -56,10 +55,7 @@ export const routes: Routes = [
             (m) => m.InstitutionAdminDashboardViewComponent,
           ),
       },
-
-      // ── progress-and-tracking BC: Notas (BC de Kevin) ────────────────────
       {
-        // Plan Institucional + Profesor
         path: 'institutional-teacher-notes',
         loadComponent: () =>
           import('./progress-and-tracking/presentation/views/institutional-teacher-notes/institutional-teacher-notes.component').then(
@@ -67,7 +63,6 @@ export const routes: Routes = [
           ),
       },
       {
-        // Plan Personal + Profesor
         path: 'personal-teacher-notes',
         loadComponent: () =>
           import('./progress-and-tracking/presentation/views/personal-teacher-notes/personal-teacher-notes.component').then(
@@ -75,7 +70,6 @@ export const routes: Routes = [
           ),
       },
       {
-        // Plan Personal + Padre de Familia
         path: 'personal-parent-notes',
         loadComponent: () =>
           import('./progress-and-tracking/presentation/views/personal-parent-notes/personal-parent-notes.component').then(
@@ -87,10 +81,24 @@ export const routes: Routes = [
         children: emergencyRoutes,
       },
       {
-        path: 'session-coordination-and-scheduling',
+        path: 'scheduling',
         children: sessionCoordinationAndSchedulingRoutes,
+      },
+      {
+        path: 'sessions',
+        loadComponent: () =>
+          import('./session-and-live-interaction/presentation/views/session-menu-view/session-menu-view.component').then(
+            (m) => m.SessionMenuViewComponent,
+          ),
+      },
+      {
+        path: 'marketplace',
+        loadComponent: () =>
+          import('./marketplace-and-recommendations/presentation/view/marketplace-dashboard-view/marketplace-dashboard-view.component').then(
+            (m) => m.MarketplaceDashboardViewComponent,
+          ),
       },
     ],
   },
-  { path: '**', redirectTo: 'welcome'},
+  { path: '**', redirectTo: 'welcome' },
 ];

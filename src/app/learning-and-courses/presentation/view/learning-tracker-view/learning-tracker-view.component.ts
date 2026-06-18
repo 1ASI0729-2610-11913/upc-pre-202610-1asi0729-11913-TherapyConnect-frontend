@@ -1,25 +1,26 @@
-import { Component, computed, signal, OnInit } from '@angular/core';
+import { Component, computed, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { CourseAndLearningManagmentStore } from '../../../application/course-and-learning-managment-store';
 
 @Component({
   selector: 'app-learning-tracker-view',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './learning-tracker-view.component.html',
-  styleUrls: ['./learning-tracker-view.component.css']
+  styleUrls: ['./learning-tracker-view.component.css'],
 })
-export class LearningTrackerViewComponent implements OnInit {
+export class LearningTrackerViewComponent {
+  protected readonly store = inject(CourseAndLearningManagmentStore);
 
   public readonly weeklyStudyHours = signal(14);
-
-  public readonly completedCourses = signal(0);
-
-  public readonly activeCourses = signal(0);
-
   public readonly learningStreak = signal(18);
-
   public readonly monthlyGoal = signal(20);
+
+  public readonly completedCourses = this.store.completedCount;
+  public readonly activeCourses = computed(
+    () => this.store.courses().length - this.store.completedCount(),
+  );
 
   public readonly completedGoal = computed(() => {
     const goal = this.monthlyGoal();
@@ -34,21 +35,6 @@ export class LearningTrackerViewComponent implements OnInit {
     { day: 'Thursday', hours: 2 },
     { day: 'Friday', hours: 4 },
     { day: 'Saturday', hours: 1 },
-    { day: 'Sunday', hours: 1 }
+    { day: 'Sunday', hours: 1 },
   ]);
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    // Fetch courses to compute totals
-    this.http.get<any[]>('/api/courses').subscribe(courses => {
-      this.completedCourses.set(courses.filter(c => c.completed).length ?? 0);
-      this.activeCourses.set(courses.filter(c => !c.completed).length ?? courses.length);
-    }, err => console.error('Failed to load courses for tracker', err));
-
-    // Alternatively load registrations for active courses
-    this.http.get<any[]>('/api/registrations').subscribe(regs => {
-      this.activeCourses.set(regs.length);
-    }, () => {});
-  }
 }

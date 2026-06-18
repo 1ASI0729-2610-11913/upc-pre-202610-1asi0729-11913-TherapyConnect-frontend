@@ -5,7 +5,7 @@ import { BaseApi } from '../../../shared/infrastructure/base-api';
 import { SessionChecklistItem } from '../../domain/model/session-checklist.entity';
 import { TherapySession } from '../../domain/model/therapy-session.entity';
 import { SessionChecklistApiEndpoint } from './session-checklist-api-endpoint';
-import { TherapySessionsApiEndpoint } from './therapy-sessions-api-endpoint';
+import { TherapySessionsApiEndpoint } from '../therapy-session-api/therapy-sessions-api-endpoint';
 
 /**
  * Fachada HTTP del bounded context session-and-live-interaction.
