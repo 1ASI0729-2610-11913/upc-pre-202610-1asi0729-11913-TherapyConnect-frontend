@@ -7,6 +7,10 @@ export class DependentAssembler {
     return response.dependents.map((r) => this.toEntityFromResource(r));
   }
 
+  static toEntitiesFromResources(resources: DependentResource[]): Dependent[] {
+    return resources.map((r) => this.toEntityFromResource(r));
+  }
+
   static toEntityFromResource(resource: DependentResource): Dependent {
     return new Dependent({
       id: resource.id,
