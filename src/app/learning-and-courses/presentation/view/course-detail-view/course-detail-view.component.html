@@ -1,0 +1,21 @@
+<div class="course-detail-container">
+
+  <h2>Course Content</h2>
+
+  <app-learning-progress
+    [completedLessons]="completedLessons"
+    [totalLessons]="lessons.length">
+  </app-learning-progress>
+
+  <div class="lesson-list">
+
+    <app-lesson-item
+      *ngFor="let lesson of lessons; let i = index"
+      [lessonTitle]="lesson.title"
+      [completed]="lesson.completed"
+      (completedChange)="updateLesson(i, $event)">
+    </app-lesson-item>
+
+  </div>
+
+</div>

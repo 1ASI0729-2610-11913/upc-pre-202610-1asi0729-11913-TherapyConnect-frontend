@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep .fc {
+  font-family: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  background: white;
+}
+
+:host ::ng-deep .fc-toolbar-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+:host ::ng-deep .fc-button {
+  background: #f3f4f6;
+  border: none;
+  color: #374151;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+:host ::ng-deep .fc-button-active {
+  background: #1f2937 !important;
+  color: white !important;
+}
+
+:host ::ng-deep .fc-col-header-cell {
+  background: #f9fafb;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+:host ::ng-deep .fc-timegrid-slot {
+  height: 40px;
+}

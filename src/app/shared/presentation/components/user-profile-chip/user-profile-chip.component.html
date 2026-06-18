@@ -1,0 +1,29 @@
+<button
+  mat-button
+  type="button"
+  class="tc-chip"
+  [matMenuTriggerFor]="accountMenu"
+  [matTooltip]="'tooltips.userMenu' | translate">
+  <mat-icon>account_circle</mat-icon>
+  <span class="tc-chip-label">{{ profile()?.displayName?.trim() || '—' }}</span>
+  <mat-icon class="tc-chip-chevron">expand_more</mat-icon>
+</button>
+<mat-menu #accountMenu="matMenu">
+  <div class="tc-menu-meta" mat-menu-item disabled>
+    <div class="tc-meta-line">{{ planTranslationKey() | translate }}</div>
+    <div class="tc-meta-line">{{ roleTranslationKey() | translate }}</div>
+  </div>
+  <button mat-menu-item type="button" [matTooltip]="'tooltips.profileOpen' | translate" matTooltipPosition="left">
+    <mat-icon>person</mat-icon>
+    {{ 'nav.profile' | translate }}
+  </button>
+  <button
+    mat-menu-item
+    type="button"
+    [matTooltip]="'tooltips.signOut' | translate"
+    matTooltipPosition="left"
+    (click)="signOut()">
+    <mat-icon>logout</mat-icon>
+    {{ 'nav.signOut' | translate }}
+  </button>
+</mat-menu>

@@ -1,0 +1,51 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input matInput formControlName="descripcion" required>
+    @if (form.get('descripcion')?.touched && form.get('descripcion')!.hasError('required')) {
+      <mat-error>Descripción es requerida</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nivel de Criticidad</mat-label>
+    <mat-select formControlName="nivelCriticidad">
+      <mat-option value="LEVE">Leve</mat-option>
+      <mat-option value="MODERADA">Moderada</mat-option>
+      <mat-option value="CRITICA">Crítica</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Estado</mat-label>
+    <mat-select formControlName="estadoEmergencia">
+      <mat-option value="ACTIVA">Activa</mat-option>
+      <mat-option value="VALIDADA">Validada</mat-option>
+      <mat-option value="DESCARTADA">Descartada</mat-option>
+      <mat-option value="CANCELADA">Cancelada</mat-option>
+      <mat-option value="FINALIZADA">Finalizada</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>ID Paciente</mat-label>
+    <input matInput type="number" formControlName="pacienteId" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nombre del Paciente</mat-label>
+    <input matInput formControlName="pacienteNombre" required>
+    @if (form.get('pacienteNombre')?.touched && form.get('pacienteNombre')!.hasError('required')) {
+      <mat-error>Nombre del paciente es requerido</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Profesional Asignado</mat-label>
+    <input matInput formControlName="profesionalAsignado">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    {{ isEdit ? 'Actualizar' : 'Agregar' }} Emergencia
+  </button>
+</form>

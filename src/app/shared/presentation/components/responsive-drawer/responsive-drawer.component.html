@@ -1,0 +1,13 @@
+<mat-sidenav-container class="tc-drawer-root">
+  <mat-sidenav
+    #drawer
+    class="tc-drawer-panel"
+    [mode]="drawerMode()"
+    [opened]="drawerOpened()"
+    (openedChange)="onDrawerOpenedChange($event)">
+    <ng-content select=".tc-drawer-slot" />
+  </mat-sidenav>
+  <mat-sidenav-content class="tc-drawer-content">
+    <ng-content select=".tc-shell-column" />
+  </mat-sidenav-content>
+</mat-sidenav-container>

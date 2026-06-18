@@ -1,0 +1,84 @@
+.calendar-page {
+  padding: 24px;
+  width: 100%;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.page-title {
+  margin: 0 0 16px 0;
+}
+
+.calendar-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.calendar-main {
+  flex: 1;
+}
+
+.calendar-sidebar {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-card {
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.badge-privada {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.badge-grupal {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.badge-emergencia {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.badge-pendiente {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7c3aed;
+  color: white;
+  font-size: 11px;
+  margin-left: 8px;
+}
+
+.recordatorio-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.recordatorio-item:last-child {
+  border-bottom: none;
+}

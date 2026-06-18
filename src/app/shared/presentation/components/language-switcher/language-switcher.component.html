@@ -1,0 +1,12 @@
+<button
+  mat-icon-button
+  type="button"
+  [matMenuTriggerFor]="langMenu"
+  [matTooltip]="'tooltips.languageSwitcher' | translate"
+  [attr.aria-label]="'common.language' | translate">
+  <mat-icon>translate</mat-icon>
+</button>
+<mat-menu #langMenu="matMenu">
+  <button mat-menu-item type="button" (click)="useLanguage('es')">Español</button>
+  <button mat-menu-item type="button" (click)="useLanguage('en')">English</button>
+</mat-menu>

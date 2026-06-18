@@ -1,0 +1,22 @@
+<app-dashboard-layout>
+  <div class="dashboard-container">
+
+    <app-course-statistics
+      [totalCourses]="courses.length"
+      [activeCourses]="courses.length - store.completedCount()"
+      [completedCourses]="store.completedCount()">
+    </app-course-statistics>
+
+    <div class="course-grid">
+      <app-course-card
+        *ngFor="let course of courses"
+        [title]="course.titleCourse"
+        [description]="course.categoryNeed"
+        [instructor]="course.moduleName"
+        [progress]="course.progressPercentage"
+        [category]="course.stateCourse">
+      </app-course-card>
+    </div>
+
+  </div>
+</app-dashboard-layout>

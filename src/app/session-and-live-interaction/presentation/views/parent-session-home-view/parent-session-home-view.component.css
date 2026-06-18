@@ -1,0 +1,112 @@
+.parent-home {
+  color: #111827;
+}
+
+.parent-heading h1 {
+  margin: 0;
+  font-size: 1.65rem;
+}
+
+.parent-heading p {
+  max-width: 40rem;
+  margin: 0.45rem 0 1.25rem;
+  color: #6b7280;
+}
+
+.next-card,
+.cards-grid article {
+  background: #ffffff;
+  border: 1px solid #edf0f3;
+  border-radius: 0.85rem;
+  box-shadow: 0 0.6rem 1.4rem rgba(15, 23, 42, 0.07);
+}
+
+.next-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.1rem;
+  align-items: center;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #673ab7, #1e88e5);
+}
+
+.label {
+  color: #9aa3b2;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.next-content h2 {
+  margin: 0.2rem 0;
+  font-size: 1.35rem;
+}
+
+.next-content p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.chips span {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: #efe7ff;
+  color: #5b2d8e;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.next-card button {
+  height: 2.6rem;
+  padding: 0 1.15rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: #f9a51a;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.cards-grid article {
+  padding: 1rem;
+}
+
+.cards-grid b {
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+.cards-grid p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.45;
+}
+
+@media (max-width: 850px) {
+  .next-card,
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

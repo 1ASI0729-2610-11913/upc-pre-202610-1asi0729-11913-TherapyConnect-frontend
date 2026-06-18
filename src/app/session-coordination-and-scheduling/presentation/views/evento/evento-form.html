@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="titulo" required>
+    @if (form.get('titulo')?.touched && form.get('titulo')!.hasError('required')) {
+      <mat-error>Título es requerido</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Fecha Sesión</mat-label>
+    <input matInput formControlName="fechaSesion" required>
+    @if (form.get('fechaSesion')?.touched && form.get('fechaSesion')!.hasError('required')) {
+      <mat-error>Fecha Sesión es requerida</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Hora Inicio</mat-label>
+    <input matInput formControlName="horaInicio" required>
+    @if (form.get('horaInicio')?.touched && form.get('horaInicio')!.hasError('required')) {
+      <mat-error>Hora Inicio es requerida</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Hora Fin</mat-label>
+    <input matInput formControlName="horaFin" required>
+    @if (form.get('horaFin')?.touched && form.get('horaFin')!.hasError('required')) {
+      <mat-error>Hora Fin es requerida</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Tipo Sesión</mat-label>
+    <mat-select formControlName="tipoSesion">
+      <mat-option value="privada">Privada</mat-option>
+      <mat-option value="grupal">Grupal</mat-option>
+      <mat-option value="emergencia">Emergencia</mat-option>
+    </mat-select>
+    @if (form.get('tipoSesion')?.touched && form.get('tipoSesion')!.hasError('required')) {
+      <mat-error>Tipo Sesión es requerido</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Estado Evento</mat-label>
+    <mat-select formControlName="estadoEvento">
+      <mat-option value="pendiente">Pendiente</mat-option>
+      <mat-option value="confirmado">Confirmado</mat-option>
+      <mat-option value="cancelado">Cancelado</mat-option>
+    </mat-select>
+    @if (form.get('estadoEvento')?.touched && form.get('estadoEvento')!.hasError('required')) {
+      <mat-error>Estado Evento es requerido</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Profesor ID</mat-label>
+    <input matInput type="number" formControlName="profesorId" required>
+    @if (form.get('profesorId')?.touched && form.get('profesorId')!.hasError('required')) {
+      <mat-error>Profesor ID es requerido</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Estudiante ID</mat-label>
+    <input matInput type="number" formControlName="estudianteId">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Aula ID</mat-label>
+    <input matInput type="number" formControlName="aulaId">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    {{ isEdit ? 'Update' : 'Add' }} Evento
+  </button>
+</form>

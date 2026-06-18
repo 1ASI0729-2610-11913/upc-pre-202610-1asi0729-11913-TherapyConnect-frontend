@@ -1,0 +1,10 @@
+.tc-metrics {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.tc-hint {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}

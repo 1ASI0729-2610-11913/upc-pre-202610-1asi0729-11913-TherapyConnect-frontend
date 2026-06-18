@@ -1,0 +1,279 @@
+{
+  "userProfiles": [
+    {
+      "id": 1,
+      "profileKey": "profile-personal-parent",
+      "displayName": "María García",
+      "planKey": "personal",
+      "roleKey": "parent",
+      "organizationName": null,
+      "pendingNotifications": 3,
+      "avatarUrl": null
+    },
+    {
+      "id": 2,
+      "profileKey": "profile-personal-teacher",
+      "displayName": "Dr. Alejandro",
+      "planKey": "personal",
+      "roleKey": "teacher",
+      "organizationName": null,
+      "pendingNotifications": 5,
+      "avatarUrl": null
+    },
+    {
+      "id": 3,
+      "profileKey": "profile-institutional-parent",
+      "displayName": "Carlos Mendoza",
+      "planKey": "institutional",
+      "roleKey": "parent",
+      "organizationName": "Centro San Lucas",
+      "pendingNotifications": 2,
+      "avatarUrl": null
+    },
+    {
+      "id": 4,
+      "profileKey": "profile-institutional-teacher",
+      "displayName": "Dra. Lucia Fernández",
+      "planKey": "institutional",
+      "roleKey": "teacher",
+      "organizationName": "Centro San Lucas",
+      "pendingNotifications": 4,
+      "avatarUrl": null
+    },
+    {
+      "id": 5,
+      "profileKey": "profile-institutional-admin",
+      "displayName": "Kevin López",
+      "planKey": "institutional",
+      "roleKey": "institutionAdmin",
+      "organizationName": "Centro Terapéutico San Lucas",
+      "pendingNotifications": 7,
+      "avatarUrl": null
+    }
+  ],
+  "institutionalTeacherNotes": [
+    {
+      "id": 1,
+      "studentName": "Kevin López",
+      "date": "2026-05-15T02:50:10.421Z",
+      "categories": ["TDAH"],
+      "content": "Muy buen avance en la sesión grupal. Participó activamente",
+      "sessionInfo": "Sesión grupal — Aula de Psicomotricidad, 14 May 2026"
+    },
+    {
+      "id": 2,
+      "studentName": "Lucía Rojas",
+      "date": "2026-05-15T02:50:29.621Z",
+      "categories": ["Asperger"],
+      "content": "Requiere más apoyo en transiciones entre actividades.",
+      "sessionInfo": "Sesión individual — Aula Sensorial, 15 May 2026"
+    }
+  ],
+  "personalTeacherNotes": [
+    {
+      "id": 1,
+      "studentName": "Mateo García",
+      "date": "2026-05-18T10:00:00.000Z",
+      "categories": ["TDAH"],
+      "content": "Sesión privada muy productiva. Completó todas las tareas asignadas.",
+      "sessionInfo": "Consulta privada — 18 May 2026, 10:00"
+    },
+    {
+      "id": 2,
+      "studentName": "Sofía Mendoza",
+      "date": "2026-05-22T11:30:00.000Z",
+      "categories": ["TEA Nivel 1"],
+      "content": "Presenta dificultades con el lenguaje expresivo. Se trabajó vocabulario básico.",
+      "sessionInfo": "Consulta privada — 22 May 2026, 11:30"
+    }
+  ],
+  "dashboardHighlights": [
+    {
+      "id": 1,
+      "profileId": 5,
+      "metricKey": "dashboard.metrics.activeStudents",
+      "value": 1248,
+      "trendLabelKey": "dashboard.metrics.trendUpShort",
+      "tone": "success"
+    },
+    {
+      "id": 2,
+      "profileId": 2,
+      "metricKey": "dashboard.metrics.sessionsToday",
+      "value": 8,
+      "trendLabelKey": "dashboard.metrics.tagToday",
+      "tone": "success"
+    }
+  ],
+  "therapySessions": [
+    {
+      "id": 1,
+      "patientName": "Mateo García",
+      "patientAge": 8,
+      "conditionLabel": "TEA Nivel 1",
+      "parentName": "María García",
+      "professionalName": "Lic. Sofía Martínez",
+      "classroomName": "Aula de Psicomotricidad",
+      "dateLabel": "12 Abr 2025",
+      "weekdayLabel": "Sábado",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "durationMinutes": 60,
+      "type": "private",
+      "modality": "presential",
+      "status": "completed",
+      "accessType": "institutional",
+      "observationsCount": 4
+    },
+    {
+      "id": 2,
+      "patientName": "Lucía Rojas",
+      "patientAge": 7,
+      "conditionLabel": "TDAH",
+      "parentName": "Carlos Rojas",
+      "professionalName": "Dr. Alejandro",
+      "classroomName": "Aula Sensorial",
+      "dateLabel": "13 Abr 2025",
+      "weekdayLabel": "Domingo",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "durationMinutes": 60,
+      "type": "group",
+      "modality": "virtual",
+      "status": "completed",
+      "accessType": "premium",
+      "observationsCount": 3
+    },
+    {
+      "id": 3,
+      "patientName": "Mateo García",
+      "patientAge": 8,
+      "conditionLabel": "TEA Nivel 1",
+      "parentName": "María García",
+      "professionalName": "Lic. Sofía Martínez",
+      "classroomName": "Aula de Psicomotricidad",
+      "dateLabel": "15 Abr 2025",
+      "weekdayLabel": "Martes",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "durationMinutes": 60,
+      "type": "private",
+      "modality": "presential",
+      "status": "cancelled",
+      "accessType": "institutional",
+      "observationsCount": 0
+    }
+  ],
+  "sessionChecklist": [
+    {
+      "id": 1,
+      "groupTitle": "Atención",
+      "label": "Mantiene contacto visual sostenido",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "groupTitle": "Atención",
+      "label": "Responde a su nombre al primer llamado",
+      "checked": true
+    },
+    {
+      "id": 3,
+      "groupTitle": "Atención",
+      "label": "Sigue instrucciones de un paso",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "groupTitle": "Comunicación",
+      "label": "Usa gestos para pedir objetos",
+      "checked": false
+    },
+    {
+      "id": 5,
+      "groupTitle": "Comunicación",
+      "label": "Vocaliza en respuesta a preguntas",
+      "checked": true
+    },
+    {
+      "id": 6,
+      "groupTitle": "Conducta",
+      "label": "Tolera transiciones sin frustración",
+      "checked": false
+    },
+    {
+      "id": 7,
+      "groupTitle": "Conducta",
+      "label": "Muestra interés en la actividad compartida",
+      "checked": false
+    }
+  ],
+  "emergencies": [
+    {
+      "id": 1,
+      "descripcion": "Crisis de ansiedad durante sesión grupal",
+      "estadoEmergencia": "ACTIVA",
+      "nivelCriticidad": "CRITICA",
+      "fechaActivacion": "2026-05-15T09:00:00.000Z",
+      "pacienteId": 101,
+      "pacienteNombre": "Mateo García",
+      "profesionalAsignado": "Dra. Lucia Fernández"
+    },
+    {
+      "id": 2,
+      "descripcion": "Requiere validación de protocolo por conducta disruptiva",
+      "estadoEmergencia": "VALIDADA",
+      "nivelCriticidad": "MODERADA",
+      "fechaActivacion": "2026-05-14T16:30:00.000Z",
+      "pacienteId": 102,
+      "pacienteNombre": "Lucía Rojas",
+      "profesionalAsignado": "Dr. Alejandro"
+    }
+  ],
+  "eventos": [
+    {
+      "id": 1,
+      "titulo": "Sesión psicomotricidad — Mateo",
+      "fechaSesion": "2026-05-20",
+      "horaInicio": "09:00",
+      "horaFin": "10:00",
+      "tipoSesion": "privada",
+      "estadoEvento": "confirmado",
+      "profesorId": 101,
+      "estudianteId": 501,
+      "aulaId": 3
+    },
+    {
+      "id": 2,
+      "titulo": "Grupo sensorial",
+      "fechaSesion": "2026-05-21",
+      "horaInicio": "11:00",
+      "horaFin": "12:30",
+      "tipoSesion": "grupal",
+      "estadoEvento": "pendiente",
+      "profesorId": 102,
+      "estudianteId": null,
+      "aulaId": 2
+    }
+  ],
+  "recordatorios": [
+    {
+      "id": 1,
+      "titulo": "Recordatorio padres — Mateo",
+      "fechaRecordatorio": "2026-05-19",
+      "horaRecordatorio": "18:00",
+      "estadoRecordatorio": "pendiente",
+      "eventoId": 1
+    }
+  ],
+  "parentNotes": [
+    {
+      "id": 1,
+      "childName": "Mateo García",
+      "date": "2026-05-20T10:00:00.000Z",
+      "categories": ["TDAH"],
+      "content": "Hoy Mateo estuvo muy atento durante la sesión. Siguió las instrucciones sin dificultad y mostró interés en las actividades.",
+      "nextSteps": "Practicar el ejercicio de respiración antes de dormir."
+    }
+  ]
+}

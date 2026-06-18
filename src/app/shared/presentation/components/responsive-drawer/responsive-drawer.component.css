@@ -1,0 +1,17 @@
+.tc-drawer-root {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.tc-drawer-panel {
+  width: min(280px, 86vw);
+  border-right: 1px solid #e5e7eb;
+  background-color: #f8f9fa;
+}
+
+.tc-drawer-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+}

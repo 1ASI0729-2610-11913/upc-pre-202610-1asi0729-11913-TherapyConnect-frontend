@@ -1,0 +1,17 @@
+<div class="course-card">
+  <div class="course-header">
+    <h3>{{ title }}</h3>
+    <span class="category">{{ category }}</span>
+  </div>
+
+  <p>{{ description }}</p>
+
+  <div class="course-footer">
+    <span>{{ instructor }}</span>
+    <span>{{ progress }}%</span>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress" [style.width.%]="progress"></div>
+  </div>
+</div>

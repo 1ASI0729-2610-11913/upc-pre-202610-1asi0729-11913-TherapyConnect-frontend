@@ -1,0 +1,5 @@
+@if (context()?.role === InterfaceRole.Parent) {
+  <app-parent-session-home-view />
+} @else {
+  <app-session-history-view />
+}

@@ -1,0 +1,99 @@
+<div class="tracker-container">
+
+  <section class="tracker-header">
+
+    <div>
+      <h1>Learning Tracker</h1>
+
+      <p>
+        Track your learning progress and weekly activity.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="stats-grid">
+
+    <div class="tracker-card">
+      <h2>{{ weeklyStudyHours() }}</h2>
+      <p>Study Hours</p>
+    </div>
+
+    <div class="tracker-card">
+      <h2>{{ completedCourses() }}</h2>
+      <p>Completed Courses</p>
+    </div>
+
+    <div class="tracker-card">
+      <h2>{{ activeCourses() }}</h2>
+      <p>Active Courses</p>
+    </div>
+
+    <div class="tracker-card">
+      <h2>{{ learningStreak() }}</h2>
+      <p>Day Streak</p>
+    </div>
+
+  </section>
+
+  <section class="goal-section">
+
+    <div class="goal-card">
+
+      <div class="goal-header">
+
+        <h3>Monthly Goal</h3>
+
+        <span>{{ completedGoal() }}%</span>
+
+      </div>
+
+      <div class="goal-progress-bar">
+
+        <div
+          class="goal-progress"
+          [style.width.%]="completedGoal()">
+        </div>
+
+      </div>
+
+      <p>
+        {{ weeklyStudyHours() }} /
+        {{ monthlyGoal() }}
+        hours completed
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="activity-section">
+
+    <h2>Weekly Activity</h2>
+
+    <div class="activity-list">
+
+      <div
+        *ngFor="let activity of weeklyActivity()"
+        class="activity-item">
+
+        <span>{{ activity.day }}</span>
+
+        <div class="activity-bar-container">
+
+          <div
+            class="activity-bar"
+            [style.width.%]="activity.hours * 20">
+          </div>
+
+        </div>
+
+        <span>{{ activity.hours }}h</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

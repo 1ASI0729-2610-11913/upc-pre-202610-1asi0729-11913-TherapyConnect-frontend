@@ -1,0 +1,52 @@
+<div class="tc-sidebar-brand">
+  <img
+    class="tc-brand-icon-img"
+    src="assets/brand/heart-placeholder.svg"
+    width="28"
+    height="28"
+    alt=""
+    [matTooltip]="'tooltips.sidebarBrand' | translate"
+    matTooltipPosition="right" />
+  <span class="tc-brand-text">{{ 'common.appName' | translate }}</span>
+</div>
+
+@for (group of menuGroups(); track group.translationKey) {
+  <div class="tc-nav-group">
+    <div class="tc-nav-group-label">{{ group.translationKey | translate }}</div>
+    <mat-nav-list>
+      @for (item of group.items; track item.translationKey + item.route) {
+        @if (item.route) {
+          <a
+            mat-list-item
+            [routerLink]="item.route"
+            routerLinkActive="tc-nav-active"
+            [routerLinkActiveOptions]="item.pathMatch === 'subset' ? navLinkSubsetMatch : navLinkActiveMatch"
+            (click)="navigate.emit()"
+            [class.tc-nav-danger]="item.tone === 'danger'"
+            [matTooltip]="item.translationKey | translate"
+            matTooltipPosition="right">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle>{{ item.translationKey | translate }}</span>
+            @if (item.badgeCount != null && item.badgeCount > 0) {
+              <span matListItemMeta class="tc-badge">{{ item.badgeCount }}</span>
+            }
+          </a>
+        } @else {
+          <button
+            mat-list-item
+            type="button"
+            (click)="onItemClick(item)"
+            [class.tc-nav-danger]="item.tone === 'danger'"
+            [matTooltip]="item.translationKey | translate"
+            matTooltipPosition="right">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle>{{ item.translationKey | translate }}</span>
+            @if (item.badgeCount != null && item.badgeCount > 0) {
+              <span matListItemMeta class="tc-badge">{{ item.badgeCount }}</span>
+            }
+          </button>
+        }
+      }
+    </mat-nav-list>
+  </div>
+}
