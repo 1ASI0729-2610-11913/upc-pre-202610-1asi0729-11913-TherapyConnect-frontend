@@ -2,12 +2,16 @@ import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Course } from '../domain/model/course.entity';
 import { CourseResource, CourseResponse} from './course-response';
 
-export class CourseAssembler implements BaseAssembler<Course, CourseResource, CourseResponse> {
-  toEntitiesFromResponse(response: CourseResponse): Course[] {
-    return response.courses.map((resource) => this.toEntityFromResource(resource));
+export class CourseAssembler {
+  static toEntitiesFromResponse(response: CourseResponse): Course[] {
+    return response.courses.map((r) => this.toEntityFromResource(r));
   }
 
-  toEntityFromResource(resource: CourseResource): Course {
+  static toEntitiesFromResources(resources: CourseResource[]): Course[] {
+    return resources.map((r) => this.toEntityFromResource(r));
+  }
+
+  static toEntityFromResource(resource: CourseResource): Course {
     return new Course({
       id: resource.id,
       titleCourse: resource.titleCourse,
@@ -23,7 +27,7 @@ export class CourseAssembler implements BaseAssembler<Course, CourseResource, Co
     });
   }
 
-  toResourceFromEntity(entity: Course): CourseResource {
+  static toResourceFromEntity(entity: Course): CourseResource {
     return {
       id: entity.id,
       titleCourse: entity.titleCourse,
