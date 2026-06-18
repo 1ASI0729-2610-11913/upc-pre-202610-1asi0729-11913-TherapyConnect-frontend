@@ -7,6 +7,10 @@ export class ProductCatalogAssembler {
     return response.catalog.map((r) => this.toEntityFromResource(r));
   }
 
+  static toEntitiesFromResources(resources: ProductCatalogResource[]): ProductCatalog[] {
+    return resources.map((r) => this.toEntityFromResource(r));
+  }
+
   static toEntityFromResource(resource: ProductCatalogResource): ProductCatalog {
     return new ProductCatalog({
       id: resource.id,
