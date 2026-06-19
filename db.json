@@ -4,36 +4,31 @@
       "id": 1,
       "profileKey": "profile-personal-parent",
       "displayName": "María García",
-      "roleKey": "parent",
-      "planKey": "personal"
+      "roleKey": "parent"
     },
     {
       "id": 2,
       "profileKey": "profile-personal-teacher",
       "displayName": "Dr. Alejandro",
-      "roleKey": "teacher",
-      "planKey": "personal"
+      "roleKey": "teacher"
     },
     {
       "id": 3,
       "profileKey": "profile-institutional-parent",
       "displayName": "Carlos Mendoza",
-      "roleKey": "parent",
-      "planKey": "institutional"
+      "roleKey": "parent"
     },
     {
       "id": 4,
       "profileKey": "profile-institutional-teacher",
       "displayName": "Dra. Lucia Fernández",
-      "roleKey": "teacher",
-      "planKey": "institutional"
+      "roleKey": "teacher"
     },
     {
       "id": 5,
       "profileKey": "profile-institutional-admin",
       "displayName": "Kevin López",
-      "roleKey": "institutionAdmin",
-      "planKey": "institutional"
+      "roleKey": "institutionAdmin"
     }
   ],
   "institutionalTeacherNotes": [
@@ -41,14 +36,12 @@
       "id": 1,
       "studentName": "Kevin López",
       "date": "2026-05-15T02:50:10.421Z",
-      "categories": ["TDAH"],
       "content": "Muy buen avance en la sesión grupal. Participó activamente"
     },
     {
       "id": 2,
       "studentName": "Lucía Rojas",
       "date": "2026-05-15T02:50:29.621Z",
-      "categories": ["Asperger"],
       "content": "Requiere más apoyo en transiciones entre actividades."
     }
   ],
@@ -57,53 +50,36 @@
       "id": 1,
       "studentName": "Mateo García",
       "date": "2026-05-18T10:00:00.000Z",
-      "categories": ["TDAH"],
       "content": "Sesión privada muy productiva. Completó todas las tareas asignadas."
     },
     {
       "id": 2,
       "studentName": "Sofía Mendoza",
       "date": "2026-05-22T11:30:00.000Z",
-      "categories": ["TEA Nivel 1"],
       "content": "Presenta dificultades con el lenguaje expresivo."
     }
   ],
   "dashboardHighlights": [
-    {
-      "id": 1,
-      "profileId": 5,
-      "metricKey": "dashboard.metrics.activeStudents",
-      "value": 1248,
-      "tone": "success"
-    },
-    {
-      "id": 2,
-      "profileId": 2,
-      "metricKey": "dashboard.metrics.sessionsToday",
-      "value": 8,
-      "tone": "success"
-    }
+    { "id": 1, "profileId": 5, "metricKey": "dashboard.metrics.activeStudents", "value": 1248 },
+    { "id": 2, "profileId": 2, "metricKey": "dashboard.metrics.sessionsToday", "value": 8 }
   ],
   "therapySessions": [
     {
       "id": 1,
       "patientName": "Mateo García",
       "professionalName": "Lic. Sofía Martínez",
-      "dateLabel": "12 Abr 2025",
       "status": "completed"
     },
     {
       "id": 2,
       "patientName": "Lucía Rojas",
       "professionalName": "Dr. Alejandro",
-      "dateLabel": "13 Abr 2025",
       "status": "completed"
     },
     {
       "id": 3,
       "patientName": "Mateo García",
       "professionalName": "Lic. Sofía Martínez",
-      "dateLabel": "15 Abr 2025",
       "status": "cancelled"
     }
   ],
@@ -154,14 +130,12 @@
   "emergencies": [
     {
       "id": 1,
-      "descripcion": "Crisis de ansiedad durante sesión grupal",
       "estadoEmergencia": "ACTIVA",
       "nivelCriticidad": "CRITICA",
       "pacienteNombre": "Mateo García"
     },
     {
       "id": 2,
-      "descripcion": "Requiere validación de protocolo por conducta disruptiva",
       "estadoEmergencia": "VALIDADA",
       "nivelCriticidad": "MODERADA",
       "pacienteNombre": "Lucía Rojas"
@@ -172,14 +146,12 @@
       "id": 1,
       "titulo": "Sesión psicomotricidad — Mateo",
       "fechaSesion": "2026-05-20",
-      "horaInicio": "09:00",
       "estadoEvento": "confirmado"
     },
     {
       "id": 2,
       "titulo": "Grupo sensorial",
       "fechaSesion": "2026-05-21",
-      "horaInicio": "11:00",
       "estadoEvento": "pendiente"
     }
   ],
@@ -188,7 +160,6 @@
       "id": 1,
       "titulo": "Recordatorio padres — Mateo",
       "fechaRecordatorio": "2026-05-19",
-      "horaRecordatorio": "18:00",
       "estadoRecordatorio": "pendiente"
     }
   ],
@@ -197,7 +168,6 @@
       "id": 1,
       "childName": "Mateo García",
       "date": "2026-05-20T10:00:00.000Z",
-      "categories": ["TDAH"],
       "content": "Hoy Mateo estuvo muy atento durante la sesión."
     }
   ],
@@ -206,41 +176,21 @@
       "id": 1,
       "title": "Estrategias para niños con TEA",
       "conditionTag": "TEA",
-      "level": "básico",
-      "instructorName": "Dra. Lucia Fernández"
+      "level": "básico"
     },
-    {
-      "id": 2,
-      "title": "Manejo conductual en TDAH",
-      "conditionTag": "TDAH",
-      "level": "intermedio",
-      "instructorName": "Dr. Alejandro"
-    }
+    { "id": 2, "title": "Manejo conductual en TDAH", "conditionTag": "TDAH", "level": "intermedio" }
   ],
-  "registrations": [
-    {
-      "id": 1,
-      "courseId": 1,
-      "userId": 1,
-      "registrationDate": "2026-05-10T08:00:00.000Z",
-      "status": "active"
-    }
-  ],
-  "evaluations": [
-    { "id": 1, "courseId": 1, "userId": 1, "score": 85, "completedAt": "2026-05-20T10:00:00.000Z" }
-  ],
+  "registrations": [{ "id": 1, "courseId": 1, "userId": 1, "status": "active" }],
+  "evaluations": [{ "id": 1, "courseId": 1, "userId": 1, "score": 85 }],
   "observations": [
     {
       "id": 1,
       "sessionId": 1,
       "content": "El estudiante mostró mejora en atención sostenida.",
-      "createdAt": "2026-05-15T09:30:00.000Z",
       "authorId": 2
     }
   ],
-  "dependents": [
-    { "id": 1, "parentId": 1, "name": "Mateo García", "age": 8, "conditionTag": "TEA Nivel 1" }
-  ],
+  "dependents": [{ "id": 1, "parentId": 1, "name": "Mateo García", "conditionTag": "TEA Nivel 1" }],
   "catalogs": [
     {
       "id": 1,
@@ -249,19 +199,7 @@
     }
   ],
   "products": [
-    {
-      "id": 1,
-      "catalogId": 1,
-      "name": "Kit sensorial básico",
-      "conditionTag": "TEA",
-      "price": 45.0
-    },
-    {
-      "id": 2,
-      "catalogId": 1,
-      "name": "Tablero de comunicación",
-      "conditionTag": "TDAH",
-      "price": 30.0
-    }
+    { "id": 1, "catalogId": 1, "name": "Kit sensorial básico", "conditionTag": "TEA" },
+    { "id": 2, "catalogId": 1, "name": "Tablero de comunicación", "conditionTag": "TDAH" }
   ]
 }
