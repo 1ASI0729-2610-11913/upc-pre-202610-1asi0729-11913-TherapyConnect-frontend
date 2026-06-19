@@ -1,86 +1,52 @@
 <div class="recommendation-container">
-
   <section class="recommendation-header">
-
     <div>
-
       <span class="recommendation-tag">
         Personalized Suggestions
       </span>
 
-      <h1>
-        Recommendation Center
-      </h1>
-
+      <h1>Recommendation Center</h1>
       <p>
         Explore personalized recommendations based on
         therapy progress, activity, and learning behavior.
       </p>
-
     </div>
-
   </section>
 
   <section class="recommendation-stats">
-
     <div class="stat-card">
 
-      <h2>
-        {{ totalRecommendations() }}
-      </h2>
+      <h2>{{ totalRecommendations() }}</h2>
 
-      <p>
-        Recommendations
-      </p>
+      <p>Recommendations</p>
+    </div>
 
+    <div class="stat-card">
+      <h2>{{ averageMatch() }}%</h2>
+      <p>Average Match</p>
     </div>
 
     <div class="stat-card">
 
-      <h2>
-        {{ averageMatch() }}%
-      </h2>
+      <h2>AI</h2>
 
-      <p>
-        Average Match
-      </p>
-
+      <p>Smart Suggestions</p>
     </div>
-
-    <div class="stat-card">
-
-      <h2>
-        AI
-      </h2>
-
-      <p>
-        Smart Suggestions
-      </p>
-
-    </div>
-
   </section>
 
   <section class="recommendation-grid">
-
     <div
       *ngFor="let recommendation of recommendations()"
       class="recommendation-item">
 
       <div class="recommendation-category">
-
         {{ recommendation.category }}
-
       </div>
-
       <app-recommendation-card
         [title]="recommendation.title"
         [reason]="recommendation.reason"
         [matchPercentage]="recommendation.matchPercentage">
       </app-recommendation-card>
-
     </div>
-
   </section>
-
 </div>

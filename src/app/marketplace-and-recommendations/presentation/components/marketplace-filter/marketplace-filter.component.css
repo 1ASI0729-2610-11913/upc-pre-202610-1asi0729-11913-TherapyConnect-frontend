@@ -1,11 +1,27 @@
-.filter-container {
-  display: flex;
-  justify-content: flex-end;
+.tc-marketplace-filter {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 240px) auto;
+  gap: 0.75rem;
+  align-items: start;
 }
 
-select {
-  padding: 0.8rem 1rem;
-  border-radius: 12px;
-  border: 1px solid #d1d5db;
-  min-width: 220px;
+.tc-marketplace-search-field,
+.tc-marketplace-category-field {
+  width: 100%;
+}
+
+.tc-marketplace-filter-actions {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+@media (max-width: 860px) {
+  .tc-marketplace-filter {
+    grid-template-columns: 1fr;
+  }
+
+  .tc-marketplace-filter-actions {
+    min-height: auto;
+  }
 }

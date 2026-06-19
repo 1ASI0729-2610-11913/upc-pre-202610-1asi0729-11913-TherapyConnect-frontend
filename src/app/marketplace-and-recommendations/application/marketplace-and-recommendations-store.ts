@@ -2,172 +2,114 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Product } from '../domain/model/product.entity';
 import { Dependent } from '../domain/model/dependent.entity';
 import { ProductCatalog } from '../domain/model/product-catalog.entity';
-import {ProductApi} from '../infrastructure/product-api';
-import {DependentApi} from '../infrastructure/dependent-api';
-import {ProductCatalogApi} from '../infrastructure/product-catalog-api';
-import {catchError, finalize} from 'rxjs/operators';
-import {of} from 'rxjs';
-
-export type AvailabilityState = '' | 'Available' | 'Out of Stock';
-export type RecommendationState = '' | 'In Progress' | 'Implemented' | 'Not Implemented';
-export type Priority = '' | 'High' | 'Low';
-export type ProgressState = '' | 'To Start' | 'In Progress' | 'On Pause';
-export type CatalogState = '' | 'Active' | 'Private' | 'Filled';
-
-export const DEFAULT_AVAILABILITY_STATES: AvailabilityState[] = ['Available', 'Out of Stock'];
-export const DEFAULT_RECOMMENDATION_STATES: RecommendationState[] = ['In Progress', 'Implemented', 'Not Implemented'];
-export const DEFAULT_PRIORITY: Priority[] = ['High', 'Low'];
-export const DEFAULT_PROGRESS_STATE: ProgressState[] = ['To Start', 'In Progress', 'On Pause'];
-export const DEFAULT_CATALOG_STATE: CatalogState[] = ['Active', 'Private', 'Filled'];
-
-export interface MarketPlace {
-  availabilityState: AvailabilityState;
-  recommendationState: RecommendationState;
-  priority: Priority;
-  progressState: ProgressState;
-  catalogState: CatalogState;
-}
-
-function emptyMarket(): MarketPlace {
-  return {
-    availabilityState: '',
-    recommendationState: '',
-    priority: '',
-    progressState: '',
-    catalogState: '',
-  };
-}
+import { MarketplaceRecommendationsApi } from '../infrastructure/marketplace-and-recommendations-api';
 
 @Injectable({ providedIn: 'root' })
 export class MarketplaceAndRecommendationsStore {
-  private readonly productApi = inject(ProductApi);
-  private readonly dependentApi = inject(DependentApi);
-  private readonly catalogApi = inject(ProductCatalogApi);
+  private readonly api = inject(MarketplaceRecommendationsApi);
 
-  private readonly _products = signal<Product[]>([]);
-  private readonly _dependents = signal<Dependent[]>([]);
-  private readonly _catalogs = signal<ProductCatalog[]>([]);
-  private readonly _loading = signal(false);
+  private readonly productsSignal = signal<Product[]>([]);
+  private readonly dependentsSignal = signal<Dependent[]>([]);
+  private readonly catalogsSignal = signal<ProductCatalog[]>([]);
+  private readonly selectedProductSignal = signal<Product | null>(null);
+  private readonly loadingSignal = signal(false);
+  private readonly errorSignal = signal<string | null>(null);
 
-  readonly products = this._products.asReadonly();
-  readonly dependents = this._dependents.asReadonly();
-  readonly catalogs = this._catalogs.asReadonly();
-  readonly loading = this._loading.asReadonly();
+  readonly products = this.productsSignal.asReadonly();
+  readonly dependents = this.dependentsSignal.asReadonly();
+  readonly catalogs = this.catalogsSignal.asReadonly();
+  readonly selectedProduct = this.selectedProductSignal.asReadonly();
+  readonly loading = this.loadingSignal.asReadonly();
+  readonly error = this.errorSignal.asReadonly();
 
-  readonly availableProducts = computed(() =>
-    this._products().filter(
-      (product) => product.availabilityState === 'Available',
-    ),
-  );
-
-  readonly recommendedProducts = computed(() =>
-    this._products().filter(
-      (product) => product.recommendationState === 'Implemented',
-    ),
-  );
-
-  readonly activeCatalogs = computed(() =>
-    this._catalogs().filter(
-      (catalog) => catalog.catalogState === 'Active',
-    ),
-  );
-
-  loadAll(): void {
+  constructor() {
     this.loadProducts();
     this.loadDependents();
     this.loadCatalogs();
   }
 
   loadProducts(): void {
-    this._loading.set(true);
-
-    this.productApi
-      .getProducts()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((products) => {
-        this._products.set(products);
-      });
+    this.loadingSignal.set(true);
+    this.errorSignal.set(null);
+    this.api.getProducts().subscribe({
+      next: (products) => {
+        this.productsSignal.set(products);
+        if (!this.selectedProductSignal() && products.length > 0) {
+          this.selectedProductSignal.set(products[0]);
+        }
+        this.loadingSignal.set(false);
+      },
+      error: () => {
+        this.errorSignal.set('No se pudo cargar todos los productos');
+        this.loadingSignal.set(false);
+      },
+    });
   }
 
   loadDependents(): void {
-    this._loading.set(true);
-
-    this.dependentApi
-      .getDependents()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((dependents) => {
-        this._dependents.set(dependents);
-      });
+    this.api.getDependents().subscribe({
+      next: (dependents) => this.dependentsSignal.set(dependents),
+      error: () => this.dependentsSignal.set([]),
+    });
   }
 
   loadCatalogs(): void {
-    this._loading.set(true);
-
-    this.catalogApi
-      .getProductCatalogs()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((catalogs) => {
-        this._catalogs.set(catalogs);
-      });
+    this.api.getProductCatalogs().subscribe({
+      next: (catalogs) => this.catalogsSignal.set(catalogs),
+      error: () => this.catalogsSignal.set([]),
+    });
   }
 
-  deleteProduct(id: number): void {
-    this._loading.set(true);
-
-    this.productApi
-      .deleteProduct(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._products.update((products) =>
-        products.filter((p) => p.id !== id),
-        );
-      });
+  selectProduct(product: Product): void {
+    this.selectedProductSignal.set(product);
   }
 
-  deleteDependent(id: number): void {
-    this._loading.set(true);
-
-    this.dependentApi
-      .deleteDependent(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._dependents.update((dependents) =>
-        dependents.filter((p) => p.id !== id),
-        );
-      });
+  toggleProduct(id: number): void {
+    this.productsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id != id) return item;
+        return new Product({
+          id: item.id,
+          productName: item.productName,
+          productCategory: item.productCategory,
+          productType: item.productType,
+          availabilityState: item.availabilityState === 'Available' ? 'Out of Stock' : item.availabilityState,
+          availableQuantity: item.availableQuantity,
+          recommendationState: item.recommendationState === 'In progress' ? 'Implemented' : 'Not Implemented',
+          priority: item.priority === 'High' ? 'Low' : item.priority,
+          expirationDate: item.expirationDate,
+          groupType: item.groupType,
+        });
+      }),
+    );
   }
 
-  deleteCatalog(id: number): void {
-    this._loading.set(true);
-
-    this.catalogApi
-      .deleteProductCatalog(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._catalogs.update((catalogs) =>
-        catalogs.filter((p) => p.id !== id),
-        );
-      });
+  toggleDependent(id: number): void {
+    this.dependentsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id != id) return item;
+        return new Dependent({
+          id: item.id,
+          dependentCondition: item.dependentCondition,
+          needLevel: item.needLevel,
+          progressSate: item.progressSate === 'To start' ? 'In progress' : 'on pause',
+        });
+      }),
+    );
   }
 
-  findProductById(id: number): Product | undefined {
-    return this._products().find((product) => product.id === id);
-  }
-
-  findDependentById(id: number): Dependent | undefined {
-    return this._dependents().find((dependent) => dependent.id === id);
-  }
-
-  findCatalogById(id: number): ProductCatalog | undefined {
-    return this._catalogs().find((catalog) => catalog.id === id);
+  toggleCatalog(id: number): void {
+    this.catalogsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id != id) return item;
+        return new ProductCatalog({
+          id: item.id,
+          productId: item.productId,
+          products: item.products,
+          catalogState: item.catalogState === 'Active' ? 'Private' : 'Filed',
+          dateUpdate: item.dateUpdate,
+        });
+      }),
+    );
   }
 }

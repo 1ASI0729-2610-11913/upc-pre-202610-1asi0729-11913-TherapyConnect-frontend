@@ -9,10 +9,15 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
-  @Input() title: string = '';
-  @Input() description: string = '';
-  @Input() category: string = '';
-  @Input() price: number = 0;
-  @Input() image: string = '';
-  @Input() rating: number = 0;
+  @Input() productName: string = '';
+  @Input() conditionTag: string = '';
+  @Input() productType: string = '';
+  @Input() productCategory: string = '';
+  @Input() availabilityState: string = '';
+  @Input() availableQuantity: number = 0;
+  @Input() featured: boolean = false;
+
+  protected get isAvailable(): boolean {
+    return this.availabilityState === 'Available' && this.availableQuantity > 0;
+  }
 }
