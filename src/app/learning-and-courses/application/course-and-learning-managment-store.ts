@@ -3,10 +3,10 @@ import { Course } from '../domain/model/course.entity'
 import { Registration } from '../domain/model/registration.entity';
 import { Evaluation } from '../domain/model/evaluation.entity';
 import { Observation } from '../domain/model/observation.entity';
-import { CourseApi } from '../infrastructure/course-api';
-import { EvaluationApi } from '../infrastructure/evaluation-api';
-import { ObservationApi } from '../infrastructure/observation-api';
-import { RegistrationApi } from '../infrastructure/registration-api';
+import { CoursesApiEndpoint } from '../infrastructure/courses-api-endpoint';
+import { EvaluationsApiEndpoint } from '../infrastructure/evaluations-api-endpoint';
+import { ObservationsApiEndpoint } from '../infrastructure/observations-api-endpoint';
+import { RegistrationsApiEndpoint } from '../infrastructure/registrations-api-endpoint';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -38,10 +38,10 @@ function emptyLearning(): Learning {
 
 @Injectable({ providedIn: 'root' })
 export class CourseAndLearningManagmentStore {
-  private readonly courseApi = inject(CourseApi);
-  private readonly evaluationApi = inject(EvaluationApi);
-  private readonly observationApi = inject(ObservationApi);
-  private readonly registrationApi = inject(RegistrationApi);
+  private readonly courseApi = inject(CoursesApiEndpoint);
+  private readonly evaluationApi = inject(EvaluationsApiEndpoint);
+  private readonly observationApi = inject(ObservationsApiEndpoint);
+  private readonly registrationApi = inject(RegistrationsApiEndpoint);
 
   private readonly _courses = signal<Course[]>([]);
   private readonly _evaluations = signal<Evaluation[]>([]);
