@@ -1,31 +1,25 @@
-<div class="product-card">
-
-  <img
-    [src]="image"
-    [alt]="title">
-
-  <div class="product-content">
-
-    <span class="category">
-      {{ category }}
-    </span>
-
-    <h3>{{ title }}</h3>
-
-    <p>{{ description }}</p>
-
-    <div class="product-footer">
-
-      <span class="price">
-        ${{ price }}
-      </span>
-
-      <span class="rating">
-        ⭐ {{ rating }}
-      </span>
-
-    </div>
-
+<article class="tc-product-card" [class.tc-product-card-featured]="featured">
+  <div class="tc-product-chips">
+    <span class="tc-product-chip tc-product-chip-condition" *ngIf="conditionTag">{{ conditionTag }}</span>
+    <span class="tc-product-chip">{{ productCategory }}</span>
+    <span class="tc-product-chip tc-product-chip-type">{{ productType }}</span>
   </div>
 
-</div>
+  <h3 class="tc-product-title">{{ productName }}</h3>
+
+  <p class="tc-product-description">
+    Recurso terapéutico para apoyar sesiones y actividades guiadas.
+  </p>
+
+  <div class="tc-product-meta">
+    <p class="tc-product-row">
+      <strong>Estado:</strong>
+      <span [class.tc-ok]="isAvailable" [class.tc-off]="!isAvailable">{{ availabilityState }}</span>
+    </p>
+    <p class="tc-product-row"><strong>Cantidad:</strong> {{ availableQuantity }}</p>
+  </div>
+
+  <div class="tc-product-actions">
+    <button type="button">Ver detalle</button>
+  </div>
+</article>

@@ -1,11 +1,9 @@
 <div class="detail-container">
 
   <section class="product-image-section">
-
     <img
       [src]="product().image"
       [alt]="product().title">
-
   </section>
 
   <section class="detail-content">
@@ -23,7 +21,6 @@
     </p>
 
     <div class="detail-meta">
-
       <div class="meta-item">
         <span class="label">Rating</span>
         <span class="value">
@@ -37,9 +34,7 @@
           class="availability"
           [class.available]="availability() === 'Available'"
           [class.out-stock]="availability() === 'Out of Stock'">
-
           {{ availability() }}
-
         </span>
       </div>
 
@@ -49,31 +44,22 @@
           {{ product().stock }} units
         </span>
       </div>
-
     </div>
 
     <div class="price-section">
-
       <h2>
         ${{ product().price }}
       </h2>
-
       <p>One-time purchase</p>
-
     </div>
 
     <div class="action-buttons">
-
       <button class="primary-button">
         Add to Cart
       </button>
-
       <button class="secondary-button">
         Save Product
       </button>
-
     </div>
-
   </section>
-
 </div>

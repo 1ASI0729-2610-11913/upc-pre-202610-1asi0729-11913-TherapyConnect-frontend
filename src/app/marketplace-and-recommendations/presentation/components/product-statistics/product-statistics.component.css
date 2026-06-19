@@ -1,13 +1,29 @@
-.statistics-grid {
+.tc-marketplace-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
-.stat-card {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.tc-marketplace-stat-card {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.tc-marketplace-stat-card h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.tc-marketplace-stat-card p {
+  margin: 0.25rem 0 0;
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 860px) {
+  .tc-marketplace-stats {
+    grid-template-columns: 1fr;
+  }
 }

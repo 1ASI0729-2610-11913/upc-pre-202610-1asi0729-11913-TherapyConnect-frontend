@@ -51,40 +51,24 @@
       "avatarUrl": null
     }
   ],
-  "institutionalTeacherNotes": [
+  "teacherNotes": [
     {
       "id": 1,
-      "studentName": "Kevin López",
+      "studentName": "kevin",
       "date": "2026-05-15T02:50:10.421Z",
-      "categories": ["TDAH"],
-      "content": "Muy buen avance en la sesión grupal. Participó activamente",
-      "sessionInfo": "Sesión grupal — Aula de Psicomotricidad, 14 May 2026"
+      "categories": ["TDAH", "asperger"],
+      "content": "muy bien",
+      "sessionInfo": "ayer",
+      "id": 1
     },
     {
       "id": 2,
-      "studentName": "Lucía Rojas",
+      "studentName": "juan",
       "date": "2026-05-15T02:50:29.621Z",
-      "categories": ["Asperger"],
-      "content": "Requiere más apoyo en transiciones entre actividades.",
-      "sessionInfo": "Sesión individual — Aula Sensorial, 15 May 2026"
-    }
-  ],
-  "personalTeacherNotes": [
-    {
-      "id": 1,
-      "studentName": "Mateo García",
-      "date": "2026-05-18T10:00:00.000Z",
-      "categories": ["TDAH"],
-      "content": "Sesión privada muy productiva. Completó todas las tareas asignadas.",
-      "sessionInfo": "Consulta privada — 18 May 2026, 10:00"
-    },
-    {
-      "id": 2,
-      "studentName": "Sofía Mendoza",
-      "date": "2026-05-22T11:30:00.000Z",
-      "categories": ["TEA Nivel 1"],
-      "content": "Presenta dificultades con el lenguaje expresivo. Se trabajó vocabulario básico.",
-      "sessionInfo": "Consulta privada — 22 May 2026, 11:30"
+      "categories": ["asperger"],
+      "content": "muy bienn",
+      "sessionInfo": "hoy",
+      "id": 2
     }
   ],
   "dashboardHighlights": [
@@ -363,6 +347,84 @@
       "price": 30.0,
       "stock": 15,
       "imageUrl": null
+    }
+    ],
+  "products": [
+    {
+      "id": 1,
+      "productName": "Kit sensorial basico",
+      "productCategory": "Sensorial",
+      "productType": "Herramienta",
+      "availabilityState": "Available",
+      "availableQuantity": 12,
+      "recommendationState": "In progress",
+      "priority": "High",
+      "expirationDate": "2027-12-31",
+      "groupType": "Personal"
+    },
+    {
+      "id": 2,
+      "productName": "Tarjetas de comunicacion",
+      "productCategory": "Comunicacion",
+      "productType": "Material",
+      "availabilityState": "Available",
+      "availableQuantity": 20,
+      "recommendationState": "Implemented",
+      "priority": "Medium",
+      "expirationDate": "2027-10-15",
+      "groupType": "Institucional"
+    },
+    {
+      "id": 3,
+      "productName": "Rompecabezas terapeutico",
+      "productCategory": "Cognitivo",
+      "productType": "Juguete",
+      "availabilityState": "Out of Stock",
+      "availableQuantity": 0,
+      "recommendationState": "Not Implemented",
+      "priority": "Low",
+      "expirationDate": "2027-08-01",
+      "groupType": "Personal"
+    }
+  ],
+  "dependents": [
+    {
+      "id": 1,
+      "dependentCondition": "TDAH",
+      "needLevel": "Medio",
+      "progressSate": "In progress"
+    },
+    {
+      "id": 2,
+      "dependentCondition": "TEA Nivel 1",
+      "needLevel": "Alto",
+      "progressSate": "To start"
+    }
+  ],
+  "catalogs": [
+    {
+      "id": 1,
+      "productId": [1, 2],
+      "products": [],
+      "catalogState": "Active",
+      "dateUpdate": "2026-06-01"
+    },
+    {
+      "id": 2,
+      "productId": [3],
+      "products": [],
+      "catalogState": "Private",
+      "dateUpdate": "2026-06-10"
+    }
+  ],
+  "parentNotes": [
+    {
+      "id": 1,
+      "childName": "Mateo García",
+      "date": "2026-05-20T10:00:00.000Z",
+      "categories": ["TDAH"],
+      "content": "Hoy Mateo estuvo muy atento durante la sesión. Siguió las instrucciones sin dificultad y mostró interés en las actividades.",
+      "nextSteps": "Practicar el ejercicio de respiración antes de dormir."
     }
   ]
 }
