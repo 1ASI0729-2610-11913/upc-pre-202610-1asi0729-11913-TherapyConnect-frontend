@@ -275,5 +275,94 @@
       "content": "Hoy Mateo estuvo muy atento durante la sesión. Siguió las instrucciones sin dificultad y mostró interés en las actividades.",
       "nextSteps": "Practicar el ejercicio de respiración antes de dormir."
     }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Estrategias para niños con TEA",
+      "description": "Curso para padres y terapeutas sobre técnicas de intervención temprana.",
+      "conditionTag": "TEA",
+      "durationWeeks": 4,
+      "level": "básico",
+      "instructorName": "Dra. Lucia Fernández",
+      "imageUrl": null
+    },
+    {
+      "id": 2,
+      "title": "Manejo conductual en TDAH",
+      "description": "Herramientas prácticas para gestionar conductas en niños con TDAH.",
+      "conditionTag": "TDAH",
+      "durationWeeks": 3,
+      "level": "intermedio",
+      "instructorName": "Dr. Alejandro",
+      "imageUrl": null
+    }
+  ],
+  "registrations": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "userId": 1,
+      "registrationDate": "2026-05-10T08:00:00.000Z",
+      "status": "active"
+    }
+  ],
+  "evaluations": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "userId": 1,
+      "score": 85,
+      "completedAt": "2026-05-20T10:00:00.000Z"
+    }
+  ],
+  "observations": [
+    {
+      "id": 1,
+      "sessionId": 1,
+      "content": "El estudiante mostró mejora en atención sostenida.",
+      "createdAt": "2026-05-15T09:30:00.000Z",
+      "authorId": 2
+    }
+  ],
+  "dependents": [
+    {
+      "id": 1,
+      "parentId": 1,
+      "name": "Mateo García",
+      "age": 8,
+      "conditionTag": "TEA Nivel 1"
+    }
+  ],
+  "catalogs": [
+    {
+      "id": 1,
+      "name": "Materiales sensoriales",
+      "description": "Recursos para estimulación sensorial en niños con TEA y TDAH."
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "catalogId": 1,
+      "name": "Kit sensorial básico",
+      "description": "Incluye texturas, colores y elementos táctiles para estimulación.",
+      "conditionTag": "TEA",
+      "level": "básico",
+      "price": 45.0,
+      "stock": 20,
+      "imageUrl": null
+    },
+    {
+      "id": 2,
+      "catalogId": 1,
+      "name": "Tablero de comunicación",
+      "description": "Pictogramas para facilitar la comunicación no verbal.",
+      "conditionTag": "TDAH",
+      "level": "intermedio",
+      "price": 30.0,
+      "stock": 15,
+      "imageUrl": null
+    }
   ]
 }
