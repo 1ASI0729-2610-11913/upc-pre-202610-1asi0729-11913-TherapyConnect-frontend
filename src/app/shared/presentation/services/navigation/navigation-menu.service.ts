@@ -11,7 +11,8 @@ export class NavigationMenuService {
       [`${PlanType.Personal}-${InterfaceRole.Teacher}`]: 'personal-teacher-dashboard',
       [`${PlanType.Institutional}-${InterfaceRole.Parent}`]: 'institutional-parent-dashboard',
       [`${PlanType.Institutional}-${InterfaceRole.Teacher}`]: 'institutional-teacher-dashboard',
-      [`${PlanType.Institutional}-${InterfaceRole.InstitutionAdmin}`]: 'institutional-admin-dashboard',
+      [`${PlanType.Institutional}-${InterfaceRole.InstitutionAdmin}`]:
+        'institutional-admin-dashboard',
     };
     return map[`${plan}-${role}`] ?? 'personal-parent-dashboard';
   }
@@ -29,24 +30,13 @@ export class NavigationMenuService {
           translationKey: 'nav.groups.main',
           items: [
             { translationKey: 'nav.dashboard', icon: 'space_dashboard', route: dash },
-            { translationKey: 'nav.students', icon: 'school', route: undefined },
-            { translationKey: 'nav.therapists', icon: 'psychology', route: undefined },
             { translationKey: 'nav.calendar', icon: 'calendar_month', ...schedulingNav },
             { translationKey: 'nav.sessions', icon: 'event_available', ...sessionsNav },
           ],
         },
         {
-          translationKey: 'nav.groups.management',
-          items: [
-            { translationKey: 'nav.reports', icon: 'assessment', route: undefined },
-            { translationKey: 'nav.messages', icon: 'forum', route: undefined, badgeCount: 3 },
-            { translationKey: 'nav.notifications', icon: 'notifications', route: undefined },
-          ],
-        },
-        {
           translationKey: 'nav.groups.account',
           items: [
-            { translationKey: 'nav.settings', icon: 'settings', route: undefined },
             { translationKey: 'nav.signOut', icon: 'logout', route: undefined, signOut: true },
           ],
         },
@@ -54,41 +44,28 @@ export class NavigationMenuService {
     }
 
     if (role === InterfaceRole.Teacher) {
-      const notesRoute = plan === PlanType.Institutional ? '/app/institutional-teacher-notes' : undefined;
-      const items: NavigationGroup[] = [
+      const notesRoute =
+        plan === PlanType.Institutional
+          ? '/app/institutional-teacher-notes'
+          : '/app/personal-teacher-notes';
+
+      return [
         {
           translationKey: 'nav.groups.main',
           items: [
             { translationKey: 'nav.dashboard', icon: 'space_dashboard', route: dash },
             { translationKey: 'nav.calendarSessions', icon: 'calendar_month', ...schedulingNav },
-            { translationKey: 'nav.notifications', icon: 'notifications', route: undefined },
-            { translationKey: 'nav.messages', icon: 'forum', route: undefined },
             { translationKey: 'nav.notes', icon: 'note_alt', route: notesRoute },
             { translationKey: 'nav.groupSessions', icon: 'groups', ...sessionsNav },
           ],
         },
         {
-          translationKey: 'nav.groups.secondary',
+          translationKey: 'nav.groups.account',
           items: [
-            {
-              translationKey: 'nav.emergencies',
-              icon: 'crisis_alert',
-              route: '/app/emergency/emergencies',
-              tone: 'danger',
-            },
-            { translationKey: 'nav.profile', icon: 'person', route: undefined },
             { translationKey: 'nav.signOut', icon: 'logout', route: undefined, signOut: true },
           ],
         },
       ];
-      if (plan === PlanType.Personal) {
-        items[0].items.splice(2, 0, {
-          translationKey: 'nav.requests',
-          icon: 'inbox',
-          route: undefined,
-        });
-      }
-      return items;
     }
 
     if (role === InterfaceRole.Parent && plan === PlanType.Personal) {
@@ -97,21 +74,16 @@ export class NavigationMenuService {
           translationKey: 'nav.groups.main',
           items: [
             { translationKey: 'nav.home', icon: 'home', route: dash },
-            { translationKey: 'nav.notifications', icon: 'notifications', route: undefined, badgeCount: 3 },
             { translationKey: 'nav.groupSessions', icon: 'groups', ...sessionsNav },
             { translationKey: 'nav.privateSessions', icon: 'lock', ...sessionsNav },
-            { translationKey: 'nav.myCalendar', icon: 'calendar_month', route: undefined },
-            { translationKey: 'nav.homeVisits', icon: 'home_work', route: undefined },
-            { translationKey: 'nav.notes', icon: 'note_alt', route: undefined },
-            { translationKey: 'nav.marketplace', icon: 'storefront', route: undefined },
-            { translationKey: 'nav.tracking', icon: 'timeline', route: undefined },
+            { translationKey: 'nav.myCalendar', icon: 'calendar_month', route: '/app/scheduling' },
+            { translationKey: 'nav.notes', icon: 'note_alt', route: '/app/personal-parent-notes' },
+            { translationKey: 'nav.marketplace', icon: 'storefront', route: '/app/marketplace' },
           ],
         },
         {
           translationKey: 'nav.groups.account',
           items: [
-            { translationKey: 'nav.settings', icon: 'settings', route: undefined },
-            { translationKey: 'nav.help', icon: 'help', route: undefined },
             { translationKey: 'nav.signOut', icon: 'logout', route: undefined, signOut: true },
           ],
         },
@@ -124,16 +96,13 @@ export class NavigationMenuService {
           translationKey: 'nav.groups.main',
           items: [
             { translationKey: 'nav.home', icon: 'home', route: dash },
-            { translationKey: 'nav.notifications', icon: 'notifications', route: undefined, badgeCount: 3 },
             { translationKey: 'nav.privateSessions', icon: 'lock', ...sessionsNav },
-            { translationKey: 'nav.myCalendar', icon: 'calendar_month', route: undefined },
+            { translationKey: 'nav.myCalendar', icon: 'calendar_month', route: '/app/scheduling' },
           ],
         },
         {
           translationKey: 'nav.groups.account',
           items: [
-            { translationKey: 'nav.settings', icon: 'settings', route: undefined },
-            { translationKey: 'nav.help', icon: 'help', route: undefined },
             { translationKey: 'nav.signOut', icon: 'logout', route: undefined, signOut: true },
           ],
         },

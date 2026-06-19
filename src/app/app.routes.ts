@@ -53,6 +53,13 @@ export const routes: Routes = [
             (m) => m.InstitutionAdminDashboardViewComponent,
           ),
       },
+      {
+        path: 'marketplace',
+        loadComponent: () =>
+          import('./marketplace-and-recommendations/presentation/view/marketplace-dashboard-view/marketplace-dashboard-view.component').then(
+            (m) => m.MarketplaceDashboardViewComponent,
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: 'welcome' },
