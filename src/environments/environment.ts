@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
   apiBaseUrl:
-    'https://my-json-server.typicode.com/Wolf2911-P/upc-pre-202610-1asi0729-11913-TherapyConnect-frontend',
+    'https://my-json-server.typicode.com/1ASI0729-2610-11913/upc-pre-202610-1asi0729-11913-TherapyConnect-frontend',
   platformProviderApiBaseUrl:
-    'https://my-json-server.typicode.com/Wolf2911-P/upc-pre-202610-1asi0729-11913-TherapyConnect-frontend',
+    'https://my-json-server.typicode.com/1ASI0729-2610-11913/upc-pre-202610-1asi0729-11913-TherapyConnect-frontend',
   platformProviderUserProfilesEndpointPath: '/userProfiles',
   platformProviderTeacherNotesEndpointPath: '/personalTeacherNotes',
   platformProviderTherapySessionsEndpointPath: '/therapySessions',
