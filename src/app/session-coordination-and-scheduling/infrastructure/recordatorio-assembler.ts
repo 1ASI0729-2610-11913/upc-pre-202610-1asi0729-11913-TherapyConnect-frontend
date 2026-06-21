@@ -10,17 +10,22 @@ export class RecordatorioAssembler implements BaseAssembler<Recordatorio, Record
   toEntityFromResource(resource: RecordatorioResource): Recordatorio {
     return new Recordatorio({
       id: resource.id,
-      titulo: resource.titulo,
-      fechaRecordatorio: resource.fechaRecordatorio,
-      horaRecordatorio: resource.horaRecordatorio,
-      estadoRecordatorio: resource.estadoRecordatorio,
-      eventoId: resource.eventoId,
+      titulo: resource.titulo ?? resource.title ?? '',
+      fechaRecordatorio: resource.fechaRecordatorio ?? resource.reminderDate ?? '',
+      horaRecordatorio: resource.horaRecordatorio ?? resource.reminderTime ?? '',
+      estadoRecordatorio: resource.estadoRecordatorio ?? resource.reminderStatus ?? 'PENDING',
+      eventoId: resource.eventoId ?? resource.sessionId ?? 0,
     });
   }
 
   toResourceFromEntity(entity: Recordatorio): RecordatorioResource {
     return {
       id: entity.id,
+      title: entity.titulo,
+      reminderDate: entity.fechaRecordatorio,
+      reminderTime: entity.horaRecordatorio,
+      reminderStatus: entity.estadoRecordatorio,
+      sessionId: entity.eventoId,
       titulo: entity.titulo,
       fechaRecordatorio: entity.fechaRecordatorio,
       horaRecordatorio: entity.horaRecordatorio,

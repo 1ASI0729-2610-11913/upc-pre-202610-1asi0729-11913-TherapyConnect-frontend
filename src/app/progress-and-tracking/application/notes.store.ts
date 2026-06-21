@@ -59,6 +59,15 @@ function draftToCategories(draft: NotesDraft): string[] {
   return [draft.categoryPreset];
 }
 
+function nowAsBackendLocalDateTime(): string {
+  return new Date().toISOString().slice(0, 19);
+}
+
+function toBackendLocalDateTime(value: string | undefined): string {
+  if (!value) return nowAsBackendLocalDateTime();
+  return value.includes('T') ? value.slice(0, 19) : `${value}T00:00:00`;
+}
+
 /**
  * Store centralizado de aplicación para los tres tipos de apuntes.
  */
@@ -170,8 +179,8 @@ export class NotesStore {
     const existing = !isNew ? this.findNoteById(id!) : undefined;
     const categories = draftToCategories(d);
     const date = isNew
-      ? new Date().toISOString()
-      : (existing?.date ?? new Date().toISOString());
+      ? nowAsBackendLocalDateTime()
+      : toBackendLocalDateTime(existing?.date);
 
     this._loading.set(true);
 

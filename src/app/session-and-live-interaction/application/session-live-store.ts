@@ -2,10 +2,15 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { SessionChecklistItem } from '../domain/model/session-checklist.entity';
 import { TherapySession } from '../domain/model/therapy-session.entity';
 import { SessionLiveApi } from '../infrastructure/session-live-api/session-live-api';
+import { AuthenticationApi } from '../../iam/infrastructure/authentication-api/authentication-api';
+import { AppNavigationContextService } from '../../shared/presentation/services/navigation/app-navigation-context.service';
+import { InterfaceRole } from '../../iam/domain/model/interface-role.enum';
 
 @Injectable({ providedIn: 'root' })
 export class SessionLiveStore {
   private readonly api = inject(SessionLiveApi);
+  private readonly authApi = inject(AuthenticationApi);
+  private readonly navContext = inject(AppNavigationContextService);
 
   private readonly sessionsSignal = signal<TherapySession[]>([]);
   private readonly checklistSignal = signal<SessionChecklistItem[]>([]);
@@ -31,7 +36,15 @@ export class SessionLiveStore {
   loadSessions(): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.api.getSessions().subscribe({
+
+    const role = this.navContext.context()?.role;
+    const userId = this.authApi.getCurrentUserId();
+    const sessions$ =
+      role === InterfaceRole.Teacher && userId
+        ? this.api.getSessionEventsByTeacher(userId)
+        : this.api.getAllSessionEvents();
+
+    sessions$.subscribe({
       next: (sessions) => {
         this.sessionsSignal.set(sessions);
         if (!this.selectedSessionSignal() && sessions.length > 0) {

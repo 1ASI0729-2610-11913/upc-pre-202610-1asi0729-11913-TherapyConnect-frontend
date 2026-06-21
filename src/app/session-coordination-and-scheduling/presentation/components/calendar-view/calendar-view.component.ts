@@ -93,12 +93,16 @@ export class CalendarViewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private getColorByTipo(tipo: string): string {
-    switch (tipo) {
-      case 'privada':
+    switch ((tipo ?? '').toUpperCase()) {
+      case 'PRIVATE':
+      case 'INDIVIDUAL':
+      case 'PRIVADA':
         return '#7C3AED';
-      case 'grupal':
+      case 'GROUP':
+      case 'GRUPAL':
         return '#2563EB';
-      case 'emergencia':
+      case 'EMERGENCY':
+      case 'EMERGENCIA':
         return '#DC2626';
       default:
         return '#6B7280';

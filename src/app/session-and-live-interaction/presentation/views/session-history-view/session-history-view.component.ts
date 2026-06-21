@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionLiveStore } from '../../../application/session-live-store';
 import { TherapySession } from '../../../domain/model/therapy-session.entity';
@@ -11,9 +11,13 @@ import { DashboardLayoutComponent } from '../../../../shared/presentation/layout
   templateUrl: './session-history-view.component.html',
   styleUrl: './session-history-view.component.css',
 })
-export class SessionHistoryViewComponent {
+export class SessionHistoryViewComponent implements OnInit {
   protected readonly store = inject(SessionLiveStore);
   private readonly router = inject(Router);
+
+  ngOnInit(): void {
+    this.store.loadSessions();
+  }
 
   protected readonly selectedSession = signal<TherapySession | null>(null);
 

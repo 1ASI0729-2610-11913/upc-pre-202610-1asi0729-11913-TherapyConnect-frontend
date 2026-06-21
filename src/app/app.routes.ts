@@ -4,7 +4,14 @@ import { emergencyRoutes } from './emergency-management/presentation/views/emerg
 import { sessionCoordinationAndSchedulingRoutes } from './session-coordination-and-scheduling/presentation/session-coordination-and-scheduling.routes';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'welcome' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./iam/presentation/views/login-view/login-view.component').then(
+        (m) => m.LoginViewComponent,
+      ),
+  },
   {
     path: 'welcome',
     loadComponent: () =>
@@ -89,6 +96,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./session-and-live-interaction/presentation/views/session-menu-view/session-menu-view.component').then(
             (m) => m.SessionMenuViewComponent,
+          ),
+      },
+      {
+        path: 'sessions/live',
+        loadComponent: () =>
+          import('./session-and-live-interaction/presentation/views/live-session-view/live-session-view.component').then(
+            (m) => m.LiveSessionViewComponent,
           ),
       },
       {

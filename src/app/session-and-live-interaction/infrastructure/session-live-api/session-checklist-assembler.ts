@@ -12,9 +12,9 @@ export class SessionChecklistAssembler
   toEntityFromResource(resource: SessionChecklistItemResource): SessionChecklistItem {
     return new SessionChecklistItem({
       id: resource.id,
-      groupTitle: resource.groupTitle,
-      label: resource.label,
-      checked: resource.checked,
+      groupTitle: resource.groupTitle ?? `Sesion ${resource.sessionId ?? ''}`.trim(),
+      label: resource.label ?? resource.remarks ?? resource.attendanceStatus ?? 'Asistencia registrada',
+      checked: resource.checked ?? resource.attendanceStatus === 'PRESENT',
     });
   }
 

@@ -7,9 +7,15 @@ export interface TeacherNotesResponse extends BaseResponse {
 
 
 export interface TeacherNoteResource extends BaseResource {
-  studentName: string;
-  date: string;
-  categories: string[];
-  content: string;
-  sessionInfo: string;
+  noteDate?: string;
+  conditionType?: string;
+  conditionDescription?: string;
+  authorProfileId?: number;
+  sessionId?: number;
+  teacherNoteType?: string;
+  studentName?: string;
+  date?: string;
+  categories?: string[];
+  content?: string;
+  sessionInfo?: string;
 }

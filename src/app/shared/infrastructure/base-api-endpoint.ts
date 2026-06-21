@@ -78,6 +78,8 @@ export abstract class BaseApiEndpoint<
         errorMessage = `${operation}: Resource not found`;
       } else if (error.error instanceof ErrorEvent) {
         errorMessage = `${operation}: ${error.error.message}`;
+      } else if (error.status === 200 && error.message.includes('parsing')) {
+        errorMessage = `${operation}: el backend devolvió una respuesta no JSON. Si usas Render, abre Swagger y espera a que despierte.`;
       } else {
         errorMessage = `${operation}: ${error.statusText || 'Unexpected error'}`;
       }

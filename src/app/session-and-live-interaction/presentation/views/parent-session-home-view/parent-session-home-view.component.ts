@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionLiveStore } from '../../../application/session-live-store';
 import { DashboardLayoutComponent } from '../../../../shared/presentation/layouts/dashboard-layout/dashboard-layout.component';
@@ -10,9 +10,13 @@ import { DashboardLayoutComponent } from '../../../../shared/presentation/layout
   templateUrl: './parent-session-home-view.component.html',
   styleUrl: './parent-session-home-view.component.css',
 })
-export class ParentSessionHomeViewComponent {
+export class ParentSessionHomeViewComponent implements OnInit {
   protected readonly store = inject(SessionLiveStore);
   private readonly router = inject(Router);
+
+  ngOnInit(): void {
+    this.store.loadSessions();
+  }
 
   protected enterLiveSession(): void {
     const session = this.store.sessions()[0];

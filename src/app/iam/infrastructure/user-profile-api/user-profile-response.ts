@@ -5,11 +5,13 @@ export interface UserProfilesResponse extends BaseResponse {
 }
 
 export interface UserProfileResource extends BaseResource {
-  profileKey: string;
-  displayName: string;
-  planKey: string;
-  roleKey: string;
-  organizationName: string | null;
-  pendingNotifications: number;
-  avatarUrl: string | null;
+  username?: string;
+  roles?: string[];
+  profileKey?: string;
+  displayName?: string;
+  planKey?: string;
+  roleKey?: string;
+  organizationName?: string | null;
+  pendingNotifications?: number;
+  avatarUrl?: string | null;
 }

@@ -1,0 +1,63 @@
+.tc-login {
+  width: min(360px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.tc-login-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.tc-login-subtitle {
+  margin: -0.25rem 0 0.25rem;
+  color: #4b5563;
+}
+
+.tc-auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: #f3f4f6;
+  border-radius: 6px;
+}
+
+.tc-auth-tab {
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  color: #4b5563;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tc-auth-tab-active {
+  color: #111827;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+}
+
+.tc-full {
+  width: 100%;
+}
+
+.tc-login-error {
+  margin: -0.25rem 0 0;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+.tc-login-hint {
+  margin: -0.4rem 0 0;
+  color: #6b7280;
+  font-size: 0.8125rem;
+}

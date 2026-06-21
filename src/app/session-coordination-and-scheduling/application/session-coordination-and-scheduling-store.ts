@@ -168,19 +168,27 @@ export class SessionCoordinationAndSchedulingStore {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     forkJoin({
-      eventos: this.api.getEventos(),
-      recordatorios: this.api.getRecordatorios(),
+      eventos: this.api.getEventos().pipe(retry(1)),
+      recordatorios: this.api.getRecordatorios().pipe(retry(1)),
     }).subscribe({
       next: ({ eventos, recordatorios }) => {
         this.eventosSignal.set(eventos);
         this.recordatoriosSignal.set(recordatorios);
         this.loadingSignal.set(false);
       },
-      error: (err) => {
-        this.errorSignal.set(
-          this.formatError(err, 'No se pudieron cargar eventos ni recordatorios'),
-        );
-        this.loadingSignal.set(false);
+      error: () => {
+        // Si los recordatorios fallan, cargamos solo eventos
+        this.api.getEventos().subscribe({
+          next: (eventos) => {
+            this.eventosSignal.set(eventos);
+            this.recordatoriosSignal.set([]);
+            this.loadingSignal.set(false);
+          },
+          error: (err) => {
+            this.errorSignal.set(this.formatError(err, 'No se pudieron cargar los eventos'));
+            this.loadingSignal.set(false);
+          },
+        });
       },
     });
   }

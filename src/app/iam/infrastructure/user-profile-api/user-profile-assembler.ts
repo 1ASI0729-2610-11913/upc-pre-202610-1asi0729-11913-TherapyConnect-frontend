@@ -10,15 +10,16 @@ export class UserProfileAssembler implements BaseAssembler<UserProfile, UserProf
   }
 
   toEntityFromResource(resource: UserProfileResource): UserProfile {
+    const primaryRole = resource.roleKey ?? resource.roles?.[0] ?? InterfaceRole.Parent;
     return new UserProfile({
       id: resource.id,
-      profileKey: resource.profileKey,
-      displayName: resource.displayName,
-      planKey: resource.planKey as PlanType,
-      roleKey: resource.roleKey as InterfaceRole,
-      organizationName: resource.organizationName,
-      pendingNotifications: resource.pendingNotifications,
-      avatarUrl: resource.avatarUrl,
+      profileKey: resource.profileKey ?? resource.username ?? `user-${resource.id}`,
+      displayName: resource.displayName ?? resource.username ?? `Usuario ${resource.id}`,
+      planKey: (resource.planKey ?? PlanType.Personal) as PlanType,
+      roleKey: primaryRole as InterfaceRole,
+      organizationName: resource.organizationName ?? null,
+      pendingNotifications: resource.pendingNotifications ?? 0,
+      avatarUrl: resource.avatarUrl ?? null,
     });
   }
 
@@ -26,6 +27,8 @@ export class UserProfileAssembler implements BaseAssembler<UserProfile, UserProf
     return {
       id: entity.id,
       profileKey: entity.profileKey,
+      username: entity.profileKey,
+      roles: [entity.roleKey],
       displayName: entity.displayName,
       planKey: entity.planKey,
       roleKey: entity.roleKey,

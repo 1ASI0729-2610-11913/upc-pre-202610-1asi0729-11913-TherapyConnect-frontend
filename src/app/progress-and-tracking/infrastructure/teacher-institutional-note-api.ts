@@ -4,10 +4,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { TeacherInstitutionalNote } from '../domain/model/teacher-institutional-note.entity';
 import { TeacherInstitutionalNoteAssembler } from './teacher-institutional-note-assembler';
-import {
-  TeacherInstitutionalNoteResource,
-  TeacherInstitutionalNotesResponse,
-} from './teacher-institutional-notes-response';
+import { TeacherInstitutionalNoteResource } from './teacher-institutional-notes-response';
 
 /**
  * Gateway HTTP para apuntes de profesor institucional.
@@ -16,37 +13,44 @@ import {
 export class TeacherInstitutionalNoteApi {
   private baseUrl = environment.platformProviderApiBaseUrl;
   private endpoint = environment.platformProviderInstitutionalTeacherNotesEndpointPath;
+  private commandEndpoint = environment.platformProviderTeacherNotesEndpointPath;
   private http = inject(HttpClient);
 
   getNotes(): Observable<TeacherInstitutionalNote[]> {
+    const userId = this.currentUserId();
+    const url = userId
+      ? `${this.baseUrl}${this.endpoint}?authorProfileId=${userId}`
+      : `${this.baseUrl}${this.commandEndpoint}`;
+
     return this.http
-      .get<TeacherInstitutionalNotesResponse | TeacherInstitutionalNoteResource[]>(
-        `${this.baseUrl}${this.endpoint}`,
-      )
+      .get<TeacherInstitutionalNoteResource[]>(url)
       .pipe(
-        map((response) =>
-          Array.isArray(response)
-            ? TeacherInstitutionalNoteAssembler.toEntitiesFromResources(response)
-            : TeacherInstitutionalNoteAssembler.toEntitiesFromResponse(response),
+        map((resources) =>
+          TeacherInstitutionalNoteAssembler.toEntitiesFromResources(resources),
         ),
       );
+  }
+
+  private currentUserId(): number | null {
+    const raw = localStorage.getItem('therapy-connect-auth-user-id');
+    return raw ? Number(raw) : null;
   }
 
   createNote(entity: TeacherInstitutionalNote): Observable<TeacherInstitutionalNote> {
     const resource = TeacherInstitutionalNoteAssembler.toResourceFromEntity(entity);
     return this.http
-      .post<TeacherInstitutionalNoteResource>(`${this.baseUrl}${this.endpoint}`, resource)
+      .post<TeacherInstitutionalNoteResource>(`${this.baseUrl}${this.commandEndpoint}`, resource)
       .pipe(map((response) => TeacherInstitutionalNoteAssembler.toEntityFromResource(response)));
   }
 
   updateNote(id: number, entity: TeacherInstitutionalNote): Observable<TeacherInstitutionalNote> {
     const resource = TeacherInstitutionalNoteAssembler.toResourceFromEntity(entity);
     return this.http
-      .put<TeacherInstitutionalNoteResource>(`${this.baseUrl}${this.endpoint}/${id}`, resource)
+      .put<TeacherInstitutionalNoteResource>(`${this.baseUrl}${this.commandEndpoint}/${id}`, resource)
       .pipe(map((response) => TeacherInstitutionalNoteAssembler.toEntityFromResource(response)));
   }
 
   deleteNote(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}${this.endpoint}/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}${this.commandEndpoint}/${id}`);
   }
 }

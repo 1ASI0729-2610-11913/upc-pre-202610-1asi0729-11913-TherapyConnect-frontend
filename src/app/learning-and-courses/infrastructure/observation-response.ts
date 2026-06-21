@@ -6,6 +6,12 @@ export interface ObservationResponse extends BaseResponse {
 
 export interface ObservationResource extends BaseResource {
   id: number;
-  observationType: string;
-  observationDescription: string;
+  sessionId?: number;
+  studentId?: number;
+  teacherId?: number;
+  observationText?: string;
+  observationDate?: string;
+  progressRating?: number;
+  observationType?: string;
+  observationDescription?: string;
 }

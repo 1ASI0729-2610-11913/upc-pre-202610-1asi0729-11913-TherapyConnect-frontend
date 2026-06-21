@@ -5,9 +5,13 @@ export interface ParentNotesResponse extends BaseResponse {
 }
 
 export interface ParentNoteResource extends BaseResource {
-  childName: string;
-  date: string;
-  categories: string[];
-  content: string;
-  nextSteps: string;
+  noteDate?: string;
+  conditionType?: string;
+  conditionDescription?: string;
+  authorProfileId?: number;
+  childName?: string;
+  date?: string;
+  categories?: string[];
+  content?: string;
+  nextSteps?: string;
 }

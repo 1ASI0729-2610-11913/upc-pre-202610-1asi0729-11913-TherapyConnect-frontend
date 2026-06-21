@@ -5,7 +5,12 @@ export interface SessionChecklistResponse extends BaseResponse {
 }
 
 export interface SessionChecklistItemResource extends BaseResource {
-  groupTitle: string;
-  label: string;
-  checked: boolean;
+  sessionId?: number;
+  studentId?: number;
+  attendanceStatus?: string;
+  attendanceDate?: string;
+  remarks?: string;
+  groupTitle?: string;
+  label?: string;
+  checked?: boolean;
 }

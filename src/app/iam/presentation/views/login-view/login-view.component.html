@@ -1,0 +1,94 @@
+<app-auth-layout>
+  <form class="tc-login" (ngSubmit)="submit()">
+    <h1 class="tc-login-title">TherapyConnect</h1>
+    <p class="tc-login-subtitle">
+      {{ mode() === 'sign-in' ? 'Ingresa con tu usuario para continuar.' : 'Crea tu cuenta para empezar.' }}
+    </p>
+
+    <div class="tc-auth-tabs" role="tablist" aria-label="Autenticacion">
+      <button
+        type="button"
+        class="tc-auth-tab"
+        [class.tc-auth-tab-active]="mode() === 'sign-in'"
+        (click)="switchMode('sign-in')">
+        Sign in
+      </button>
+      <button
+        type="button"
+        class="tc-auth-tab"
+        [class.tc-auth-tab-active]="mode() === 'sign-up'"
+        (click)="switchMode('sign-up')">
+        Sign up
+      </button>
+    </div>
+
+    <mat-form-field appearance="outline" class="tc-full">
+      <mat-label>Usuario</mat-label>
+      <input
+        matInput
+        autocomplete="username"
+        [ngModel]="username()"
+        name="username"
+        (ngModelChange)="username.set($event)" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="tc-full">
+      <mat-label>Contrasena</mat-label>
+      <input
+        matInput
+        type="password"
+        autocomplete="current-password"
+        [ngModel]="password()"
+        name="password"
+        (ngModelChange)="password.set($event)" />
+    </mat-form-field>
+
+    @if (mode() === 'sign-up') {
+      <mat-form-field appearance="outline" class="tc-full">
+        <mat-label>Confirmar contrasena</mat-label>
+        <input
+          matInput
+          type="password"
+          autocomplete="new-password"
+          [ngModel]="confirmPassword()"
+          name="confirmPassword"
+          (ngModelChange)="confirmPassword.set($event)" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="tc-full">
+        <mat-label>Rol</mat-label>
+        <mat-select
+          [ngModel]="selectedRole()"
+          name="role"
+          (ngModelChange)="selectedRole.set($event)">
+          @for (role of roleOptions; track role.value) {
+            <mat-option [value]="role.value">{{ role.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      @if (password() && password().length < 8) {
+        <p class="tc-login-hint">La contrasena debe tener al menos 8 caracteres.</p>
+      }
+      @if (confirmPassword() && password() !== confirmPassword()) {
+        <p class="tc-login-hint">Las contrasenas no coinciden.</p>
+      }
+    }
+
+    @if (errorMessage()) {
+      <p class="tc-login-error">{{ errorMessage() }}</p>
+    }
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="!canSubmit()">
+      @if (loading()) {
+        {{ mode() === 'sign-in' ? 'Ingresando...' : 'Creando cuenta...' }}
+      } @else {
+        {{ mode() === 'sign-in' ? 'Ingresar' : 'Crear cuenta' }}
+      }
+    </button>
+  </form>
+</app-auth-layout>
