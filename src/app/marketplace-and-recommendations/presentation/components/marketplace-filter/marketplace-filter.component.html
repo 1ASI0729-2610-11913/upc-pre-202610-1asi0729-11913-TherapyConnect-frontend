@@ -1,17 +1,25 @@
-<div class="filter-container">
+<section class="tc-marketplace-filter">
+  <mat-form-field appearance="outline" class="tc-marketplace-search-field">
+    <mat-label>Buscar producto</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="emitChanges()"
+      placeholder="Escribe nombre, tipo o categoría" />
+  </mat-form-field>
 
-  <select
-    [(ngModel)]="category"
-    (change)="applyFilter()">
+  <mat-form-field appearance="outline" class="tc-marketplace-category-field">
+    <mat-label>Categoría</mat-label>
+    <mat-select
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="emitChanges()">
+      <mat-option value="">Todas</mat-option>
+      <mat-option *ngFor="let item of categories" [value]="item">{{ item }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <option
-      *ngFor="let item of categories"
-      [value]="item">
-
-      {{ item }}
-
-    </option>
-
-  </select>
-
-</div>
+  <div class="tc-marketplace-filter-actions">
+    <button mat-stroked-button type="button" (click)="reset()">Limpiar</button>
+  </div>
+</section>

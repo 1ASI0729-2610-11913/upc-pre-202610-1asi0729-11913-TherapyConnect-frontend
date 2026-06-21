@@ -43,4 +43,3 @@ export class MarketplaceDetailViewComponent {
     this.product().stock > 0 && this.product().availability === 'Available' ? 'Available' : 'Out of Stock'
   );
 }
-

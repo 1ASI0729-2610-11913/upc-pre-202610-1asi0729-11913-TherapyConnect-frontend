@@ -1,36 +1,190 @@
-<div class="marketplace-container">
+<app-dashboard-layout>
+  <div class="tc-marketplace-page">
+    <p class="tc-marketplace-breadcrumb">Inicio > Marketplace</p>
 
-  <section class="marketplace-header">
+    <header class="tc-marketplace-header">
+      <div class="tc-marketplace-title-block">
+        <h1 class="tc-marketplace-title">Productos para Mateo</h1>
+        <span class="tc-marketplace-badge">Personalizado para él</span>
+      </div>
+      <div class="tc-marketplace-actions">
+        <button mat-stroked-button type="button">Favoritos</button>
+        <button mat-flat-button color="primary" type="button">Mi carrito</button>
+      </div>
+    </header>
 
-    <div>
-      <h1>Marketplace</h1>
-      <p>Explore therapy resources and recommended products.</p>
-    </div>
+    <mat-form-field appearance="outline" class="tc-marketplace-search">
+      <mat-label>Buscar productos, juguetes, libros terapéuticos...</mat-label>
+      <input
+        matInput
+        [ngModel]="searchTerm()"
+        (ngModelChange)="updateSearchTerm($event)" />
+    </mat-form-field>
 
-  </section>
+    <section class="tc-marketplace-chip-groups">
+      <div class="tc-chip-group">
+        <span class="tc-chip-group-label">CONDICION:</span>
+        <button
+          mat-stroked-button
+          type="button"
+          class="tc-chip"
+          [class.tc-chip-active]="selectedCategory() === ''"
+          (click)="selectCategory('')">
+          Todas
+        </button>
+        @for (category of categories(); track category) {
+          <button
+            mat-stroked-button
+            type="button"
+            class="tc-chip"
+            [class.tc-chip-active]="selectedCategory() === category"
+            (click)="selectCategory(category)">
+            {{ category }}
+          </button>
+        }
+      </div>
 
-  <app-product-statistics
-    [totalProducts]="products().length"
-    [recommendedProducts]="4"
-    [activeCategories]="3">
-  </app-product-statistics>
+      <div class="tc-chip-group">
+        <span class="tc-chip-group-label">TIPO:</span>
+        <button
+          mat-stroked-button
+          type="button"
+          class="tc-chip"
+          [class.tc-chip-active]="selectedType() === ''"
+          (click)="selectType('')">
+          Todos
+        </button>
+        @for (type of types(); track type) {
+          <button
+            mat-stroked-button
+            type="button"
+            class="tc-chip"
+            [class.tc-chip-active]="selectedType() === type"
+            (click)="selectType(type)">
+            {{ type }}
+          </button>
+        }
+      </div>
 
-  <app-marketplace-filter
-    (categoryChange)="updateCategory($event)">
-  </app-marketplace-filter>
+      <button mat-stroked-button type="button" (click)="clearFilters()">Limpiar</button>
+    </section>
 
-  <div class="product-grid">
+    <app-product-statistics
+      [totalProducts]="products().length"
+      [recommendedProducts]="recommendedProducts()"
+      [activeCategories]="categories().length" />
 
-    <app-product-card
-      *ngFor="let product of filteredProducts()"
-      [title]="product.title"
-      [description]="product.description"
-      [category]="product.category"
-      [price]="product.price"
-      [image]="product.image"
-      [rating]="product.rating">
-    </app-product-card>
+    <section class="tc-section-block">
+      <header class="tc-section-header">
+        <h2 class="tc-section-title">Destacados para ti</h2>
+        <span class="tc-section-tag">Recomendado por tu terapeuta</span>
+      </header>
 
+      <div class="tc-featured-grid">
+        @if (featuredProducts().length === 0) {
+          <p class="tc-muted">No hay destacados para los filtros actuales.</p>
+        } @else {
+          @for (product of featuredProducts(); track product.id) {
+            <app-product-card
+              [productName]="product.productName"
+              [conditionTag]="conditionLabelForCategory(product.productCategory)"
+              [productType]="product.productType"
+              [productCategory]="product.productCategory"
+              [availabilityState]="product.availabilityState"
+              [availableQuantity]="product.availableQuantity"
+              [featured]="true" />
+          }
+        }
+      </div>
+    </section>
+
+    <section class="tc-section-block">
+      <header class="tc-section-header">
+        <h2 class="tc-section-title">Para Mateo</h2>
+        <span class="tc-section-tag">Basado en su perfil</span>
+      </header>
+
+      <div class="tc-profile-grid">
+        @if (profileProducts().length === 0) {
+          <p class="tc-muted">No hay productos para mostrar.</p>
+        } @else {
+          @for (product of profileProducts(); track product.id) {
+            <app-product-card
+              [productName]="product.productName"
+              [conditionTag]="conditionLabelForCategory(product.productCategory)"
+              [productType]="product.productType"
+              [productCategory]="product.productCategory"
+              [availabilityState]="product.availabilityState"
+              [availableQuantity]="product.availableQuantity" />
+          }
+        }
+      </div>
+    </section>
+
+    <section class="tc-section-block">
+      <header class="tc-section-header">
+        <h2 class="tc-section-title">Todos los productos</h2>
+        <div class="tc-section-sort">
+          <span class="tc-muted">Ordenar por:</span>
+          <mat-form-field appearance="outline" class="tc-sort-field">
+            <mat-select [ngModel]="sortOption()" (ngModelChange)="updateSort($event)">
+              <mat-option value="relevance">Relevancia</mat-option>
+              <mat-option value="name-asc">Nombre A-Z</mat-option>
+              <mat-option value="name-desc">Nombre Z-A</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </header>
+
+      <p class="tc-muted">{{ sortedProducts().length }} resultados</p>
+
+      <div class="tc-all-grid">
+        @if (pagedProducts().length === 0) {
+          <p class="tc-muted">No se encontraron productos con los filtros actuales.</p>
+        } @else {
+          @for (product of pagedProducts(); track product.id) {
+            <app-product-card
+              [productName]="product.productName"
+              [conditionTag]="conditionLabelForCategory(product.productCategory)"
+              [productType]="product.productType"
+              [productCategory]="product.productCategory"
+              [availabilityState]="product.availabilityState"
+              [availableQuantity]="product.availableQuantity" />
+          }
+        }
+      </div>
+
+      <div class="tc-pagination" *ngIf="totalPages() > 1">
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="currentPage() === 1"
+          (click)="goToPage(currentPage() - 1)">
+          Anterior
+        </button>
+
+        @for (token of paginationTokens(); track $index) {
+          @if (token === -1) {
+            <span class="tc-page-ellipsis">...</span>
+          } @else {
+            <button
+              mat-stroked-button
+              type="button"
+              [class.tc-page-active]="currentPage() === token"
+              (click)="goToPage(token)">
+              {{ token }}
+            </button>
+          }
+        }
+
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="currentPage() === totalPages()"
+          (click)="goToPage(currentPage() + 1)">
+          Siguiente
+        </button>
+      </div>
+    </section>
   </div>
-
-</div>
+</app-dashboard-layout>
