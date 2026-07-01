@@ -3,83 +3,36 @@ import { Course } from '../domain/model/course.entity'
 import { Registration } from '../domain/model/registration.entity';
 import { Evaluation } from '../domain/model/evaluation.entity';
 import { Observation } from '../domain/model/observation.entity';
-import { CoursesApiEndpoint } from '../infrastructure/courses-api-endpoint';
-import { EvaluationsApiEndpoint } from '../infrastructure/evaluations-api-endpoint';
-import { ObservationsApiEndpoint } from '../infrastructure/observations-api-endpoint';
-import { RegistrationsApiEndpoint } from '../infrastructure/registrations-api-endpoint';
-import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs';
-
-export type CourseState = '' | 'Completed' | 'Filled' | 'Incomplete' | 'Without starting';
-export type AccessState = '' | 'Active' | 'Pending' | 'Suspended';
-export type EvaluationState = '' | 'Completed' | 'Pending';
-export type ObservationType = '' | 'Participant' | 'Non-Participant';
-
-export const DEFAULT_COURSE_STATES: CourseState[] = ['Completed', 'Filled', 'Incomplete', 'Without starting'];
-export const DEFAULT_ACCESS_STATES: AccessState[] = ['Active', 'Pending', 'Suspended'];
-export const DEFAULT_EVALUATION_STATES: EvaluationState[] = ['Completed', 'Pending'];
-export const DEFAULT_OBSERVATION_TYPES: ObservationType[] = ['Participant', 'Non-Participant'];
-
-export interface Learning {
-  courseState: CourseState;
-  accessState: AccessState;
-  evaluationState: EvaluationState;
-  observationType: ObservationType;
-}
-
-function emptyLearning(): Learning {
-  return {
-    courseState: '',
-    accessState: '',
-    evaluationState: '',
-    observationType: '',
-  };
-}
+import { CourseAndLearningManagmentApi } from '../infrastructure/course-and-learning-managment-api';
 
 @Injectable({ providedIn: 'root' })
 export class CourseAndLearningManagmentStore {
-  private readonly courseApi = inject(CoursesApiEndpoint);
-  private readonly evaluationApi = inject(EvaluationsApiEndpoint);
-  private readonly observationApi = inject(ObservationsApiEndpoint);
-  private readonly registrationApi = inject(RegistrationsApiEndpoint);
+  private readonly api = inject(CourseAndLearningManagmentApi);
 
-  private readonly _courses = signal<Course[]>([]);
-  private readonly _evaluations = signal<Evaluation[]>([]);
-  private readonly _observations = signal<Observation[]>([]);
-  private readonly _registrations = signal<Registration[]>([]);
-  private readonly _loading = signal(false);
+  private readonly coursesSignal = signal<Course[]>([]);
+  private readonly registrationSignal = signal<Registration[]>([]);
+  private readonly evaluationSignal = signal<Evaluation[]>([]);
+  private readonly observationsSignal = signal<Observation[]>([]);
+  private readonly selectedCourseSignal = signal<Course | null>(null);
+  private readonly selectedEvaluationSignal = signal<Evaluation | null>(null);
+  private readonly selectedObservationnSignal = signal<Observation | null>(null);
+  private readonly loadingSignal = signal(false);
+  private readonly errorSignal = signal<string | null>(null);
 
-  readonly courses = this._courses.asReadonly();
-  readonly evaluations = this._evaluations.asReadonly();
-  readonly observations = this._observations.asReadonly();
-  readonly registrations = this._registrations.asReadonly();
-  readonly loading = this._loading.asReadonly();
+  readonly courses = this.coursesSignal.asReadonly();
+  readonly registrations = this.registrationSignal.asReadonly();
+  readonly evaluations = this.evaluationSignal.asReadonly();
+  readonly observations = this.observationsSignal.asReadonly();
+  readonly selectedCourse = this.selectedCourseSignal.asReadonly();
+  readonly selectedEvaluation = this.selectedEvaluationSignal.asReadonly();
+  readonly selectedObservation = this.selectedObservationnSignal.asReadonly();
+  readonly loading = this.loadingSignal.asReadonly();
+  readonly error = this.errorSignal.asReadonly();
 
-  readonly completedCourses = computed(() =>
-    this._courses().filter(
-      (course) => course.stateCourse === 'Completed',
-    ),
-  );
+  readonly completedCount = computed(() => this.courses().filter((s) => s.stateCourse === 'completed').length);
+  readonly cancelledCount = computed(() => this.courses().filter((s) => s.stateCourse === 'cancelled').length);
 
-  readonly completedEvaluations = computed(() =>
-    this._evaluations().filter(
-      (evaluation) => evaluation.evaluationState === 'Completed',
-    ),
-  );
-
-  readonly participants = computed(() =>
-    this._observations().filter(
-      (observation) => observation.observationType === 'Participant',
-    ),
-  );
-
-  readonly activeAccess = computed(() =>
-    this._registrations().filter(
-      (registration) => registration.accessState === 'Active',
-    ),
-  );
-
-  loadAll(): void {
+  constructor() {
     this.loadCourses();
     this.loadRegistrations();
     this.loadEvaluations();
@@ -87,126 +40,118 @@ export class CourseAndLearningManagmentStore {
   }
 
   loadCourses(): void {
-    this._loading.set(true);
-
-    this.courseApi
-      .getCourses()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((courses) => {
-        this._courses.set(courses);
-      });
+    this.loadingSignal.set(true);
+    this.errorSignal.set(null);
+    this.api.getCourses().subscribe({
+      next: (courses) => {
+        this.coursesSignal.set(courses);
+        if (!this.selectedCourseSignal() && courses.length > 0) {
+          this.selectedCourseSignal.set(courses[0]);
+        }
+        this.loadingSignal.set(false);
+      },
+      error: () => {
+        this.errorSignal.set('No se pudo cargar todos los cursos');
+        this.loadingSignal.set(false);
+      },
+    });
   }
 
   loadRegistrations(): void {
-    this._loading.set(true);
-
-    this.registrationApi
-      .getRegistrations()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((registrations) => {
-        this._registrations.set(registrations);
-      });
+    this.api.getRegistrations().subscribe({
+      next: (registrations) => this.registrationSignal.set(registrations),
+      error: () => this.registrationSignal.set([]),
+    });
   }
 
   loadEvaluations(): void {
-    this._loading.set(true);
-
-    this.evaluationApi
-      .getEvaluations()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((evaluations) => {
-        this._evaluations.set(evaluations);
-      });
+    this.api.getEvaluations().subscribe({
+      next: (evaluations) => this.evaluationSignal.set(evaluations),
+      error: () => this.evaluationSignal.set([]),
+    });
   }
 
   loadObservations(): void {
-    this._loading.set(true);
-
-    this.observationApi
-      .getObservations()
-      .pipe(
-        catchError(() => of([])),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe((observations) => {
-        this._observations.set(observations);
-      });
+    this.api.getObservations().subscribe({
+      next: (observations) => this.observationsSignal.set(observations),
+      error: () => this.observationsSignal.set([]),
+    });
   }
 
-  deleteCourse(id: number): void {
-    this._loading.set(true);
-
-    this.courseApi
-      .deleteCourse(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._courses.update((courses) =>
-        courses.filter((p) => p.id !== id),
-        );
-      });
+  selectCourse(course: Course): void {
+    this.selectedCourseSignal.set(course);
   }
 
-  deleteEvaluation(id: number): void {
-    this._loading.set(true);
-
-    this.evaluationApi
-      .deleteEvaluation(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._evaluations.update((evaluations) =>
-        evaluations.filter((p) => p.id !== id),
-        );
-      });
+  selectEvaluation(evaluation: Evaluation): void {
+    this.selectedEvaluationSignal.set(evaluation);
   }
 
-  deleteObservation(id: number): void {
-    this._loading.set(true);
-
-    this.observationApi
-      .deleteObservation(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._observations.update((observations) =>
-        observations.filter((p) => p.id !== id),
-        );
-      });
+  selectObservation(observation: Observation): void {
+    this.selectedObservationnSignal.set(observation);
   }
 
-  deleteRegistration(id: number): void {
-    this._loading.set(true);
-
-    this.registrationApi
-      .deleteRegistration(id)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe(() => {
-        this._registrations.update((registrations) =>
-        registrations.filter((p) => p.id !== id),
-        );
-      });
+  toggleCourse(id: number): void {
+    this.coursesSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Course({
+          id: item.id,
+          titleCourse: item.titleCourse,
+          stateCourse: item.stateCourse,
+          categoryNeed: item.categoryNeed,
+          moduleName: item.moduleName,
+          moduleState: item.moduleState,
+          contentType: item.contentType,
+          contentState: item.contentState,
+          progressPercentage: item.progressPercentage,
+          progressState: item.progressState,
+          improvementIndicator: item.improvementIndicator,
+        });
+      }),
+    );
   }
 
-  findCourseById(id: number): Course | undefined {
-    return this._courses().find((course) => course.id === id);
+  toggleEvaluation(id: number): void {
+    this.evaluationSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Evaluation({
+          id: item.id,
+          courseId: item.courseId,
+          evaluationState: item.evaluationState === 'completed' ? 'pending' : 'completed',
+          evaluationScore: item.evaluationScore,
+          answer: item.answer,
+          certificationState: item.certificationState,
+        });
+      }),
+    );
   }
 
-  findEvaluationById(id: number): Evaluation | undefined {
-    return this._evaluations().find((evaluation) => evaluation.id === id);
+  toggleObservation(id: number): void {
+    this.observationsSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Observation({
+          id: item.id,
+          observationType: item.observationType,
+          observationDescription: item.observationDescription,
+        });
+      }),
+    );
   }
 
-  findObservationById(id: number): Observation | undefined {
-    return this._observations().find((observation) => observation.id === id);
-  }
-
-  findRegistrationById(id: number): Registration | undefined {
-    return this._registrations().find((registration) => registration.id === id);
+  toggleRegistration(id: number): void {
+    this.registrationSignal.update((items) =>
+      items.map((item) => {
+        if (item.id !== id) return item;
+        return new Registration({
+          id: item.id,
+          registrationState: item.registrationState,
+          registrationDate: item.registrationDate,
+          accessState: item.accessState,
+          accessDate: item.accessDate,
+        });
+      }),
+    );
   }
 }
